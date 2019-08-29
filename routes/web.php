@@ -14,3 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('admin-login', 'Auth\Admin\AdminLoginController@login');
+
+Route::post('admin-login', ['as'=>'admin-login','uses'=>'Auth\Admin\AdminLoginController@loginAdmin']);
+Route::get('admin/logout', 'Auth\Admin\AdminLoginController@logout');
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
