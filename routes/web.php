@@ -19,11 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('admin-login', 'Auth\Admin\AdminLoginController@login');
-
-Route::post('admin-login', ['as'=>'admin-login','uses'=>'Auth\Admin\AdminLoginController@loginAdmin']);
+Route::get('admin/login', 'Auth\Admin\AdminLoginController@login');
+Route::post('admin/login', 'Auth\Admin\AdminLoginController@loginAdmin')->name('admin.login');
 Route::get('admin/logout', 'Auth\Admin\AdminLoginController@logout');
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 
+Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard.index');

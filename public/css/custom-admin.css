@@ -1,0 +1,7 @@
+.auth_login_error {
+  display: block;
+  margin-top: -15px;
+  margin-bottom: 5px;
+  color: #dc3545;
+}
+

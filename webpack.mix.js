@@ -12,4 +12,12 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/custom-admin.scss', 'public/css');
+
+mix.scripts([
+    'resources/js/admin/jquery/jquery.min.js',
+    'resources/js/admin/bootstrap/bootstrap.bundle.min.js',
+    'resources/js/admin/overlayScrollbars/js/overlayScrollbars.min.js',
+    'resources/js/admin/js/adminlte.min.js',
+], 'public/js/admin.js');

@@ -39,7 +39,7 @@ class AdminLoginController extends Controller
     {
         // dd($request->all());
         // if(!Auth::guest()) return redirect(route('dashboard.index'));
-        return view('auth.adminLogin');
+        return view('auth.admin.login');
     }
     public function loginAdmin(Request $request)
     {
@@ -51,11 +51,11 @@ class AdminLoginController extends Controller
         // Attempt to log the user in
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
             // if successful, then redirect to their intended location
-            return redirect()->intended(route('dashboard'));
+            return redirect()->route('admin.dashboard.index');
         }
         // if unsuccessful, then redirect back to the login with the form data
         //        dd($request->only('email', 'remember'));
-        return redirect('admin-login')->withInput($request->only('email', 'remember'))->withErrors([
+        return redirect('admin/login')->withInput($request->only('email', 'remember'))->withErrors([
             'password' => 'Неверный пароль',
             'email' => 'Неверный E-mail'
         ]);
@@ -63,6 +63,6 @@ class AdminLoginController extends Controller
     public function logout()
     {
         Auth::guard('admin')->logout();
-        return redirect()->route('login');
+        return redirect('/');
     }
 }

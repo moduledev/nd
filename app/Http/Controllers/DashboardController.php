@@ -19,7 +19,7 @@ class DashboardController extends Controller
     {
         // $users = User::all()->count();
         // $programs = Program::all()->count();
-        return view('dashboard.index');
+        return view('admin.dashboard.index');
     }
 
 }
