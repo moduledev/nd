@@ -35,7 +35,7 @@ class AdminLoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function login(Request $request)
+    public function login()
     {
         // dd($request->all());
         // if(!Auth::guest()) return redirect(route('dashboard.index'));
@@ -60,7 +60,14 @@ class AdminLoginController extends Controller
             'email' => 'Неверный E-mail'
         ]);
     }
-    public function logout()
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
     {
         Auth::guard('admin')->logout();
         return redirect('/');
