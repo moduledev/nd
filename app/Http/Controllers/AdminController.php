@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\Http\Requests\AdminStoreRequest;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -25,18 +26,18 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.admin.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(AdminStoreRequest $request)
     {
-        //
+      dd($request->all());
+        $admin = new Admin;
+        $admin->fill($request->validated());
+        $admin->image = $this->storeImage($request, 'image');
+        $admin->save();
+        return redirect()->back()->with('success', 'Программа ' . $admin->name . ' была успешно создана!');
     }
 
     /**

@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <title>AdminLTE 3 | Starter</title>
 
     <!-- Font Awesome Icons -->
@@ -17,6 +17,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/custom-admin.css') }}">
+
     @yield('styles')
 
 </head>
@@ -195,13 +197,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('admin.index')}}" class="nav-link {{active_menu(\Illuminate\Support\Facades\Route::currentRouteName(),'admin.index',0,12)}}">
+                                <a href="{{route('admin.index')}}" class="nav-link {{active_menu(\Illuminate\Support\Facades\Route::currentRouteName(),'admins',0,12)}}">
                                     <i class="fas fa-users nav-icon "></i>
                                     <p>Все пользователи</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{route('admin.create')}}" class="nav-link {{active_menu(\Illuminate\Support\Facades\Route::currentRouteName(),'admin.index',0,11)}}">
                                     <i class="fas fa-user-plus nav-icon"></i>
                                     <p>Добавить пользователя</p>
                                 </a>
