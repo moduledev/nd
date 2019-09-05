@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Добавить пользователя</h1>
+                <h1 class="m-0 text-dark">Изменить данные пользователя</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -31,106 +31,86 @@
                         @csrf
                         <div class="card-body">
                             <div class="input-group mb-3">
-                                @if ($errors->has('name'))
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">@</span>
-                                    </div>
-                                    <input type="text" name="name" value="{{$admin->name}}"
-                                           class="form-control is-invalid" placeholder="Имя пользователя"
-                                           required autofocus>
-                                    <span class="admin-form_error-block">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input type="text" name="name" value="{{$admin->name}}"
+                                       class="form-control @error('name') is-invalid @enderror"
+                                       placeholder="Имя пользователя"
+                                       required autofocus>
+                                @error('name')
+                                <span class="admin-form_error-block">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
-                                @else
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">@</span>
-                                    </div>
-                                    <input type="text" name="name" value="{{$admin->name}}" class="form-control"
-                                           placeholder="Имя пользователя"
-                                           required autofocus>
-                                @endif
+                                @enderror
+
                             </div>
                             <div class="form-group">
-                                @if ($errors->has('password'))
-                                    <input type="password" name="password" class="form-control is-invalid"
-                                           id="exampleInputPassword1"
-                                           placeholder="Пароль" required>
-                                    <span class="admin-form_error-block">
+
+                                <input type="password" name="password"
+                                       class="form-control @error('password') is-invalid @enderror"
+                                       id="exampleInputPassword1"
+                                       placeholder="Пароль" required>
+                                @error('password')
+                                <span class="admin-form_error-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                @else
-                                    <input type="password" name="password" class="form-control"
-                                           id="exampleInputPassword1"
-                                           placeholder="Пароль" required>
-                                @endif
+                                @enderror
 
                             </div>
                             <div class="input-group mb-3">
-                                @if ($errors->has('email'))
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                    </div>
-                                    <input type="email" name="email" class="form-control is-invalid"
-                                           value="{{ old('email') }}" placeholder="Email" required>
-                                    <span class="admin-form_error-block">
+
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                </div>
+                                <input type="email" name="email"
+                                       class="form-control @error('email') is-invalid @enderror"
+                                       value="{{$admin->email}}" placeholder="Email" required>
+                                @error('email')
+                                <span class="admin-form_error-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                @else
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                    </div>
-                                    <input type="email" name="email" value="{{ $admin->email }}" class="form-control "
-                                           placeholder="Email" required>
-                                @endif
+                                @enderror
                             </div>
                             <div class="input-group mb-3">
-                                @if ($errors->has('phone'))
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                    </div>
-                                    <input type="tel" name="phone" class="form-control is-invalid" id="phoneAdmin"
-                                           value="{{ old('phone') }}" placeholder="Телефон" required>
-                                    <span class="admin-form_error-block">
+
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                </div>
+                                <input type="tel" name="phone" class="form-control @error('phone') is-invalid @enderror"
+                                       id="phoneAdmin"
+                                       value="{{$admin->phone}}" placeholder="Телефон" required>
+                                @error('phone')
+                                <span class="admin-form_error-block">
                                         <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
-                                @else
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                    </div>
-                                    <input type="tel" name="phone" class="form-control " id="phoneAdmin" placeholder="Телефон" required>
-                                @endif
+                                @enderror
+
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputFile">Фото пользователя</label>
+                                <label for="exampleInputFile">Изменить фото пользователя</label>
                                 <div class="input-group">
-                                    @if ($errors->has('image'))
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input is-invalid" name="image"
-                                                   id="exampleInputFile">
-                                            <label class="custom-file-label" for="exampleInputFile">Выберите
-                                                файл</label>
-                                        </div>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text" id="">Загрузить</span>
-                                        </div>
-                                        <span class="admin-form_error-block">
+                                    <div class="custom-file">
+                                        <input type="file"
+                                               class="custom-file-input @error('image') is-invalid  @enderror"
+                                               name="image"
+                                               id="exampleInputFile">
+                                        <label class="custom-file-label" for="exampleInputFile">Выберите
+                                            файл</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="">Загрузить</span>
+                                    </div>
+                                    @error('image')
+                                    <span class="admin-form_error-block">
                                         <strong>{{ $errors->first('image') }}</strong>
                                     </span>
-                                    @else
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="image"
-                                                   id="exampleInputFile">
-                                            <label class="custom-file-label" for="exampleInputFile">Выберите
-                                                файл</label>
-                                        </div>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text" id="">Загрузить</span>
-                                        </div>
-                                    @endif
+                                    @enderror
                                 </div>
                             </div>
                             <div class="custom-control custom-switch">
-                                <input type="checkbox" name="activate" value="true" class="custom-control-input" checked
+                                <input type="checkbox" name="activate" value="{{$admin->activation}}"
+                                       class="custom-control-input" @if($admin->activation === true) checked @endif
                                        id="customSwitch1">
                                 <label class="custom-control-label" for="customSwitch1">Активация аккаунта</label>
                             </div>
@@ -149,9 +129,11 @@
                     </div>
                     <div class="card-body d-flex align-items-center justify-content-center">
                         @if($admin->image)
-                            <img src="{{asset('storage/'. $admin->image)}}" class="img-responsive img-rounded admin-form_avatar-img" alt="">
+                            <img src="{{asset('storage/'. $admin->image)}}"
+                                 class="img-responsive img-rounded admin-form_avatar-img" alt="">
                         @else
-{{--                            <img src="{{asset('img/NoFoto.png')}}" class="img-responsive img-rounded admin-form_avatar-img" alt="">--}}
+                            <img src="{{asset('img/NoFoto.png')}}"
+                                 class="img-responsive img-rounded admin-form_avatar-img" alt="">
                         @endif
                     </div>
                 </div>

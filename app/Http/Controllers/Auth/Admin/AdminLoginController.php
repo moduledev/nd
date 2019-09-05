@@ -36,14 +36,11 @@ class AdminLoginController extends Controller
      */
     public function login()
     {
-        // dd($request->all());
-        // if(!Auth::guest()) return redirect(route('dashboard.index'));
         return view('auth.admin.login');
     }
 
     public function loginAdmin(Request $request)
     {
-        dd($request->all());
         // Validate the form data
         $this->validate($request, [
             'email'   => 'required|email',
