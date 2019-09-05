@@ -26,7 +26,9 @@ class AdminStoreRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|unique:admins,email',
-            'password' => 'required'
+            'password' => 'required|min:8',
+            'image' => 'mimes:jpeg,jpg,png|max:3072',
+            'activate' => 'sometimes',
         ];
     }
 
@@ -42,6 +44,9 @@ class AdminStoreRequest extends FormRequest
             'email.required' => 'E-mail обязателун к заполнению!',
             'email.unique' => 'Указанный email уже существует!',
             'password.required' => 'Введите пароль!',
+            'password.min' => 'Длина пароля должна быть не менее 8 символов!',
+            'image.mimes' => 'Доступны для загрузки jpeg,jpg,png!',
+            'image.max' => 'Размер изображения не должен превышать 3 мегабайт!',
         ];
     }
 }

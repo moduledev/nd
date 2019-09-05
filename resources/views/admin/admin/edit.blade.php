@@ -16,13 +16,12 @@
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
-
 @endsection
 
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 col-md-8 ">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Основная информация:</h3>
@@ -34,19 +33,20 @@
                             <div class="input-group mb-3">
                                 @if ($errors->has('name'))
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        <span class="input-group-text">@</span>
                                     </div>
-                                    <input type="text" name="name" class="form-control is-invalid"
-                                           placeholder="Имя пользователя"
+                                    <input type="text" name="name" value="{{$admin->name}}"
+                                           class="form-control is-invalid" placeholder="Имя пользователя"
                                            required autofocus>
                                     <span class="admin-form_error-block">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @else
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        <span class="input-group-text">@</span>
                                     </div>
-                                    <input type="text" name="name" class="form-control" placeholder="Имя пользователя"
+                                    <input type="text" name="name" value="{{$admin->name}}" class="form-control"
+                                           placeholder="Имя пользователя"
                                            required autofocus>
                                 @endif
                             </div>
@@ -79,7 +79,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                     </div>
-                                    <input type="email" name="email" class="form-control " placeholder="Email" required>
+                                    <input type="email" name="email" value="{{ $admin->email }}" class="form-control "
+                                           placeholder="Email" required>
                                 @endif
                             </div>
                             <div class="input-group mb-3">
@@ -138,18 +139,66 @@
                             <button type="submit" class="btn btn-primary">Создать</button>
                         </div>
                     </form>
+
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Фото пользователя:</h3>
+                    </div>
+                    <div class="card-body d-flex align-items-center justify-content-center">
+                        @if($admin->image)
+                            <img src="{{asset('storage/'. $admin->image)}}" class="img-responsive img-rounded admin-form_avatar-img" alt="">
+                        @else
+{{--                            <img src="{{asset('img/NoFoto.png')}}" class="img-responsive img-rounded admin-form_avatar-img" alt="">--}}
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-11">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Роли:</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <!-- checkbox -->
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input class="custom-control-input" type="checkbox" id="customCheckbox1"
+                                               value="option1">
+                                        <label for="customCheckbox1" class="custom-control-label">Custom
+                                            Checkbox</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input class="custom-control-input" type="checkbox" id="customCheckbox2"
+                                               checked="" value="option2">
+                                        <label for="customCheckbox2" class="custom-control-label">Custom Checkbox
+                                            checked</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input class="custom-control-input" type="checkbox" id="customCheckbox3"
+                                               disabled="">
+                                        <label for="customCheckbox3" class="custom-control-label">Custom Checkbox
+                                            disabled</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
                 </div>
             </div>
         </div>
         <!-- /.row -->
     </div><!-- /.container-fluid -->
-
 @endsection
 @section('scripts')
     <script src="{{ asset('adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
-    <script src="https://unpkg.com/imask"></script>
-
     <script>
         $(document).ready(function () {
             let phoneInput = IMask(
@@ -160,7 +209,6 @@
                     placeholderChar: '_'
                 }
             );
-
             $('#adminsList').DataTable({
                 "language": {
                     "url": "http://cdn.datatables.net/plug-ins/1.10.19/i18n/Russian.json"

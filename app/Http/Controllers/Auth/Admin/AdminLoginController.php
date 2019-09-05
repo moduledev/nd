@@ -33,7 +33,6 @@ class AdminLoginController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function login()
     {
@@ -41,8 +40,10 @@ class AdminLoginController extends Controller
         // if(!Auth::guest()) return redirect(route('dashboard.index'));
         return view('auth.admin.login');
     }
+
     public function loginAdmin(Request $request)
     {
+        dd($request->all());
         // Validate the form data
         $this->validate($request, [
             'email'   => 'required|email',

@@ -5,11 +5,13 @@
   color: #dc3545;
 }
 
-.admin-form {
-  display: flex;
+.admin-form .admin-form_error-block {
+  display: block;
   width: 100%;
-  flex-wrap: wrap;
-  margin-right: -7.5px;
-  margin-left: -7.5px;
+  color: #dc3545;
+}
+
+.admin-form_avatar-img {
+  width: 75%;
 }
 

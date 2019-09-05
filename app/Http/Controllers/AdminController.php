@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use App\Http\Requests\AdminStoreRequest;
+use App\Traits\ImagePath;
+use App\Traits\StoreImageTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    use StoreImageTrait;
+    use ImagePath;
+
     /**
      * Display a listing of the resource.
      *
@@ -32,12 +38,13 @@ class AdminController extends Controller
 
     public function store(AdminStoreRequest $request)
     {
-      dd($request->all());
+//        dd($request->all());
         $admin = new Admin;
         $admin->fill($request->validated());
+        $admin->password = Hash::make($request->password);
         $admin->image = $this->storeImage($request, 'image');
         $admin->save();
-        return redirect()->back()->with('success', 'Программа ' . $admin->name . ' была успешно создана!');
+        return redirect()->back()->withInput($request->only('email'))->with('success', 'Администратор ' . $admin->name . ' был успешно добавлен!');
     }
 
     /**
@@ -54,12 +61,14 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $id = $request->id;
+        $admin = Admin::findOrFail($id);
+        return view('admin.admin.edit', compact('admin'));
     }
 
     /**

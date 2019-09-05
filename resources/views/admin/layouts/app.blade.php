@@ -184,10 +184,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
                               style="display: none;">
-                            {{ csrf_field() }}
+                            @csrf
+
                         </form>
                     </li>
-                    <li class="nav-item has-treeview {{active_menu(\Illuminate\Support\Facades\Route::currentRouteName(),'admin.index',0,12) !== '' ? 'menu-open' : ''}}">
+                    <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
@@ -197,13 +198,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('admin.index')}}" class="nav-link {{active_menu(\Illuminate\Support\Facades\Route::currentRouteName(),'admins',0,12)}}">
+                                <a href="{{route('admin.index')}}" class="nav-link ">
                                     <i class="fas fa-users nav-icon "></i>
                                     <p>Все пользователи</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('admin.create')}}" class="nav-link {{active_menu(\Illuminate\Support\Facades\Route::currentRouteName(),'admin.index',0,11)}}">
+                                <a href="{{route('admin.create')}}" class="nav-link ">
                                     <i class="fas fa-user-plus nav-icon"></i>
                                     <p>Добавить пользователя</p>
                                 </a>
@@ -236,7 +237,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Main content -->
         <div class="content">
-            {{-- @include('admin.content.flash-message') --}}
+             @include('admin.content.flash-message')
             @yield('content')
 
         </div>

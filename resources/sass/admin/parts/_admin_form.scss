@@ -1,7 +1,10 @@
 .admin-form {
-    display: flex;
-    width: 100% ;
-    flex-wrap: wrap;
-    margin-right: -7.5px;
-    margin-left: -7.5px;
+    .admin-form_error-block {
+        display: block;
+        width: 100%;
+        color: #dc3545;
+    }
+}
+.admin-form_avatar-img {
+    width: 75%;
 }
