@@ -14,7 +14,7 @@ class AddActivateColumnToAdminsTable extends Migration
     public function up()
     {
         Schema::table('admins', function (Blueprint $table) {
-            $table->string('activate')->default('false');
+            $table->string('activate')->default('off');
         });
     }
 

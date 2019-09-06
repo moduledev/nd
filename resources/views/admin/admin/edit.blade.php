@@ -26,9 +26,10 @@
                     <div class="card-header">
                         <h3 class="card-title">Основная информация:</h3>
                     </div>
-                    <form action="{{route('admin.add')}}" method="POST" class="admin-form"
+                    <form action="{{route('admin.update', $admin->id)}}" method="POST" class="admin-form"
                           enctype="multipart/form-data">
                         @csrf
+                        {{method_field('PUT')}}
                         <div class="card-body">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -49,8 +50,9 @@
 
                                 <input type="password" name="password"
                                        class="form-control @error('password') is-invalid @enderror"
+                                       value="{{$admin->password}}"
                                        id="exampleInputPassword1"
-                                       placeholder="Пароль" required>
+                                       placeholder="Пароль" >
                                 @error('password')
                                 <span class="admin-form_error-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -65,7 +67,7 @@
                                 </div>
                                 <input type="email" name="email"
                                        class="form-control @error('email') is-invalid @enderror"
-                                       value="{{$admin->email}}" placeholder="Email" required>
+                                       value="{{$admin->email}}" placeholder="Email" >
                                 @error('email')
                                 <span class="admin-form_error-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -79,7 +81,7 @@
                                 </div>
                                 <input type="tel" name="phone" class="form-control @error('phone') is-invalid @enderror"
                                        id="phoneAdmin"
-                                       value="{{$admin->phone}}" placeholder="Телефон" required>
+                                       value="{{$admin->phone}}" placeholder="Телефон" >
                                 @error('phone')
                                 <span class="admin-form_error-block">
                                         <strong>{{ $errors->first('phone') }}</strong>
@@ -109,14 +111,14 @@
                                 </div>
                             </div>
                             <div class="custom-control custom-switch">
-                                <input type="checkbox" name="activate" value="{{$admin->activation}}"
-                                       class="custom-control-input" @if($admin->activation === true) checked @endif
+                                <input type="checkbox" name="activate"
+                                       class="custom-control-input" {{$admin->activate === 'on' ? 'checked=checked' : ''}}
                                        id="customSwitch1">
                                 <label class="custom-control-label" for="customSwitch1">Активация аккаунта</label>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Создать</button>
+                            <button type="submit" class="btn btn-primary">Изменить</button>
                         </div>
                     </form>
 
@@ -138,7 +140,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-11">
+            <div class="col-12 col-md-12">
                 <div class="card card-primary">
                     <div class="card-header">
                         <h3 class="card-title">Роли:</h3>
@@ -174,6 +176,13 @@
                     <!-- /.card-body -->
                 </div>
             </div>
+            <div class="col-12">
+                <form action="{{route('admin.delete', $admin->id)}}" method="POST">
+                    @csrf
+                    {{method_field('DELETE')}}
+                    <button class="btn btn-danger">Удалить учетную запись <i class="fas fa-trash"></i></button>
+                </form>
+            </div>
         </div>
         <!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -181,6 +190,8 @@
 @section('scripts')
     <script src="{{ asset('adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
+    <script src="https://unpkg.com/imask"></script>
+
     <script>
         $(document).ready(function () {
             let phoneInput = IMask(

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Admin;
 use App\Http\Requests\AdminStoreRequest;
+use App\Http\Requests\AdminUpdateRequest;
 use App\Traits\ImagePath;
 use App\Traits\StoreImageTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -38,11 +40,10 @@ class AdminController extends Controller
 
     public function store(AdminStoreRequest $request)
     {
-//        dd($request->all());
         $admin = new Admin;
         $admin->fill($request->validated());
         $admin->password = Hash::make($request->password);
-        $admin->image = $this->storeImage($request, 'image');
+         $admin->image = $this->storeImage($request, 'image');
         $admin->save();
         return redirect()->back()->withInput($request->only('email'))->with('success', 'Администратор ' . $admin->name . ' был успешно добавлен!');
     }
@@ -55,7 +56,8 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $admin = Admin::findOrFail($id);
+        return view('admin.admin.show', compact('admin'));
     }
 
     /**
@@ -78,9 +80,16 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminUpdateRequest $request, $id)
     {
-        //
+        $admin = Admin::findOrFail($id);
+        $admin->fill($request->validated());
+        $admin->password = Hash::make($request->password);
+        if($request->activate !== 'on') $admin->activate = 'off';
+        if($request->hasFile('image')) $admin->image = $this->storeImage($request, 'image');
+        $admin->save();
+        return redirect()->back()->with('success', 'Данные администратора ' . $admin->name . ' были успешно обновлены!');
+
     }
 
     /**
@@ -91,6 +100,12 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admin = Admin::findOrFail($id);
+        if ($admin->id !== Auth::guard('admin')->User()->id) {
+            $admin->delete();
+            return redirect()->back()->with('success', 'Пользователь ' . $admin->name . ' был успешно удален!');
+        } else {
+            return redirect()->back()->with('error', 'Администратор не может удалить сам себя!');
+        }
     }
 }

@@ -28,7 +28,11 @@ Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard.ind
 Route::post('/dashboard/admin', 'AdminController@store')->name('admin.add');
 Route::get('dashboard/admins', 'AdminController@index')->name('admin.index');
 Route::get('/dashboard/admin/create', 'AdminController@create')->name('admin.create');
+Route::get('/dashboard/admin/{id}', 'AdminController@show')->name('admin.show');
+Route::delete('/dashboard/admin/{id}', 'AdminController@destroy')->name('admin.delete');
 Route::get('/dashboard/admin/edit/{id}', 'AdminController@edit')->name('admin.edit');
+Route::put('/dashboard/admin/edit/{id}', 'AdminController@update')->name('admin.update');
+
 
 
 

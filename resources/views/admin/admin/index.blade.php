@@ -45,8 +45,12 @@
                                     <td>{{$admin->email}}</td>
                                     <td></td>
                                     <td>
-                                        <a href="{{route('admin.edit', $admin->id)}}"><button class="btn btn-success"><i class="fas fa-eye"></i></button></a>
-                                        <button class="btn btn-primary "><i class="fas fa-user-edit"></i></button>
+                                        <a href="{{route('admin.show', $admin->id)}}">
+                                            <button class="btn btn-success"><i class="fas fa-eye"></i></button>
+                                        </a>
+                                        <a href="{{route('admin.edit', $admin->id)}}">
+                                            <button class="btn btn-primary "><i class="fas fa-user-edit"></i></button>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
