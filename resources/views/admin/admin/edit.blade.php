@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Изменить данные пользователя</h1>
+                <h1 class="m-0 text-dark">Изменить данные администратора</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -37,7 +37,7 @@
                                 </div>
                                 <input type="text" name="name" value="{{$admin->name}}"
                                        class="form-control @error('name') is-invalid @enderror"
-                                       placeholder="Имя пользователя"
+                                       placeholder="Имя администратора"
                                        required autofocus>
                                 @error('name')
                                 <span class="admin-form_error-block">
@@ -90,7 +90,7 @@
 
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputFile">Изменить фото пользователя</label>
+                                <label for="exampleInputFile">Изменить фото администратора</label>
                                 <div class="input-group">
                                     <div class="custom-file">
                                         <input type="file"
@@ -127,7 +127,7 @@
             <div class="col-12 col-md-4">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Фото пользователя:</h3>
+                        <h3 class="card-title">Фото администратора:</h3>
                     </div>
                     <div class="card-body d-flex align-items-center justify-content-center">
                         @if($admin->image)

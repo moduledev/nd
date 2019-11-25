@@ -164,7 +164,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <img src="https://via.placeholder.com/150" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">{{ Auth::guard('admin')->User()->name }}</a>
+                    <a href="{{route('admin.edit', Auth::guard('admin')->User()->id  )}}" class="d-block">{{ Auth::guard('admin')->User()->name }}</a>
                 </div>
             </div>
 
@@ -192,7 +192,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
-                                Пользователи
+                                Администраторы
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -206,7 +206,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <li class="nav-item">
                                 <a href="{{route('admin.create')}}" class="nav-link ">
                                     <i class="fas fa-user-plus nav-icon"></i>
-                                    <p>Добавить пользователя</p>
+                                    <p>Добавить админ.</p>
                                 </a>
                             </li>
                         </ul>

@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Добавить пользователя</h1>
+                <h1 class="m-0 text-dark">Добавить администратора</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -36,7 +36,7 @@
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
                                 <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                       placeholder="Имя пользователя"
+                                       placeholder="Имя администратора"
                                        required autofocus>
                                 @error('name')
                                     <span class="admin-form_error-block">
@@ -85,7 +85,7 @@
 
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputFile">Фото пользователя</label>
+                                <label for="exampleInputFile">Фото администратора</label>
                                 <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input @error('image') is-invalid  @enderror" name="image"

@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Пользователь {{$admin->name}}</h1>
+                <h1 class="m-0 text-dark">Администратор {{$admin->name}}</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -28,7 +28,7 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
-                            <li class="list-group-item"> <i class="fas fa-user"></i> <span>Имя пользователя:</span> {{$admin->name}} </li>
+                            <li class="list-group-item"> <i class="fas fa-user"></i> <span>Имя администратора:</span> {{$admin->name}} </li>
                             <li class="list-group-item"> <i class="fas fa-envelope"></i> <span>E-mail:</span> {{$admin->email}} </li>
                             <li class="list-group-item"> <i class="fas fa-unlock"></i> <span>Статус учетной записи:</span> {{$admin->activate === 'on' ? 'активирована' : 'не активирована'}} </li>
                             <li class="list-group-item"> <i class="fas fa-phone"></i> <span>Телефон:</span> {{$admin->phone}} </li>
@@ -39,7 +39,7 @@
                 <div class="col-12 col-md-4">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Фото пользователя:</h3>
+                            <h3 class="card-title">Фото администратора:</h3>
                         </div>
                         <div class="card-body d-flex align-items-center justify-content-center">
                             @if($admin->image)
