@@ -9,11 +9,12 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "davejamesmiller/laravel-breadcrumbs": "5.x",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "6.0.*",
         "laravel/tinker": "^1.0",
-        "spatie/laravel-permission": "^3.0",
-        "laravel/ui": "^1.0"
+        "laravel/ui": "^1.0",
+        "spatie/laravel-permission": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

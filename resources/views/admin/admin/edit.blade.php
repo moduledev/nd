@@ -9,10 +9,9 @@
                 <h1 class="m-0 text-dark">Изменить данные администратора</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Starter Page</li>
-                </ol>
+
+                {{ Breadcrumbs::render('admin-edit', $admin->name) }}
+
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->

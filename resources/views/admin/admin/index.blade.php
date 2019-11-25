@@ -9,10 +9,9 @@
                 <h1 class="m-0 text-dark">Все администраторы</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Starter Page</li>
-                </ol>
+
+                {{ Breadcrumbs::render('admins') }}
+
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -28,10 +27,10 @@
                         <h3 class="card-title">Администраторы сайта:</h3>
                     </div>
                     <div class="card-body">
-                        <table id="adminsList" class="table table-bordered table-hover dataTable" role="grid"
+                        <table id="adminsList" class="table table-bordered table-hover dataTable admins-table" role="grid"
                                aria-describedby="example2_info">
                             <thead>
-                            <tr role="row">
+                            <tr role="row" class="text-center">
                                 <th>Имя</th>
                                 <th>E-mail</th>
                                 <th>Аватар</th>
@@ -43,8 +42,11 @@
                                 <tr>
                                     <td>{{$admin->name}}</td>
                                     <td>{{$admin->email}}</td>
-                                    <td></td>
-                                    <td>
+                                    <td class="text-center">
+                                        <img src="{{asset('storage/'. $admin->image)}}"
+                                             class="img-responsive rounded-circle admins-table__image" alt="">
+                                    </td>
+                                    <td class="text-center">
                                         <a href="{{route('admin.show', $admin->id)}}">
                                             <button class="btn btn-success"><i class="fas fa-eye"></i></button>
                                         </a>
@@ -56,7 +58,7 @@
                             @endforeach
                             </tbody>
                             <tfoot>
-                            <tr>
+                            <tr class="text-center">
                                 <th rowspan="1" colspan="1">Имя</th>
                                 <th rowspan="1" colspan="1">E-mail</th>
                                 <th rowspan="1" colspan="1">Аватар</th>
