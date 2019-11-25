@@ -103,7 +103,7 @@ class AdminController extends Controller
         $admin = Admin::findOrFail($id);
         if ($admin->id !== Auth::guard('admin')->User()->id) {
             $admin->delete();
-            return redirect()->back()->with('success', 'Пользователь ' . $admin->name . ' был успешно удален!');
+            return redirect()->route('admin.index')->with('success', 'Пользователь ' . $admin->name . ' был успешно удален!');
         } else {
             return redirect()->back()->with('error', 'Администратор не может удалить сам себя!');
         }

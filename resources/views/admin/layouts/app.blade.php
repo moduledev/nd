@@ -200,7 +200,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <li class="nav-item">
                                 <a href="{{route('admin.index')}}" class="nav-link ">
                                     <i class="fas fa-users nav-icon "></i>
-                                    <p>Все пользователи</p>
+                                    <p>Все администраторы</p>
                                 </a>
                             </li>
                             <li class="nav-item">
