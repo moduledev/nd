@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 @section('styles')
     <link rel="stylesheet" href="{{asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
+    <link rel="stylesheet" href="{{asset('adminlte/plugins/ekko-lightbox/ekko-lightbox.css')}}">
 @endsection
 @section('content-header')
     <div class="container-fluid">
@@ -41,8 +42,9 @@
                         </div>
                         <div class="card-body d-flex align-items-center justify-content-center">
                             @if($admin->image)
+                                <a href="{{asset('storage/'. $admin->image)}}" data-toggle="lightbox" data-title="Фото администратора" data-footer="{{$admin->name}}">
                                 <img src="{{asset('storage/'. $admin->image)}}"
-                                     class="img-responsive img-rounded admin-form_avatar-img" alt="">
+                                     class="img-responsive img-rounded admin-form_avatar-img" alt=""></a>
                             @else
                                 <img src="{{asset('img/NoFoto.png')}}"
                                      class="img-responsive img-rounded admin-form_avatar-img" alt="">
@@ -93,9 +95,14 @@
         @section('scripts')
             <script src="{{ asset('adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
             <script src="{{ asset('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
+            <script src="{{asset('adminlte/plugins/ekko-lightbox/ekko-lightbox.js')}}"></script>
             <script src="https://unpkg.com/imask"></script>
 
             <script>
+                $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                    event.preventDefault();
+                    $(this).ekkoLightbox();
+                });
                 $(document).ready(function () {
                     let phoneInput = IMask(
                         document.getElementById('phoneAdmin'),

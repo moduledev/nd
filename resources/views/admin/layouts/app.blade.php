@@ -164,7 +164,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <img src="https://via.placeholder.com/150" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="{{route('admin.edit', Auth::guard('admin')->User()->id  )}}" class="d-block">{{ Auth::guard('admin')->User()->name }}</a>
+                    <a href="{{route('admin.edit', Auth::guard('admin')->User()->id  )}}"
+                       class="d-block">{{ Auth::guard('admin')->User()->name }}</a>
                 </div>
             </div>
 
@@ -211,6 +212,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-plus-square"></i>
+                            <p>
+                                Роли
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('role.index')}}" class="nav-link ">
+                                    <i class="fas fa-list"></i>
+                                    <p>Все роли</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('role.create')}}" class="nav-link ">
+                                    <i class="far fa-plus-square"></i>
+                                    <p>Добавить роль</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
@@ -237,7 +261,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Main content -->
         <div class="content">
-             @include('admin.content.flash-message')
+            @include('admin.content.flash-message')
             @yield('content')
 
         </div>
@@ -262,7 +286,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             Anything you want
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2020 <a href="https://adminlte.io">moduledev.com.ua</a>.</strong> All rights reserved.
     </footer>
 </div>
 <!-- ./wrapper -->

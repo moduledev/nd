@@ -27,7 +27,8 @@
                         <h3 class="card-title">Администраторы сайта:</h3>
                     </div>
                     <div class="card-body">
-                        <table id="adminsList" class="table table-bordered table-hover dataTable admins-table" role="grid"
+                        <table id="adminsList" class="table table-bordered table-hover dataTable admins-table"
+                               role="grid"
                                aria-describedby="example2_info">
                             <thead>
                             <tr role="row" class="text-center">
@@ -43,8 +44,12 @@
                                     <td>{{$admin->name}}</td>
                                     <td>{{$admin->email}}</td>
                                     <td class="text-center">
-                                        <img src="{{asset('storage/'. $admin->image)}}"
-                                             class="img-responsive rounded-circle admins-table__image" alt="">
+                                        @if($admin->image)
+                                            <img src="{{asset('storage/'. $admin->image)}}"
+                                                 class="img-responsive rounded-circle admins-table__image" alt="">
+                                        @else
+                                            <img src="https://via.placeholder.com/150" class="img-circle elevation-2 img-responsive rounded-circle admins-table__image" alt="User Image">
+                                        @endif
                                     </td>
                                     <td class="text-center">
                                         <a href="{{route('admin.show', $admin->id)}}">

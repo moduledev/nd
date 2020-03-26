@@ -17,21 +17,32 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'ShopController@index');
 
-Route::get('admin/login', 'Auth\Admin\AdminLoginController@login');
-Route::post('admin/login', 'Auth\Admin\AdminLoginController@loginAdmin')->name('admin.login');
-Route::post('admin/logout', 'Auth\Admin\AdminLoginController@logout')->name('admin.logout');
+Route::prefix('admin')->group(function () {
 
-Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard.index');
+    Route::get('login', 'Auth\Admin\AdminLoginController@login');
+    Route::post('login', 'Auth\Admin\AdminLoginController@loginAdmin')->name('admin.login');
+    Route::post('logout', 'Auth\Admin\AdminLoginController@logout')->name('admin.logout');
 
-Route::post('/dashboard/admin', 'AdminController@store')->name('admin.add');
-Route::get('dashboard/admins', 'AdminController@index')->name('admin.index');
-Route::get('/dashboard/admin/create', 'AdminController@create')->name('admin.create');
-Route::get('/dashboard/admin/{id}', 'AdminController@show')->name('admin.show');
-Route::delete('/dashboard/admin/{id}', 'AdminController@destroy')->name('admin.delete');
-Route::get('/dashboard/admin/edit/{id}', 'AdminController@edit')->name('admin.edit');
-Route::put('/dashboard/admin/edit/{id}', 'AdminController@update')->name('admin.update');
+    Route::get('/', 'DashboardController@index')->name('admin.dashboard.index');
+    Route::get('admins', 'DashboardController@admins')->name('admin.index');
+    Route::get('roles', 'DashboardController@roles')->name('role.index');
+
+    Route::get('dashboard/roles/create', 'RoleController@create')->name('role.create');
+    Route::get('dashboard/role', 'RoleController@create')->name('role.create');
+    Route::post('dashboard/role', 'RoleController@store')->name('role.add');
+
+
+    Route::post('admin', 'AdminController@store')->name('admin.add');
+    Route::get('admin/create', 'AdminController@create')->name('admin.create');
+    Route::get('admin/{id}', 'AdminController@show')->name('admin.show');
+    Route::delete('admin/{id}', 'AdminController@destroy')->name('admin.delete');
+    Route::get('admin/edit/{id}', 'AdminController@edit')->name('admin.edit');
+    Route::put('admin/edit/{id}', 'AdminController@update')->name('admin.update');
+});
+
 
 
 

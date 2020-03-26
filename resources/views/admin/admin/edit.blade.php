@@ -49,7 +49,7 @@
 
                                 <input type="password" name="password"
                                        class="form-control @error('password') is-invalid @enderror"
-                                       value="{{$admin->password}}"
+                                       value=""
                                        id="exampleInputPassword1"
                                        placeholder="Пароль" >
                                 @error('password')
@@ -150,24 +150,13 @@
                             <div class="col-sm-12">
                                 <!-- checkbox -->
                                 <div class="form-group">
-                                    <div class="custom-control custom-checkbox">
+                                    @foreach($roles as $role)
+                                        <div class="custom-control custom-checkbox">
                                         <input class="custom-control-input" type="checkbox" id="customCheckbox1"
                                                value="option1">
-                                        <label for="customCheckbox1" class="custom-control-label">Custom
-                                            Checkbox</label>
+                                        <label for="customCheckbox1" class="custom-control-label">{{$role}}</label>
                                     </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input class="custom-control-input" type="checkbox" id="customCheckbox2"
-                                               checked="" value="option2">
-                                        <label for="customCheckbox2" class="custom-control-label">Custom Checkbox
-                                            checked</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input class="custom-control-input" type="checkbox" id="customCheckbox3"
-                                               disabled="">
-                                        <label for="customCheckbox3" class="custom-control-label">Custom Checkbox
-                                            disabled</label>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

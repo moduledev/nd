@@ -26,7 +26,7 @@ class AdminUpdateRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required|min:8',
+//            'password' => 'required|min:8',
             'image' => 'mimes:jpeg,jpg,png|max:3072',
             'activate' => 'sometimes',
             'phone' => 'sometimes'
