@@ -84,7 +84,7 @@ class RoleController extends Controller
             $role = Role::findOrFail($id);
             $userPermissions = $role->permissions;
             $permissions = Permission::all();
-            return view('admin.roles.edit', compact('role','permissions','userPermissions'));
+            return view('admin.role.edit', compact('role','permissions','userPermissions'));
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
         }
@@ -99,6 +99,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $test=$request->all();
         $validator = Validator::make($request->all(), [
             'role' => 'string',
         ]);

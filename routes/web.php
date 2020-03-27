@@ -30,10 +30,14 @@ Route::prefix('admin')->group(function () {
     Route::get('admins', 'DashboardController@admins')->name('admin.index');
     Route::get('roles', 'DashboardController@roles')->name('role.index');
 
-    Route::get('dashboard/roles/create', 'RoleController@create')->name('role.create');
-    Route::get('dashboard/role', 'RoleController@create')->name('role.create');
-    Route::post('dashboard/role', 'RoleController@store')->name('role.add');
+    Route::get('roles/create', 'RoleController@create')->name('role.create');
+    Route::get('role', 'RoleController@create')->name('role.create');
+    Route::get('role/edit/{id}', 'RoleController@edit')->name('role.edit');
+    Route::put('role/edit/{id}', 'RoleController@update')->name('role.update');
+    Route::post('role', 'RoleController@store')->name('role.add');
 
+    Route::post('admin/edit', 'PermissionController@removePermission')->name('remove.permission');
+    Route::put('admin/edit', 'PermissionController@assignPermission')->name('assign.permission');
 
     Route::post('admin', 'AdminController@store')->name('admin.add');
     Route::get('admin/create', 'AdminController@create')->name('admin.create');
