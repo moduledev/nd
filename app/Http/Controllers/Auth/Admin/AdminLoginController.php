@@ -47,7 +47,8 @@ class AdminLoginController extends Controller
             'password' => 'required|min:6'
         ]);
         // Attempt to log the user in
-        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+        $rememberMe = $request->has('remember') ? true : false;
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $rememberMe)) {
             // if successful, then redirect to their intended location
             return redirect()->route('admin.dashboard.index');
         }
@@ -68,6 +69,6 @@ class AdminLoginController extends Controller
     public function logout(Request $request)
     {
         Auth::guard('admin')->logout();
-        return redirect('/');
+        return redirect('/admin/login');
     }
 }
