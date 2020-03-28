@@ -51,7 +51,7 @@
                                        class="form-control @error('password') is-invalid @enderror"
                                        value=""
                                        id="exampleInputPassword1"
-                                       placeholder="Пароль" >
+                                       placeholder="Пароль">
                                 @error('password')
                                 <span class="admin-form_error-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -66,7 +66,7 @@
                                 </div>
                                 <input type="email" name="email"
                                        class="form-control @error('email') is-invalid @enderror"
-                                       value="{{$admin->email}}" placeholder="Email" >
+                                       value="{{$admin->email}}" placeholder="Email">
                                 @error('email')
                                 <span class="admin-form_error-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -80,7 +80,7 @@
                                 </div>
                                 <input type="tel" name="phone" class="form-control @error('phone') is-invalid @enderror"
                                        id="phoneAdmin"
-                                       value="{{$admin->phone}}" placeholder="Телефон" >
+                                       value="{{$admin->phone}}" placeholder="Телефон">
                                 @error('phone')
                                 <span class="admin-form_error-block">
                                         <strong>{{ $errors->first('phone') }}</strong>
@@ -109,9 +109,31 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label>Доступные роли:</label>
+                                @foreach($roles->chunk(7) as $chunk)
+                                    <ul class="p-0">
+                                        @foreach($chunk as $role)
+                                            <div class="custom-control custom-checkbox">
+                                                <input
+                                                    class="custom-control-input " type="checkbox"
+                                                    id="{{$role->id}}" name="roles[]" value="{{$role->name}}"
+                                                    @if($adminRoles->contains($role->name)) checked @endif
+                                                >
+                                                <label
+                                                    for="{{$role->id}}"
+                                                    class="custom-control-label">{{$role->name}}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    </ul>
+                                @endforeach
+                            </div>
                             <div class="custom-control custom-switch">
                                 <input type="checkbox" name="activate"
-                                       class="custom-control-input" {{$admin->activate === 'on' ? 'checked=checked' : ''}}
+                                       class="custom-control-input"
+                                       {{$admin->activate === 'on' ? 'checked=checked' : ''}}
                                        id="customSwitch1">
                                 <label class="custom-control-label" for="customSwitch1">Активация аккаунта</label>
                             </div>
@@ -137,31 +159,6 @@
                                  class="img-responsive img-rounded admin-form_avatar-img" alt="">
                         @endif
                     </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-12">
-                <div class="card card-primary">
-                    <div class="card-header">
-                        <h3 class="card-title">Роли:</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <!-- checkbox -->
-                                <div class="form-group">
-                                    @foreach($roles as $role)
-                                        <div class="custom-control custom-checkbox">
-                                        <input class="custom-control-input" type="checkbox" id="customCheckbox1"
-                                               value="option1">
-                                        <label for="customCheckbox1" class="custom-control-label">{{$role}}</label>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
                 </div>
             </div>
             <div class="col-12">

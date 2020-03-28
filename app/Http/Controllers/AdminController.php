@@ -32,7 +32,8 @@ class AdminController extends Controller
     public function create()
     {
         if (Auth::user()->hasPermissionTo('admin-create')) {
-            return view('admin.admin.create');
+            $roles = Role::all();
+            return view('admin.admin.create', compact('roles'));
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
         }
@@ -46,8 +47,11 @@ class AdminController extends Controller
             $admin = new Admin;
             $admin->fill($request->validated());
             $admin->password = Hash::make($request->password);
+            $admin->phone = strlen(preg_replace("/[^0-9]/", "", $request->phone)) > 2 ? preg_replace("/[^0-9]/", "", $request->phone) : null;
             $admin->image = $this->storeImage($request, 'image');
             $admin->save();
+            $role = new RoleController();
+            $role->assignRole($request, $admin->id);
             return redirect()->back()->withInput($request->only('email'))->with('success', 'Администратор ' . $admin->name . ' был успешно добавлен!');
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
@@ -64,7 +68,8 @@ class AdminController extends Controller
     {
         if (Auth::user()->hasPermissionTo('admin-show')) {
             $admin = Admin::findOrFail($id);
-            return view('admin.admin.show', compact('admin'));
+            $adminRoles = $admin->getRoleNames();
+            return view('admin.admin.show', compact('admin','adminRoles'));
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
 
@@ -81,8 +86,9 @@ class AdminController extends Controller
         if (Auth::user()->hasPermissionTo('admin-edit')) {
             $id = $request->id;
             $admin = Admin::findOrFail($id);
-            $roles = $admin->getRoleNames();
-            return view('admin.admin.edit', compact('admin', 'roles'));
+            $roles = Role::all();
+            $adminRoles = $admin->getRoleNames();
+            return view('admin.admin.edit', compact('admin', 'adminRoles', 'roles'));
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
         }
@@ -105,6 +111,8 @@ class AdminController extends Controller
             if ($request->activate !== 'on') $admin->activate = 'off';
             if ($request->hasFile('image')) $admin->image = $this->storeImage($request, 'image');
             $admin->save();
+            $role = new RoleController();
+            $role->assignRole($request, $admin->id);
             return redirect()->back()->with('success', 'Данные администратора ' . $admin->name . ' были успешно обновлены!');
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');

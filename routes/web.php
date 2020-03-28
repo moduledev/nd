@@ -33,11 +33,12 @@ Route::prefix('admin')->group(function () {
     Route::get('roles/create', 'RoleController@create')->name('role.create');
     Route::get('role', 'RoleController@create')->name('role.create');
     Route::get('role/edit/{id}', 'RoleController@edit')->name('role.edit');
+    Route::get('role/{id}', 'RoleController@show')->name('role.show');
     Route::put('role/edit/{id}', 'RoleController@update')->name('role.update');
     Route::post('role', 'RoleController@store')->name('role.add');
 
-    Route::post('admin/edit', 'PermissionController@removePermission')->name('remove.permission');
-    Route::put('admin/edit', 'PermissionController@assignPermission')->name('assign.permission');
+    Route::put('role/edit', 'PermissionController@assignPermission')->name('assign.permission');
+
 
     Route::post('admin', 'AdminController@store')->name('admin.add');
     Route::get('admin/create', 'AdminController@create')->name('admin.create');

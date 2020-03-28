@@ -108,6 +108,14 @@
                                        id="customSwitch1">
                                 <label class="custom-control-label" for="customSwitch1">Активация аккаунта</label>
                             </div>
+                            <div class="form-group w-50 mt-3">
+                                <label>Доступные роли:</label>
+                                <select multiple="multiple"  name="roles[]" class="form-control">
+                                    @foreach($roles as $role)
+                                        <option value="{{$role->name}}">{{$role->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Создать</button>

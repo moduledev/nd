@@ -19,6 +19,11 @@ Breadcrumbs::for('admin-edit', function ($trail, $name) {
     $trail->push('Изменить данные ' . $name, route('admin.edit', $name));
 });
 
+Breadcrumbs::for('role-edit', function ($trail, $name) {
+    $trail->parent('roles');
+    $trail->push('Изменить данные ' . $name, route('role.edit', $name));
+});
+
 Breadcrumbs::for('roles', function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Роли ' , route('role.index'));
