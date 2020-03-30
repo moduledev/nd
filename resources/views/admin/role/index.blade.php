@@ -42,7 +42,7 @@
                                     <td class="text-center">{{$role->id}}</td>
                                     <td class="text-center">{{$role->name}}</td>
                                     <td class="text-center">
-                                        <a href="">
+                                        <a href="{{route('role.show', $role->id)}}">
                                             <button class="btn btn-success"><i class="fas fa-eye"></i></button>
                                         </a>
                                         <a href="{{route('role.edit', $role->id)}}">

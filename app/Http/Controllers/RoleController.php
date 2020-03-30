@@ -64,7 +64,7 @@ class RoleController extends Controller
             $id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
             $role = Role::findOrFail($id);
             $permissions = $role->permissions;
-            return view('admin.roles.show',compact('role','permissions'));
+            return view('admin.role.show',compact('role','permissions'));
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
         }

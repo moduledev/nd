@@ -19,12 +19,27 @@ Breadcrumbs::for('admin-edit', function ($trail, $name) {
     $trail->push('Изменить данные ' . $name, route('admin.edit', $name));
 });
 
-Breadcrumbs::for('role-edit', function ($trail, $name) {
-    $trail->parent('roles');
-    $trail->push('Изменить данные ' . $name, route('role.edit', $name));
+Breadcrumbs::for('admin-create', function ($trail) {
+    $trail->parent('admins');
+    $trail->push('Добавить администратора', route('admin.create'));
 });
 
 Breadcrumbs::for('roles', function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Роли ' , route('role.index'));
 });
+
+Breadcrumbs::for('role-create', function ($trail) {
+    $trail->parent('roles');
+    $trail->push('Добавить роль', route('role.create'));
+});
+Breadcrumbs::for('role', function ($trail, $name) {
+    $trail->parent('roles');
+    $trail->push($name, route('role.show', $name));
+});
+
+Breadcrumbs::for('role-edit', function ($trail, $name) {
+    $trail->parent('roles');
+    $trail->push('Изменить данные ' . $name, route('role.edit', $name));
+});
+

@@ -9,10 +9,7 @@
                 <h1 class="m-0 text-dark">Добавить администратора</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Starter Page</li>
-                </ol>
+                {{ Breadcrumbs::render('admin-create') }}
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
