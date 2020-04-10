@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\MainController;
 use Illuminate\Http\Request;
 
-class ShopController extends Controller
+class ShopController extends MainController
 {
     //
 

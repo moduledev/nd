@@ -47,7 +47,7 @@
                             <div class="d-flex flex-row">
                                     @foreach($permissions->chunk(7) as $chunk)
                                         <ul class="">
-                                            @foreach($chunk as $permission)
+                                            @foreach($chunk as $permission)`
                                                 <div class="custom-control custom-checkbox">
                                                     <input class="custom-control-input " type="checkbox"
                                                            id="{{$permission->id}}" name="permissions[]" value="{{$permission->name}}"
@@ -69,7 +69,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-12">
-                <form action="{{route('admin.delete', $role->id)}}">
+                <form action="{{route('role.delete', $role->id)}}"  method="POST">
                     @csrf
                     {{method_field('DELETE')}}
                     <button class="btn btn-danger">Удалить роль <i class="fas fa-trash"></i></button>

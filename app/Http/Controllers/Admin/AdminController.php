@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Admin;
+use App\Contracts\AdminContract;
+use App\Contracts\RoleContract;
+use App\Http\Controllers\MainController;
 use App\Http\Requests\AdminStoreRequest;
 use App\Http\Requests\AdminUpdateRequest;
 use App\Traits\ImagePath;
@@ -13,15 +16,21 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 
-class AdminController extends Controller
+
+class AdminController extends MainController
 {
     use StoreImageTrait;
     use ImagePath;
 
-    public function __construct()
+    protected $adminRepository;
+    protected $roleRepository;
+
+    public function __construct(AdminContract $adminRepository, RoleContract $roleRepository)
     {
         $this->middleware('auth:admin');
         $this->middleware('permission:admin-edit', ['only' => ['edit', 'update']]);
+        $this->adminRepository = $adminRepository;
+        $this->roleRepository = $roleRepository;
     }
 
 
@@ -32,7 +41,8 @@ class AdminController extends Controller
     public function create()
     {
         if (Auth::user()->hasPermissionTo('admin-create')) {
-            $roles = Role::all();
+            $roles = $this->roleRepository->listRoles();
+            $this->setPageTitle('Добавить нового администратора','');
             return view('admin.admin.create', compact('roles'));
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
@@ -44,15 +54,9 @@ class AdminController extends Controller
     public function store(AdminStoreRequest $request)
     {
         if (Auth::user()->hasPermissionTo('admin-create')) {
-            $admin = new Admin;
-            $admin->fill($request->validated());
-            $admin->password = Hash::make($request->password);
-            $admin->phone = strlen(preg_replace("/[^0-9]/", "", $request->phone)) > 2 ? preg_replace("/[^0-9]/", "", $request->phone) : null;
-            $admin->image = $this->storeImage($request, 'image');
-            $admin->save();
-            $role = new RoleController();
-            $role->assignRole($request, $admin->id);
-            return redirect()->back()->withInput($request->only('email'))->with('success', 'Администратор ' . $admin->name . ' был успешно добавлен!');
+            $admin =  $this->adminRepository->createAdmin($request);
+            $this->roleRepository->assignRoleToAdmin($request,$admin);
+            return redirect()->route('admin.index')->withInput($request->only('email'))->with('success', 'Администратор ' . $admin->name . ' был успешно добавлен!');
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
         }
@@ -67,7 +71,8 @@ class AdminController extends Controller
     public function show($id)
     {
         if (Auth::user()->hasPermissionTo('admin-show')) {
-            $admin = Admin::findOrFail($id);
+            $admin = $this->adminRepository->getAdminById($id);
+            $this->setPageTitle('Данные о администраторе ', $admin->name);
             $adminRoles = $admin->getRoleNames();
             return view('admin.admin.show', compact('admin','adminRoles'));
         } else {
@@ -77,17 +82,16 @@ class AdminController extends Controller
     }
 
     /**
-     * Show edit admin page
-     * @param Request $request
+     * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function edit(Request $request)
+    public function edit($id)
     {
         if (Auth::user()->hasPermissionTo('admin-edit')) {
-            $id = $request->id;
-            $admin = Admin::findOrFail($id);
-            $roles = Role::all();
+            $admin = $this->adminRepository->getAdminById($id);
+            $roles = $this->roleRepository->listRoles();
             $adminRoles = $admin->getRoleNames();
+            $this->setPageTitle('Редактирование данных администратора ',$admin->name);
             return view('admin.admin.edit', compact('admin', 'adminRoles', 'roles'));
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
@@ -104,15 +108,8 @@ class AdminController extends Controller
     public function update(AdminUpdateRequest $request, $id)
     {
         if (Auth::user()->hasPermissionTo('admin-edit')) {
-            $admin = Admin::findOrFail($id);
-            $admin->fill($request->validated());
-            $admin->password = $request->password ? Hash::make($request->password) : $admin->password;
-            $admin->phone = strlen(preg_replace("/[^0-9]/", "", $request->phone)) > 2 ? preg_replace("/[^0-9]/", "", $request->phone) : null;
-            if ($request->activate !== 'on') $admin->activate = 'off';
-            if ($request->hasFile('image')) $admin->image = $this->storeImage($request, 'image');
-            $admin->save();
-            $role = new RoleController();
-            $role->assignRole($request, $admin->id);
+            $admin = $this->adminRepository->updateAdmin($request, $id);
+            $this->roleRepository->assignRoleToAdmin($request,$admin);
             return redirect()->back()->with('success', 'Данные администратора ' . $admin->name . ' были успешно обновлены!');
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
@@ -129,7 +126,7 @@ class AdminController extends Controller
     public function destroy($id)
     {
         if (Auth::user()->hasPermissionTo('admin-delete')) {
-            $admin = Admin::findOrFail($id);
+            $admin = $this->adminRepository->getAdminById($id);
             if ($admin->id !== Auth::guard('admin')->User()->id) {
                 if ($admin->image) unlink(storage_path('app/public' . '/' . $admin->image));
                 $admin->delete();

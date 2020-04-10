@@ -1,27 +1,35 @@
 <?php
 
-namespace App\Http\Controllers;
 
-use App\Admin;
+namespace App\Repositories;
+
+
+use App\Contracts\PermissionContract;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Validator;
 
-class PermissionController extends Controller
+class PermissionRepository extends BaseRepository implements PermissionContract
 {
-    public function __construct()
+
+    public function __construct(Permission $model)
     {
-        $this->middleware('auth:admin');
+        parent::__construct($model);
+        $this->model = $model;
     }
 
-    /**Assign permission to role
-     * @param Request $request
-     * @param $adminId
-     * @return \Illuminate\Http\RedirectResponse
+    /**
+     * @return mixed
      */
-    public function assignPermission(Request $request, $adminId)
+    public function listPermissions()
+    {
+        return $this->all();
+    }
+
+
+    public function assignPermission(Request $request, $role)
     {
         if (Auth::user()->hasPermissionTo('permission-assign')) {
             $validator = Validator::make($request->all(), [
@@ -34,7 +42,6 @@ class PermissionController extends Controller
                     ->withErrors($validator);
             }
 
-            $role = Role::findOrFail($adminId);
             $role->syncPermissions($request->permissions);
 
             return redirect()->back()->with('success', 'Разрешения ' . implode(',', $request->permissions) . ' были успешно добавлены!');
@@ -42,4 +49,5 @@ class PermissionController extends Controller
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
         }
     }
+
 }

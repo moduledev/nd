@@ -2,6 +2,9 @@
 @section('styles')
     <link rel="stylesheet" href="{{asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
 @endsection
+@section('page-title')
+    <title>CarefullDeserts - {{$pageTitle}}</title>
+@endsection
 @section('content-header')
     <div class="container-fluid">
         <div class="row mb-2">

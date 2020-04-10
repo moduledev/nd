@@ -1,24 +1,28 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Admin;
+use App\Contracts\AdminContract;
+use App\Http\Controllers\MainController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 
-
-class DashboardController extends Controller
+class DashboardController extends MainController
 {
-    public function __construct()
+    protected $adminRepository;
+
+    public function __construct(AdminContract $adminRepository)
     {
         $this->middleware('auth:admin');
+        $this->adminRepository = $adminRepository;
     }
 
     /**
      * Display main dashboard page.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -29,12 +33,13 @@ class DashboardController extends Controller
     /**
      * Display admins page
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function admins()
     {
         if (Auth::user()->hasPermissionTo('admin-list')) {
-            $admins = Admin::all();
+            $admins = $this->adminRepository->listAdmins();
+            $this->setPageTitle('Список администраторов', '');
             return view('admin.admin.index', compact('admins'));
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');

@@ -1,4 +1,7 @@
 @extends('admin.layouts.app')
+@section('page-title')
+    <title>CarefullDeserts - {{$pageTitle}} - {{$subTitle}}</title>
+@endsection
 @section('styles')
     <link rel="stylesheet" href="{{asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
     <link rel="stylesheet" href="{{asset('adminlte/plugins/ekko-lightbox/ekko-lightbox.css')}}">

@@ -9,6 +9,8 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "astrotomic/laravel-translatable": "^11.8",
+        "cviebrock/eloquent-sluggable": "6.0.*",
         "davejamesmiller/laravel-breadcrumbs": "5.x",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "6.0.*",
