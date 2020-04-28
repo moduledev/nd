@@ -11,11 +11,11 @@ class Product extends Model
 {
     use Sluggable, Translatable;
 
-    public $translatedAttributes = ['name'];
+    public $translatedAttributes = ['name','description'];
     public $timestamps = false;
 
     protected $fillable = [
-        'name'
+        'base_name','slug','available'
     ];
 
     /**
@@ -27,7 +27,7 @@ class Product extends Model
     {
         return [
             'slug' => [
-                'source' => 'name'
+                'source' => 'base_name'
             ]
         ];
     }
@@ -38,11 +38,11 @@ class Product extends Model
      */
     public function attributesToArray()
     {
-        return $this->belongsToMany('App\Attribute');
+        return $this->belongsToMany('App\Attribute','product_attribute', 'attribute_id','product_id');
     }
 
     public function attributes()
     {
-        return $this->hasMany(ProductAttribute::class);
+        return $this->belongsToMany(Attribute::class, 'product_attributes');
     }
 }

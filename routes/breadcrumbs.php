@@ -43,3 +43,12 @@ Breadcrumbs::for('role-edit', function ($trail, $name) {
     $trail->push('Изменить данные ' . $name, route('role.edit', $name));
 });
 
+Breadcrumbs::for('products', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Товары ' , route('product.index'));
+});
+
+Breadcrumbs::for('product-create', function ($trail) {
+    $trail->parent('products');
+    $trail->push('Добавить товар ' , route('product.create'));
+});

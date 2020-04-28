@@ -64,7 +64,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                            <img src="" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     Brad Diesel
@@ -80,7 +80,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <img src="" alt="User Avatar" class="img-size-50 img-circle mr-3">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     John Pierce
@@ -96,7 +96,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <img src="" alt="User Avatar" class="img-size-50 img-circle mr-3">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     Nora Silvester
@@ -188,6 +188,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             @csrf
 
                         </form>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('product.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-cookie-bite"></i>
+                            <p> Товары</p>
+                        </a>
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">

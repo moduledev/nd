@@ -12,7 +12,7 @@ class AttributeValue extends Model
     protected $table = 'attribute_values';
 
     protected $fillable = [
-        'attribute_id', 'value', 'price'
+        'attribute_id', 'value_ua', 'value_ru', 'price'
     ];
 
     /**

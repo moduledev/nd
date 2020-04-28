@@ -16,7 +16,7 @@ class ProductAttribute extends Model
     /**
      * @var array
      */
-    protected $fillable = ['attribute_id', 'product_id', 'value', 'quantity', 'price'];
+    protected $fillable = ['attribute_id', 'product_id', 'value_ua', 'value_ru', 'price'];
 
 
     /**

@@ -47,13 +47,11 @@ class AdminLoginController extends Controller
             'password' => 'required|min:6'
         ]);
         // Attempt to log the user in
-//        $rememberMe = $request->has('remember') ? true : false;
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             // if successful, then redirect to their intended location
             return redirect()->route('admin.dashboard.index');
         }
         // if unsuccessful, then redirect back to the login with the form data
-        //        dd($request->only('email', 'remember'));
         return redirect('admin/login')->withInput($request->only('email', 'remember'))->withErrors([
             'password' => 'Неверный пароль',
             'email' => 'Неверный E-mail'

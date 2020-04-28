@@ -11,9 +11,17 @@ class Attribute extends Model
      */
     protected $table = 'attributes';
 
+    protected $appends = ['name'];
+
     protected $fillable = [
-        'code', 'name', 'is_filterable', 'is_required'
+        'code', 'name_ua', 'name_ru', 'is_filterable', 'is_required'
     ];
+
+    public function getNameAttribute()
+    {
+        return app()->getLocale() === 'ua' ? $this->name_ua : $this->name_ru;
+    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -21,5 +29,10 @@ class Attribute extends Model
     public function values()
     {
         return $this->hasMany('App\AttributeValue');
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'product_attributes');
     }
 }

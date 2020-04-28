@@ -14,7 +14,8 @@ class AttributesTableSeeder extends Seeder
     {
         Attribute::create([
             'code'          =>  'weight',
-            'name'          =>  'Weight',
+            'name_ua'          =>  'Вага',
+            'name_ru'          =>  'Вес',
             'is_filterable' =>  1,
             'is_required'   =>  1,
         ]);

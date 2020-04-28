@@ -8,15 +8,16 @@ class CreateAttributesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
+     *<null>
+     * @return void<null>
      */
     public function up()
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('code')->unique();
-            $table->string('name');
+            $table->string('name_ua');
+            $table->string('name_ru');
             $table->boolean('is_filterable')->default(0);
             $table->boolean('is_required')->default(0);
             $table->timestamps();

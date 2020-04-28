@@ -8,8 +8,15 @@
     <title>Document</title>
 </head>
 <body>
-    {{$product->name}}
-    <br>
-    {{$product->description}}
+{{$product->name}}
+<br>
+{{$product->description}}
+<br>
+<ul>
+    @foreach($productAttrs as  $value)
+
+            <li>{{$value['name']}}</li>
+    @endforeach
+</ul>
 </body>
 </html>

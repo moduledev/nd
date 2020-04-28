@@ -19,7 +19,8 @@ class AttributeValuesTableSeeder extends Seeder
         {
             AttributeValue::create([
                 'attribute_id'      =>  1,
-                'value'             =>  $weight,
+                'value_ua'             =>  $weight,
+                'value_ru'             =>  $weight,
                 'price'             =>  null,
             ]);
         }

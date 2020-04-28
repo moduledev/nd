@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Admin;
 use App\Contracts\AdminContract;
 use App\Http\Controllers\MainController;
+use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
@@ -56,6 +57,20 @@ class DashboardController extends MainController
         if (Auth::user()->hasPermissionTo('role-list')) {
             $roles = Role::paginate(5);
             return view('admin.role.index', compact('roles'));
+        } else {
+            return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
+        }
+    }
+
+    /**
+     * Display products page
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function products()
+    {
+        if (Auth::user()->hasPermissionTo('product-list')) {
+            $products = Product::paginate(5);
+            return view('admin.product.index', compact('products'));
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
         }

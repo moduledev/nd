@@ -1,16 +1,4 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/custom-admin.css": "/css/custom-admin.css",
-    "/css/vendor/bootstrap.css": "/css/vendor/bootstrap.css",
-    "/css/vendor/style.css": "/css/vendor/style.css",
-    "/css/vendor/dark.css": "/css/vendor/dark.css",
-    "/css/vendor/font-icons.css": "/css/vendor/font-icons.css",
-    "/css/vendor/animate.css": "/css/vendor/animate.css",
-    "/css/vendor/magnific-popup.css": "/css/vendor/magnific-popup.css",
-    "/css/vendor/swipper.css": "/css/vendor/swipper.css",
-    "/css/vendor/et-line.css": "/css/vendor/et-line.css",
-    "/css/vendor/restaurant.css": "/css/vendor/restaurant.css",
-    "/css/vendor/fonts.css": "/css/vendor/fonts.css",
-    "/css/vendor/responsive.css": "/css/vendor/responsive.css"
+    "/css/app.css": "/css/app.css"
 }
