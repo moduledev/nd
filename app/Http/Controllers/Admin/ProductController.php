@@ -6,11 +6,14 @@ use App\Contracts\ProductContract;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\MainController;
 use App\Http\Requests\ProductStoreRequest;
+use App\Traits\StoreProductImages;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends MainController
 {
+    use StoreProductImages;
     protected $productRepository;
 
     public function __construct(ProductContract $productRepository)
@@ -34,8 +37,13 @@ class ProductController extends MainController
     public function store(ProductStoreRequest $request)
     {
         if (Auth::user()->hasPermissionTo('product-create')) {
-            $test =  $request->productImages;
-            return $request->ajax() ? response()->json($request) : view('category.index','categories');
+            $test = $request->all();
+            foreach ($request->productAttributes as $productAttribute) {
+                $ee = json_decode($productAttribute);
+                $ee1 = $ee->attribute_name;
+            }
+            $this->storeProductImages($request);
+            return response()->json($request);
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
 
