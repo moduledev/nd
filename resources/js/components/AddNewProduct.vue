@@ -211,9 +211,9 @@
                                     <use xlink:href="#russia"/>
                                 </svg>
                                 <select class="custom-select" :class="{'is-invalid': errors.length > 0}"
-                                        v-model="attributeValueRu" >
+                                        v-model="attributeValueRu">
                                     <option value="">Выберите значение</option>
-                                    <option  v-for="(value, index) in attributeValues" :value="value"  :key="value.id" >
+                                    <option v-for="(value, index) in attributeValues" :value="value" :key="value.id">
                                         {{value.value_ru}}
                                     </option>
                                 </select>
@@ -226,7 +226,7 @@
                                 <select class="custom-select" :class="{'is-invalid': errors.length > 0}"
                                         v-model="attributeValueUa">
                                     <option value="">Выберите значение</option>
-                                    <option v-for="(value, index) in attributeValues" :value="value" :key="value.id" >
+                                    <option v-for="(value, index) in attributeValues" :value="value" :key="value.id">
                                         {{value.value_ua}}
                                     </option>
                                 </select>
@@ -299,7 +299,7 @@
                                  class="d-flex flex-column justify-content-center align-items-center text-center image-wrapper">
 
                                 <img class="img img-fluid image-preview" :src="file" alt="">
-                                <label  class="imageCheckbox">Главное изображение</label>
+                                <label class="imageCheckbox">Главное изображение</label>
 
                                 <input type="checkbox"
                                        class="imageCheckbox"
@@ -350,7 +350,7 @@
                 gluten: 0,
                 lactose: 0,
 
-                selectedOption:'',
+                selectedOption: '',
 
 
                 attributeSelected: '',
@@ -371,7 +371,7 @@
                 .get('/admin/attributes')
                 .then(responce => (this.attributes = responce.data))
         },
-        watch:{
+        watch: {
             attributeValueUa: function (val) {
                 this.attributeValueUa = val;
                 this.attributeValueRu = val;
@@ -447,7 +447,7 @@
             closeAlert() {
                 this.showAlert = false;
             },
-            selectOpt(e){
+            selectOpt(e) {
                 console.log(e.target.test)
             },
             submitForm() {
@@ -474,9 +474,9 @@
                 formData.append('composition_ru', this.composition_ru);
                 formData.append('composition_ua', this.composition_ua);
                 formData.append('productCategories', this.productCategories);
-                formData.append('available', this.available);
-                formData.append('gluten', this.gluten);
-                formData.append('lactose', this.lactose);
+                formData.append('available', this.available?1:0);
+                formData.append('gluten', this.gluten?1:0);
+                formData.append('lactose', this.lactose?1:0);
                 formData.append('mainImage', this.isChecked);
 
                 axios.post(

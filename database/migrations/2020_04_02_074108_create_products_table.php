@@ -17,7 +17,6 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('base_name');
             $table->string('slug')->index();
-            $table->json('composition')->nullable();
             $table->tinyInteger('available')->default(1);
             $table->tinyInteger('gluten')->default(0)->index();
             $table->tinyInteger('lactose')->default(0)->index();

@@ -7,6 +7,7 @@ namespace App\Repositories;
 use App\Contracts\ProductContract;
 use App\Http\Requests\ProductStoreRequest;
 use App\Product;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ProductRepository extends BaseRepository implements ProductContract
 {
@@ -20,6 +21,25 @@ class ProductRepository extends BaseRepository implements ProductContract
 
     public function createProduct(ProductStoreRequest $request)
     {
-        return $this->create($request);
+        try {
+            $product = new Product();
+            $product->fill($request->validated());
+            $product->base_name = $request->name_ru;
+            $product->save();
+            return $product;
+        } catch (ModelNotFoundException $e) {
+            throw new ModelNotFoundException($e);
+        }
+    }
+
+    public function createProductTranslations(Product $product, $request)
+    {
+        $product->translateOrNew('ru')->name = $request->name_ru;
+        $product->translateOrNew('ru')->description = $request->description_ru;
+        $product->translateOrNew('ru')->composition = $request->composition_ru;
+        $product->translateOrNew('ua')->name = $request->name_ua;
+        $product->translateOrNew('ua')->description = $request->description_ua;
+        $product->translateOrNew('ua')->composition = $request->composition_ua;
+        $product->save();
     }
 }

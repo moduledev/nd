@@ -15,7 +15,14 @@ class Product extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'base_name','slug','available'
+        'base_name','slug','available',
+        'gluten','lactose'
+    ];
+
+    protected $casts = [
+        'available' => 'integer',
+        'gluten' => 'integer',
+        'lactose' => 'integer',
     ];
 
     /**
