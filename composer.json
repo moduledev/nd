@@ -13,8 +13,10 @@
         "cviebrock/eloquent-sluggable": "6.0.*",
         "davejamesmiller/laravel-breadcrumbs": "5.x",
         "fideloper/proxy": "^4.0",
+        "intervention/image": "^2.5",
         "laravel/framework": "6.0.*",
         "laravel/tinker": "^1.0",
+        "spatie/image-optimizer": "^1.2",
         "spatie/laravel-permission": "^3.0"
     },
     "require-dev": {

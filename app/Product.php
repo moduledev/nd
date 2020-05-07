@@ -48,8 +48,21 @@ class Product extends Model
         return $this->belongsToMany('App\Attribute','product_attribute', 'attribute_id','product_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function attributes()
     {
         return $this->belongsToMany(Attribute::class, 'product_attributes');
     }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
 }
