@@ -37,15 +37,8 @@ class ProductController extends MainController
     public function store(ProductStoreRequest $request)
     {
         if (Auth::user()->hasPermissionTo('product-create')) {
-//            $test = $request->all();
             $product = $this->productRepository->createProduct($request);
-            $this->productRepository->createProductTranslations($product, $request);
-
-//            foreach ($request->productAttributes as $productAttribute) {
-//                $ee = json_decode($productAttribute);
-//                $ee1 = $ee->attribute_name;
-//            }
-            $this->storeProductImages($request);
+            $this->storeProductImages($product->id, $request);
             return response()->json($request);
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');

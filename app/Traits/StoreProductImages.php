@@ -5,23 +5,26 @@ namespace App\Traits;
 
 
 use App\Http\Requests\ProductStoreRequest;
+use App\ProductImage;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Spatie\ImageOptimizer\OptimizerChainFactory;
 
 trait StoreProductImages
 {
-
-
-    public function storeProductImages(ProductStoreRequest $request)
+    public function storeProductImages($productId, ProductStoreRequest $request)
     {
-        foreach ($request->productImages as $file) {
-            Image::make($file)->resize(10, 10);
+        foreach ($request->productImages as $key => $file) {
+            Image::make($file)->insert(public_path() . '/' . 'img' . '/' . 'watermark.png', 'bottom-right')->save();
             $path = $file->store('products_images', 'public');
             $pathFile = Storage::disk('public')->path($path);
             $optimizerChain = OptimizerChainFactory::create();
             $optimizerChain->optimize($pathFile);
-
+            $img = new ProductImage();
+            $img->product_id = $productId;
+            $img->path = $path;
+            (int) $request->mainImage === $key ? $img->main_image = 1 : $img->main_image =  null;
+            $img->save();
         }
     }
 }

@@ -34,6 +34,7 @@
                             <tr role="row" class="text-center">
                                 <th>ID</th>
                                 <th>Название</th>
+                                <th><i class="fas fa-image"></i></th>
                                 <th>Операция</th>
                             </tr>
                             </thead>
@@ -41,7 +42,8 @@
                             @foreach($products as $product)
                                 <tr>
                                     <td class="text-center">{{$product->id}}</td>
-                                    <td class="text-center">{{$product->name}}</td>
+                                    <td class="text-center">{{$product->base_name}}</td>
+                                    <td class="text-center">{{$product->images->first()}}</td>
                                     <td class="text-center">
                                         <a href="">
                                             <button class="btn btn-success"><i class="fas fa-eye"></i></button>

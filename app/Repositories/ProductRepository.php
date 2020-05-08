@@ -26,6 +26,12 @@ class ProductRepository extends BaseRepository implements ProductContract
             $product->fill($request->validated());
             $product->base_name = $request->name_ru;
             $product->save();
+            $this->createProductTranslations($product, $request);
+            $product->categories()->sync(explode(',', $request->productCategories));
+            foreach ($request->productAttributes as $productAttribute) {
+                $attribute = json_decode($productAttribute);
+                $product->attributes()->attach($attribute->attribute_id, ['value_ru' => $attribute->value_ru, 'value_ua' => $attribute->value_ua, 'price' => $attribute->price]);
+            }
             return $product;
         } catch (ModelNotFoundException $e) {
             throw new ModelNotFoundException($e);

@@ -69,7 +69,7 @@ class DashboardController extends MainController
     public function products()
     {
         if (Auth::user()->hasPermissionTo('product-list')) {
-            $products = Product::paginate(5);
+            $products = Product::with('images')->get();
             return view('admin.product.index', compact('products'));
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
