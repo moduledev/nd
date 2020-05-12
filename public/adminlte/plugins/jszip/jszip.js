@@ -437,7 +437,7 @@ var decToHex = function(dec, bytes) {
 };
 
 /**
- * Generate the UNIX part of the external file attributes.
+ * Generate the UNIX part of the external file attribute.
  * @param {Object} unixPermissions the unix permissions or null.
  * @param {Boolean} isDir true if the entry is a directory, false otherwise.
  * @return {Number} a 32 bit integer.
@@ -464,7 +464,7 @@ var generateUnixExternalFileAttr = function (unixPermissions, isDir) {
 };
 
 /**
- * Generate the DOS part of the external file attributes.
+ * Generate the DOS part of the external file attribute.
  * @param {Object} dosPermissions the dos permissions or null.
  * @param {Boolean} isDir true if the entry is a directory, false otherwise.
  * @return {Number} a 32 bit integer.
@@ -651,9 +651,9 @@ var generateZipParts = function(streamInfo, streamedContent, streamingEnded, off
         decToHex(encodedComment.length, 2) +
         // disk number start
         "\x00\x00" +
-        // internal file attributes TODO
+        // internal file attribute TODO
         "\x00\x00" +
-        // external file attributes
+        // external file attribute
         decToHex(extFileAttr, 4) +
         // relative offset of local header
         decToHex(offset, 4) +
@@ -2245,7 +2245,7 @@ module.exports = DataWorker;
  * - it weights less than the full dependencies bundled with browserify
  * - it forwards errors (no need to declare an error handler EVERYWHERE)
  *
- * A chunk is an object with 2 attributes : `meta` and `data`. The former is an
+ * A chunk is an object with 2 attribute : `meta` and `data`. The former is an
  * object containing anything (`percent` for example), see each worker for more
  * details. The latter is the real data (String, Uint8Array, etc).
  *
@@ -3459,8 +3459,8 @@ exports.prepareContent = function(name, inputData, isBinary, isOptimizedBinarySt
 
     // if inputData is already a promise, this flatten it.
     var promise = external.Promise.resolve(inputData).then(function(data) {
-        
-        
+
+
         var isBlob = support.blob && (data instanceof Blob || ['[object File]', '[object Blob]'].indexOf(Object.prototype.toString.call(data)) !== -1);
 
         if (isBlob && typeof FileReader !== "undefined") {
@@ -3906,7 +3906,7 @@ ZipEntry.prototype = {
     },
 
     /**
-     * Parse the external file attributes and get the unix/dos permissions.
+     * Parse the external file attribute and get the unix/dos permissions.
      */
     processAttributes: function () {
         this.unixPermissions = null;

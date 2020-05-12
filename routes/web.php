@@ -30,6 +30,7 @@ Route::prefix('admin')->group(function () {
     Route::get('admins', 'Admin\DashboardController@admins')->name('admin.index');
     Route::get('roles', 'Admin\DashboardController@roles')->name('role.index');
     Route::get('products', 'Admin\DashboardController@products')->name('product.index');
+    Route::get('attributes', 'Admin\DashboardController@attributes')->name('attribute.index');
 
 
 
@@ -47,9 +48,13 @@ Route::prefix('admin')->group(function () {
 
     Route::get('categories', 'Admin\CategoryController@index')->name('category.index');
 
-    Route::get('attributes', 'Admin\AttributeController@listAttributes')->name('category.index');
 
     Route::get('attributeValues/{id}', 'Admin\AttributeValueController@getValues');
+    Route::post('addAttributeValues/{id}', 'Admin\AttributeValueController@addValues');
+
+    Route::get('attribute/create', 'Admin\AttributeController@create')->name('attribute.create');
+    Route::get('attribute/edit/{id}', 'Admin\AttributeController@edit')->name('attribute.edit');
+    Route::post('attribute/add', 'Admin\AttributeController@store')->name('attribute.add');
 
     Route::post('admin', 'Admin\AdminController@store')->name('admin.add');
     Route::get('admin/create', 'Admin\AdminController@create')->name('admin.create');
@@ -57,6 +62,7 @@ Route::prefix('admin')->group(function () {
     Route::delete('admin/{id}', 'Admin\AdminController@destroy')->name('admin.delete');
     Route::get('admin/edit/{id}', 'Admin\AdminController@edit')->name('admin.edit');
     Route::put('admin/edit/{id}', 'Admin\AdminController@update')->name('admin.update');
+
 });
 
 

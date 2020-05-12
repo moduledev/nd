@@ -521,7 +521,7 @@
         },
 
         /*
-         * Init the element "elem" on the map (drawing text, setting attributes, events, tooltip, ...)
+         * Init the element "elem" on the map (drawing text, setting attribute, events, tooltip, ...)
          *
          * @param id the id of the element
          * @param type the type of the element (area, plot, link)
@@ -531,15 +531,15 @@
             var self = this;
             var $mapElem = $(elem.mapElem.node);
 
-            // If an HTML link exists for this element, add cursor attributes
+            // If an HTML link exists for this element, add cursor attribute
             if (elem.options.href) {
                 elem.options.attrs.cursor = "pointer";
                 if (elem.options.text) elem.options.text.attrs.cursor = "pointer";
             }
 
-            // Set SVG attributes to map element
+            // Set SVG attribute to map element
             elem.mapElem.attr(elem.options.attrs);
-            // Set DOM attributes to map element
+            // Set DOM attribute to map element
             $mapElem.attr({
                 "data-id": id,
                 "data-type": type
@@ -558,9 +558,9 @@
                 elem.options.text.attrs['text-anchor'] = textPosition.textAnchor;
                 // Draw text
                 elem.textElem = self.paper.text(textPosition.x, textPosition.y, elem.options.text.content);
-                // Apply SVG attributes to text element
+                // Apply SVG attribute to text element
                 elem.textElem.attr(elem.options.text.attrs);
-                // Apply DOM attributes
+                // Apply DOM attribute
                 $(elem.textElem.node).attr({
                     "data-id": id,
                     "data-type": type + '-text'
@@ -1089,7 +1089,7 @@
         /*
          * Update the current map
          *
-         * Refresh attributes and tooltips for areas and plots
+         * Refresh attribute and tooltips for areas and plots
          * @param opt option for the refresh :
          *  opt.mapOptions: options to update for plots and areas
          *  opt.replaceOptions: whether mapsOptions should entirely replace current map options, or just extend it
@@ -1210,7 +1210,7 @@
                 }
             }
 
-            // Update areas attributes and tooltips
+            // Update areas attribute and tooltips
             $.each(self.areas, function (id) {
                 // Avoid updating unchanged elements
                 if ((typeof opt.mapOptions === "object" &&
@@ -1229,7 +1229,7 @@
                 }
             });
 
-            // Update plots attributes and tooltips
+            // Update plots attribute and tooltips
             $.each(self.plots, function (id) {
                 // Avoid updating unchanged elements
                 if ((typeof opt.mapOptions ==="object" &&
@@ -1252,7 +1252,7 @@
                 }
             });
 
-            // Update links attributes and tooltips
+            // Update links attribute and tooltips
             $.each(self.links, function (id) {
                 // Avoid updating unchanged elements
                 if ((typeof opt.mapOptions === "object" &&
@@ -1356,7 +1356,7 @@
         },
 
         /*
-         * Set plot size attributes according to its type
+         * Set plot size attribute according to its type
          * Note: for SVG, plot.mapElem needs to exists beforehand
          * @param plot object plot element
          */
@@ -2024,10 +2024,10 @@
         },
 
         /*
-         * Set the attributes on hover and the attributes to restore for a map element
+         * Set the attribute on hover and the attribute to restore for a map element
          * @param elem the map element
-         * @param originalAttrs the original attributes to restore on mouseout event
-         * @param attrsHover the attributes to set on mouseover event
+         * @param originalAttrs the original attribute to restore on mouseout event
+         * @param attrsHover the attribute to set on mouseover event
          */
         setHoverOptions: function (elem, originalAttrs, attrsHover) {
             // Disable transform option on hover for VML (IE<9) because of several bugs
@@ -2047,12 +2047,12 @@
             var self = this;
             if (elem === undefined) return;
 
-            /* Handle mapElem Hover attributes */
+            /* Handle mapElem Hover attribute */
             if (elem.mapElem !== undefined) {
                 self.animate(elem.mapElem, elem.mapElem.attrsHover, elem.mapElem.attrsHover.animDuration);
             }
 
-            /* Handle textElem Hover attributes */
+            /* Handle textElem Hover attribute */
             if (elem.textElem !== undefined) {
                 self.animate(elem.textElem, elem.textElem.attrsHover, elem.textElem.attrsHover.animDuration);
             }
@@ -2133,12 +2133,12 @@
             var self = this;
             if (elem === undefined) return;
 
-            /* reset mapElem attributes */
+            /* reset mapElem attribute */
             if (elem.mapElem !== undefined) {
                 self.animate(elem.mapElem, elem.mapElem.originalAttrs, elem.mapElem.attrsHover.animDuration);
             }
 
-            /* reset textElem attributes */
+            /* reset textElem attribute */
             if (elem.textElem !== undefined) {
                 self.animate(elem.textElem, elem.textElem.originalAttrs, elem.textElem.attrsHover.animDuration);
             }
@@ -2498,11 +2498,11 @@
          * Animate wrapper for Raphael element
          *
          * Perform an animation and ensure the non-animated attr are set.
-         * This is needed for specific attributes like cursor who will not
+         * This is needed for specific attribute like cursor who will not
          * be animated, and thus not set.
          *
          * If duration is set to 0 (or not set), no animation are performed
-         * and attributes are directly set (and the callback directly called)
+         * and attribute are directly set (and the callback directly called)
          */
         // List extracted from Raphael internal vars
         // Diff between Raphael.availableAttrs  and  Raphael._availableAnimAttrs
@@ -2524,7 +2524,7 @@
             // Check element
             if (!element) return;
             if (duration > 0) {
-                // Filter out non-animated attributes
+                // Filter out non-animated attribute
                 // Note: we don't need to delete from original attribute (they won't be set anyway)
                 var attrsNonAnimated = {};
                 for (var i=0 ; i < self._nonAnimatedAttrs.length ; i++) {
@@ -2533,14 +2533,14 @@
                         attrsNonAnimated[attrName] = attrs[attrName];
                     }
                 }
-                // Set non-animated attributes
+                // Set non-animated attribute
                 element.attr(attrsNonAnimated);
-                // Start animation for all attributes
+                // Start animation for all attribute
                 element.animate(attrs, duration, 'linear', function() {
                     if (callback) callback();
                 });
             } else {
-                // No animation: simply set all attributes...
+                // No animation: simply set all attribute...
                 element.attr(attrs);
                 // ... and call the callback if needed
                 if (callback) callback();

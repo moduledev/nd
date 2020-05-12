@@ -3889,9 +3889,9 @@
           }
       };
       /*
-      * Copy attributes from element.
+      * Copy attribute from element.
       *
-      * @param {object} Element to recover attributes.
+      * @param {object} Element to recover attribute.
       * @return {string} Copied string elements.
       */
       Table.prototype.recoverAttributes = function (el) {
@@ -5733,7 +5733,7 @@
                               var $palette = $$1($parent.find('#' + $picker.data('event')).find('.note-color-row')[0]);
                               // Shift palette chips
                               var $chip = $palette.find('.note-color-btn').last().detach();
-                              // Set chip attributes
+                              // Set chip attribute
                               var color = $picker.val();
                               $chip.css('background-color', color)
                                   .attr('aria-label', color)

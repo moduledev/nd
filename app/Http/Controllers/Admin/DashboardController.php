@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Admin;
 use App\Contracts\AdminContract;
+use App\Contracts\AttributeContract;
 use App\Http\Controllers\MainController;
 use App\Product;
 use Illuminate\Http\Request;
@@ -13,11 +14,13 @@ use Spatie\Permission\Models\Role;
 class DashboardController extends MainController
 {
     protected $adminRepository;
+    protected $attributeRepository;
 
-    public function __construct(AdminContract $adminRepository)
+    public function __construct(AdminContract $adminRepository, AttributeContract $attributeRepository)
     {
         $this->middleware('auth:admin');
         $this->adminRepository = $adminRepository;
+        $this->attributeRepository = $attributeRepository;
     }
 
     /**
@@ -69,11 +72,26 @@ class DashboardController extends MainController
     public function products()
     {
         if (Auth::user()->hasPermissionTo('product-list')) {
-            $products = Product::with('images')->get();
+            $products = Product::with(['images','categories'])->get();
             return view('admin.product.index', compact('products'));
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
         }
     }
+
+    /**
+     * Display attribute page
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function attributes(Request $request)
+    {
+        $attributes = $this->attributeRepository->listAttributes();
+        $this->setPageTitle('Атрибуты', '');
+        if (Auth::user()->hasPermissionTo('attribute-list')) {
+            return $request->ajax() ? response()->json($attributes) : view('admin.attribute.index', compact('attributes'));
+        }
+    }
+
 
 }

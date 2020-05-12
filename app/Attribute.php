@@ -13,6 +13,8 @@ class Attribute extends Model
 
     protected $appends = ['name'];
 
+    public $timestamps = false;
+
     protected $fillable = [
         'code', 'name_ua', 'name_ru', 'is_filterable', 'is_required'
     ];

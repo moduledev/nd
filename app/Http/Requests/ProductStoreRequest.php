@@ -39,7 +39,7 @@ class ProductStoreRequest extends FormRequest
             'name_ru' => 'required',
             'name_ua' => 'required',
             'available' => 'required',
-            'price' => 'required',
+            'price' => 'sometimes',
             'composition_ru' => 'required|max:255',
             'description_ru' => 'required|max:255',
             'productImages' => 'required',
@@ -59,7 +59,6 @@ class ProductStoreRequest extends FormRequest
         return [
             'name_ru.required' => 'Название обязательно к заполнению!',
             'name_ua.required' => 'Название обязательно к заполнению!',
-            'price.required' => 'Цена обязательно к заполнению!',
             'composition_ru.required' => 'Цена обязательно к заполнению!',
             'composition_ua.required' => 'Цена обязательно к заполнению!',
             'productImages.required' => 'Изображения обязательны!',

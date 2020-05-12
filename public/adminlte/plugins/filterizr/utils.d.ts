@@ -26,11 +26,11 @@ declare function setStylesOnHTMLNode(node: Element, styles: any): void;
 export { setStylesOnHTMLNode };
 /**
  * Returns an object with value/key pairs of all data
- * attributes on an HTML element, disregarding the
- * two data attributes that are reserved for internal
+ * attribute on an HTML element, disregarding the
+ * two data attribute that are reserved for internal
  * usage by Filterizr
  * @param {Object} node - HTML node
- * @returns {Object} map of data attributes / values
+ * @returns {Object} map of data attribute / values
  */
 declare function getDataAttributesOfHTMLNode(node: Element): Dictionary;
 export { getDataAttributesOfHTMLNode };

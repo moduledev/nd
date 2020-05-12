@@ -54,7 +54,7 @@ class AdminController extends MainController
     public function store(AdminStoreRequest $request)
     {
         if (Auth::user()->hasPermissionTo('admin-create')) {
-            $admin =  $this->adminRepository->createAdmin($request);0
+            $admin =  $this->adminRepository->createAdmin($request);
             $this->roleRepository->assignRoleToAdmin($request,$admin);
             return redirect()->route('admin.index')->withInput($request->only('email'))->with('success', 'Администратор ' . $admin->name . ' был успешно добавлен!');
         } else {

@@ -6,7 +6,6 @@ namespace App\Repositories;
 
 use App\Attribute;
 use App\Contracts\AttributeContract;
-use App\Contracts\BaseContract;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AttributeRepository extends BaseRepository implements AttributeContract
@@ -33,7 +32,6 @@ class AttributeRepository extends BaseRepository implements AttributeContract
         } catch (ModelNotFoundException $e) {
 
             throw new ModelNotFoundException($e);
-
         }
     }
 
@@ -46,5 +44,10 @@ class AttributeRepository extends BaseRepository implements AttributeContract
     public function listAttributes(string $order = 'id', string $sort = 'desc', array $columns = ['*'])
     {
         return $this->all($columns, $order, $sort);
+    }
+
+    public function createAttribute($request)
+    {
+        return $this->create($request->all());
     }
 }

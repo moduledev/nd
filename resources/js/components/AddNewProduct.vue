@@ -68,16 +68,14 @@
                         </div>
                         <div class="col-12 col-sm-6 col-md-6 col-lg-6">
                             <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i
-                                                        class="fas fa-dollar-sign"></i></span>
+                                <div class="form-group w-100">
+
+                                    <label>Цена</label>
+                                    <input type="text" name="price"
+                                           v-model="price"
+                                           class="form-control"
+                                           placeholder="Цена">
                                 </div>
-                                <input type="text" name="price"
-                                       v-model="price"
-                                       class="form-control"
-                                       :class="{'is-invalid': price === 0}"
-                                       placeholder="Цена"
-                                       required>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 col-md-6 col-lg-6">
@@ -210,10 +208,17 @@
                                 <svg class="icon" style="width: 25px; height: 15px">
                                     <use xlink:href="#russia"/>
                                 </svg>
-                                <select class="custom-select" :class="{'is-invalid': errors.length > 0}"
+                                <input type="text"
+                                       class="form-control"
+                                       v-model="attributeValueRu">
+                                <label v-if="attributeValues.length > 0">Выбрать из предустановленых значений</label>
+                                <select class="custom-select"
+                                        v-if="attributeValues.length > 0"
+                                        :class="{'is-invalid': errors.length > 0}"
                                         v-model="attributeValueRu">
                                     <option value="">Выберите значение</option>
-                                    <option v-for="(value, index) in attributeValues" :value="value" :key="value.id">
+                                    <option v-for="(value, index) in attributeValues" :value="value.value_ru"
+                                            :key="value.id">
                                         {{value.value_ru}}
                                     </option>
                                 </select>
@@ -223,19 +228,28 @@
                                 <svg class="icon" style="width: 25px; height: 15px">
                                     <use xlink:href="#ukraine"/>
                                 </svg>
-                                <select class="custom-select" :class="{'is-invalid': errors.length > 0}"
+                                <input type="text"
+                                       class="form-control"
+                                       v-model="attributeValueUa">
+                                <label v-if="attributeValues.length > 0">Выбрать из предустановленых значений</label>
+                                <select class="custom-select"
+                                        v-if="attributeValues.length > 0"
+                                        :class="{'is-invalid': errors.length > 0}"
                                         v-model="attributeValueUa">
                                     <option value="">Выберите значение</option>
-                                    <option v-for="(value, index) in attributeValues" :value="value" :key="value.id">
+                                    <option v-for="(value, index) in attributeValues" :value="value.value_ua"
+                                            :key="value.id">
                                         {{value.value_ua}}
                                     </option>
                                 </select>
                             </div>
                             <div class="form-group col-sm-4">
                                 <label for="inputAttrPrice">Цена</label>
-                                <input v-model="attributePrice.price" type="text" class="form-control"
+                                <input v-model="attributePrice"
+                                       type="text" class="form-control"
                                        :class="{'is-invalid': errors.length > 0}" id="inputAttrPrice"
                                        @change="errors = []"
+                                       :disabled="price > 0"
                                        placeholder="Enter ...">
                             </div>
                             <div class="col-12">
@@ -371,18 +385,18 @@
                 .get('/admin/attributes')
                 .then(responce => (this.attributes = responce.data))
         },
-        watch: {
-            attributeValueUa: function (val) {
-                this.attributeValueUa = val;
-                this.attributeValueRu = val;
-                this.attributePrice = val;
-            },
-            attributeValueRu: function (val) {
-                this.attributeValueRu = val;
-                this.attributeValueUa = val;
-                this.attributePrice = val
-            }
-        },
+        // watch: {
+        //     attributeValueUa: function (val) {
+        //         this.attributeValueUa = val;
+        //         this.attributeValueRu = val;
+        //         this.attributePrice = val;
+        //     },
+        //     attributeValueRu: function (val) {
+        //         this.attributeValueRu = val;
+        //         this.attributeValueUa = val;
+        //         this.attributePrice = val
+        //     }
+        // },
         methods: {
             onFileSelected(event) {
                 let arr = [];
@@ -424,12 +438,12 @@
                 let productAttributes = {
                     attribute_id: this.attributeSelected,
                     attribute_name: this.attributeName,
-                    value_ru: this.attributeValueRu.value_ru,
-                    value_ua: this.attributeValueUa.value_ua,
-                    price: this.attributePrice.price
+                    value_ru: this.attributeValueRu,
+                    value_ua: this.attributeValueUa,
+                    price: this.attributePrice
                 };
 
-                if (this.attributeValueRu && this.attributeValueUa && this.attributePrice) {
+                if (this.attributeValueRu && this.attributeValueUa) {
                     this.productAttributes.push(productAttributes);
                 } else {
                     this.errors.push('Выберите значение атрибутов и цены')
@@ -461,9 +475,11 @@
                     }
                 }
 
-                for (let i = 0; i < this.productAttributes.length; i++) {
-                    let attribute = this.productAttributes[i];
-                    formData.append('productAttributes[' + i + ']', JSON.stringify(attribute));
+                if(this.productAttributes.length > 0){
+                    for (let i = 0; i < this.productAttributes.length; i++) {
+                        let attribute = this.productAttributes[i];
+                        formData.append('productAttributes[' + i + ']', JSON.stringify(attribute));
+                    }
                 }
 
                 formData.append('name_ru', this.name_ru);
@@ -474,9 +490,9 @@
                 formData.append('composition_ru', this.composition_ru);
                 formData.append('composition_ua', this.composition_ua);
                 formData.append('productCategories', this.productCategories);
-                formData.append('available', this.available?1:0);
-                formData.append('gluten', this.gluten?1:0);
-                formData.append('lactose', this.lactose?1:0);
+                formData.append('available', this.available ? 1 : 0);
+                formData.append('gluten', this.gluten ? 1 : 0);
+                formData.append('lactose', this.lactose ? 1 : 0);
                 formData.append('mainImage', this.isChecked);
 
                 axios.post(
@@ -491,6 +507,8 @@
                             vm.errors.push(item);
                             vm.showAlert = true;
                         })
+                    } else {
+                        window.location.assign('/admin/products')
                     }
                 })
             }

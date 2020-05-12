@@ -13,7 +13,7 @@ class CreateAttributesTable extends Migration
      */
     public function up()
     {
-        Schema::create('attributes', function (Blueprint $table) {
+        Schema::create('attribute', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('code')->unique();
             $table->string('name_ua');
@@ -31,6 +31,6 @@ class CreateAttributesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attributes');
+        Schema::dropIfExists('attribute');
     }
 }

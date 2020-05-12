@@ -1533,7 +1533,7 @@ function (_Emitter) {
         form = Dropzone.createElement("<form action=\"".concat(this.options.url, "\" enctype=\"multipart/form-data\" method=\"").concat(this.options.method, "\"></form>"));
         form.appendChild(fields);
       } else {
-        // Make sure that the enctype and method attributes are set properly
+        // Make sure that the enctype and method attribute are set properly
         this.element.setAttribute("enctype", "multipart/form-data");
         this.element.setAttribute("method", this.options.method);
       }
@@ -2121,8 +2121,8 @@ function (_Emitter) {
       };
 
       fileReader.readAsDataURL(file);
-    } // `mockFile` needs to have these attributes:
-    // 
+    } // `mockFile` needs to have these attribute:
+    //
     //     { name: 'name', size: 12345, imageUrl: '' }
     //
     // `callback` will be invoked when the image has been downloaded and displayed.

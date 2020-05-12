@@ -1933,7 +1933,7 @@ S2.define('select2/selection/allowClear',[
       return;
     }
 
-    var removeAll = this.options.get('translations').get('removeAllItems');   
+    var removeAll = this.options.get('translations').get('removeAllItems');
 
     var $remove = $(
       '<span class="select2-selection__clear" title="' + removeAll() +'">' +
@@ -5239,7 +5239,7 @@ S2.define('select2/options',[
       if (this.options.debug && window.console && console.warn) {
         console.warn(
           'Select2: The `data-select2-tags` attribute has been changed to ' +
-          'use the `data-data` and `data-tags="true"` attributes and will be ' +
+          'use the `data-data` and `data-tags="true"` attribute and will be ' +
           'removed in future versions of Select2.'
         );
       }
@@ -5267,7 +5267,7 @@ S2.define('select2/options',[
       return letter.toUpperCase();
     }
 
-    // Pre-load all of the attributes which are prefixed with `data-`
+    // Pre-load all of the attribute which are prefixed with `data-`
     for (var attr = 0; attr < $e[0].attributes.length; attr++) {
       var attributeName = $e[0].attributes[attr].name;
       var prefix = 'data-';
@@ -5289,7 +5289,7 @@ S2.define('select2/options',[
     }
 
     // Prefer the element's `dataset` attribute if it exists
-    // jQuery 1.x does not correctly handle data attributes with multiple dashes
+    // jQuery 1.x does not correctly handle data attribute with multiple dashes
     if ($.fn.jquery && $.fn.jquery.substr(0, 2) == '1.' && $e[0].dataset) {
       dataset = $.extend(true, {}, $e[0].dataset, dataset);
     }
@@ -5407,7 +5407,7 @@ S2.define('select2/core',[
     $element.addClass('select2-hidden-accessible');
     $element.attr('aria-hidden', 'true');
 
-    // Synchronize any monitored attributes
+    // Synchronize any monitored attribute
     this._syncAttributes();
 
     Utils.StoreData($element[0], 'select2', this);

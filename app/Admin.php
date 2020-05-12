@@ -18,7 +18,7 @@ class Admin extends Authenticatable
     protected $guard_name = 'web';
 
     /**
-     * The attributes that are mass assignable.
+     * The attribute that are mass assignable.
      *
      * @var array
      */
@@ -28,7 +28,7 @@ class Admin extends Authenticatable
 
 
     /**
-     * The attributes that should be hidden for arrays.
+     * The attribute that should be hidden for arrays.
      *
      * @var array
      */
@@ -37,7 +37,7 @@ class Admin extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * The attribute that should be cast to native types.
      *
      * @var array
      */

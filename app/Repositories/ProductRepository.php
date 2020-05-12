@@ -19,6 +19,10 @@ class ProductRepository extends BaseRepository implements ProductContract
         $this->model = $model;
     }
 
+    /**
+     * @param ProductStoreRequest $request
+     * @return Product|mixed
+     */
     public function createProduct(ProductStoreRequest $request)
     {
         try {
@@ -28,9 +32,11 @@ class ProductRepository extends BaseRepository implements ProductContract
             $product->save();
             $this->createProductTranslations($product, $request);
             $product->categories()->sync(explode(',', $request->productCategories));
-            foreach ($request->productAttributes as $productAttribute) {
-                $attribute = json_decode($productAttribute);
-                $product->attributes()->attach($attribute->attribute_id, ['value_ru' => $attribute->value_ru, 'value_ua' => $attribute->value_ua, 'price' => $attribute->price]);
+            if($request->productAttributes){
+                foreach ($request->productAttributes as $productAttribute) {
+                    $attribute = json_decode($productAttribute);
+                    $product->attributes()->attach($attribute->attribute_id, ['value_ru' => $attribute->value_ru, 'value_ua' => $attribute->value_ua, 'price' => $attribute->price]);
+                }
             }
             return $product;
         } catch (ModelNotFoundException $e) {

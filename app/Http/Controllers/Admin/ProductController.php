@@ -39,7 +39,7 @@ class ProductController extends MainController
         if (Auth::user()->hasPermissionTo('product-create')) {
             $product = $this->productRepository->createProduct($request);
             $this->storeProductImages($product->id, $request);
-            return response()->json($request);
+            return redirect()->route('product.index')->with('success', 'Товар ' . $product->id . ' был успешно добавлен!');
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
 

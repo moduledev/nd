@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ProductAttributeController extends Controller
 {
-    /** Get all attributes
+    /** Get all attribute
      * @return \Illuminate\Http\JsonResponse
      */
     public function loadAttributes()
@@ -18,7 +18,7 @@ class ProductAttributeController extends Controller
         return response()->json($attributes);
     }
 
-    /** Get products attributes
+    /** Get products attribute
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */

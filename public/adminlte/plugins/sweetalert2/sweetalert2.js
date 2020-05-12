@@ -816,7 +816,7 @@ var renderInput = function renderInput(instance, params) {
   var rerender = !innerParams || params.input !== innerParams.input;
   inputTypes.forEach(function (inputType) {
     var inputClass = swalClasses[inputType];
-    var inputContainer = getChildByClass(content, inputClass); // set attributes
+    var inputContainer = getChildByClass(content, inputClass); // set attribute
 
     setAttributes(inputType, params.inputAttributes); // set class
 

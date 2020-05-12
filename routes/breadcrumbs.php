@@ -52,3 +52,8 @@ Breadcrumbs::for('product-create', function ($trail) {
     $trail->parent('products');
     $trail->push('Добавить товар ' , route('product.create'));
 });
+
+Breadcrumbs::for('attribute', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Атрибуты ' , route('attribute.index'));
+});

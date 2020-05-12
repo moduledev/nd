@@ -122,7 +122,7 @@ return [
     | Custom Validation Language Lines
     |--------------------------------------------------------------------------
     |
-    | Here you may specify custom validation messages for attributes using the
+    | Here you may specify custom validation messages for attribute using the
     | convention "attribute.rule" to name the lines. This makes it quick to
     | specify a specific custom language line for a given attribute rule.
     |
@@ -145,6 +145,6 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attribute' => [],
 
 ];

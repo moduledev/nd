@@ -189,11 +189,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         </form>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{route('product.index')}}" class="nav-link">
-                            <i class="nav-icon fas fa-cookie-bite"></i>
-                            <p> Товары</p>
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-store"></i>
+                            <p>
+                                Магазин
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('product.index')}}" class="nav-link">
+                                    <i class="nav-icon fas fa-cookie-bite"></i>
+                                    <p> Товары</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('attribute.index')}}" class="nav-link ">
+                                    <i class="fas fa-puzzle-piece nav-icon"></i>
+                                    <p>Атрибуты</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link ">
+                                    <i class="fas fa-layer-group nav-icon"></i>
+                                    <p>Категории</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">

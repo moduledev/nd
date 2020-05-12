@@ -341,7 +341,7 @@
         }
 
 
-        // config from data-attributes extends js config
+        // config from data-attribute extends js config
         config_from_data = {
             skin: $inp.data("skin"),
             type: $inp.data("type"),

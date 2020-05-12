@@ -22,6 +22,8 @@ class AttributeValue extends Model
         'attribute_id' => 'integer',
     ];
 
+    public $timestamps = false;
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

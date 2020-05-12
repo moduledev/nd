@@ -22,6 +22,7 @@ window.Vue = require('vue');
 Vue.component('add-new-product', require('./components/AddNewProduct').default);
 Vue.component('attributes-value', require('./components/AttribitesValue').default);
 Vue.component('image-product-upload', require('./components/ImageProductUpload').default);
+Vue.component('add-value-to-attribute', require('./components/AddAttributeValue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

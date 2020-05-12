@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Attribute;
+use App\AttributeValue;
 use App\Contracts\AttributeContract;
 use App\Http\Controllers\MainController;
 use Illuminate\Http\Request;
@@ -29,5 +31,13 @@ class AttributeValueController extends MainController
         $attribute = $this->attributeRepository->findAttributeById($id);
         $values = $attribute->values;
         return response()->json(['values' => $values, 'attributeName' => $attribute->name]);
+    }
+
+    public function addValues($id, Request $request)
+    {
+        foreach ($request->all() as $values){
+            $attributeValue = AttributeValue::firstOrNew(['attribute_id' => $id, 'value_ru' => $values['value_ru'], 'value_ua' => $values['value_ua'], 'price' => $values['price']]);
+            $attributeValue->save();
+        }
     }
 }

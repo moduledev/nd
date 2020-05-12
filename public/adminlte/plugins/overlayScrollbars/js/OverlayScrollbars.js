@@ -328,7 +328,7 @@
                 a : MATH.abs,
                 o : 1.70158
             };
-            
+
             /*
              x : current percent (0 - 1),
              t : current time (duration * percent),
@@ -421,8 +421,8 @@
                 },
                 easeOutElastic: function (x, t, b, c, d) {
                     var s=_easingsMath.o;var p=0;var a=c;
-                    if (t==0) return b;  
-                    if ((t/=d)==1) return b+c;  
+                    if (t==0) return b;
+                    if ((t/=d)==1) return b+c;
                     if (!p) p=d*.3;
                     if (a < _easingsMath.a(c)) { a=c; s=p/4; }
                     else s = p/(2*_easingsMath.p) * _easingsMath.n (c/a);
@@ -430,8 +430,8 @@
                 },
                 easeInOutElastic: function (x, t, b, c, d) {
                     var s=_easingsMath.o;var p=0;var a=c;
-                    if (t==0) return b;  
-                    if ((t/=d/2)==2) return b+c;  
+                    if (t==0) return b;
+                    if ((t/=d/2)==2) return b+c;
                     if (!p) p=d*(.3*1.5);
                     if (a < _easingsMath.a(c)) { a=c; s=p/4; }
                     else s = p/(2*_easingsMath.p) * _easingsMath.n (c/a);
@@ -472,33 +472,33 @@
             /*
              *
              * TERMS OF USE - EASING EQUATIONS
-             * 
-             * Open source under the BSD License. 
-             * 
+             *
+             * Open source under the BSD License.
+             *
              * Copyright Â© 2001 Robert Penner
              * All rights reserved.
-             * 
-             * Redistribution and use in source and binary forms, with or without modification, 
+             *
+             * Redistribution and use in source and binary forms, with or without modification,
              * are permitted provided that the following conditions are met:
-             * 
-             * Redistributions of source code must retain the above copyright notice, this list of 
+             *
+             * Redistributions of source code must retain the above copyright notice, this list of
              * conditions and the following disclaimer.
-             * Redistributions in binary form must reproduce the above copyright notice, this list 
-             * of conditions and the following disclaimer in the documentation and/or other materials 
+             * Redistributions in binary form must reproduce the above copyright notice, this list
+             * of conditions and the following disclaimer in the documentation and/or other materials
              * provided with the distribution.
-             * 
-             * Neither the name of the author nor the names of contributors may be used to endorse 
+             *
+             * Neither the name of the author nor the names of contributors may be used to endorse
              * or promote products derived from this software without specific prior written permission.
-             * 
-             * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+             *
+             * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
              * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
              * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
              *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
              *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
-             *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
+             *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
              * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-             *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
-             * OF THE POSSIBILITY OF SUCH DAMAGE. 
+             *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+             * OF THE POSSIBILITY OF SUCH DAMAGE.
              *
              */
         })();
@@ -595,7 +595,7 @@
                         return i;
                 return -1;
             }
-            
+
             var isFunction = function(obj) {
                 return _type(obj) == TYPES.f;
             };
@@ -1579,7 +1579,7 @@
                                     var j;
 
                                     dataDiffValue = dataDiffValue === undefined ? { } : dataDiffValue;
-                                    
+
                                     //if the template has a object as value, it means that the options are complex (verschachtelt)
                                     if(templateIsComplex && dataValueType == TYPES.o) {
                                         validatedOptions[prop] = { };
@@ -1630,10 +1630,10 @@
 
                                         if(isValid) {
                                             isDiff = dataValue !== dataDiffValue;
-                                            
+
                                             if(isDiff)
                                                 validatedOptions[prop] = dataValue;
-                                            
+
                                             if(isRestrictedValue ? inArray(dataDiffValue, restrictedStringValuesPossibilitiesSplit) < 0 : isDiff)
                                                 validatedOptionsPrepared[prop] = isRestrictedValue ? mainPossibility : dataValue;
                                         }
@@ -1656,7 +1656,7 @@
                             FRAMEWORK.extend(true, validatedOptionsPrepared, objectCopy);
                         }
                         */
-                        
+
                         if(!isEmptyObj(objectCopy) && writeErrors)
                             console.warn("The following options are discarded due to invalidity:\r\n" + window.JSON.stringify(objectCopy, null, 2));
 
@@ -1714,12 +1714,12 @@
                         try {
                             result = scrollbarDummyElement.css('scrollbar-width') === 'none' || window.getComputedStyle(scrollbarDummyElement0, '::-webkit-scrollbar').getPropertyValue('display') === 'none';
                         } catch (ex) { }
-                        
+
                         //fix opera bug: scrollbar styles will only appear if overflow value is scroll or auto during the activation of the style.
                         //and set overflow to scroll
                         //scrollbarDummyElement.css(strOverflow, strHidden).hide().css(strOverflow, strScroll).show();
                         //return (scrollbarDummyElement0[LEXICON.oH] - scrollbarDummyElement0[LEXICON.cH]) === 0 && (scrollbarDummyElement0[LEXICON.oW] - scrollbarDummyElement0[LEXICON.cW]) === 0;
-                        
+
                         return result;
                     })(),
                     overlayScrollbarDummySize : { x: 30, y: 30 },
@@ -1908,7 +1908,7 @@
                 var _loopInterval = _loopIntervalDefault;
                 var _loopTimeOld = _getNow();
                 var _loopID;
-                
+
 
                 /**
                  * The auto update loop which will run every 50 milliseconds or less if the update interval of a instance is lower than 50 milliseconds.
@@ -2008,15 +2008,15 @@
                 var type = COMPATIBILITY.type;
                 var inArray = FRAMEWORK.inArray;
                 var each = FRAMEWORK.each;
-                
+
                 //make correct instanceof
                 var _base = new _plugin();
                 var _frameworkProto = FRAMEWORK[LEXICON.p];
-                
+
                 //if passed element is no HTML element: skip and return
                 if(!isHTMLElement(pluginTargetElement))
                     return;
-                
+
                 //if passed element is already initialized: set passed options if there are any and return its instance
                 if(INSTANCES(pluginTargetElement)) {
                     var inst = INSTANCES(pluginTargetElement);
@@ -2274,8 +2274,8 @@
                 var _resizeHorizontal;
                 var _resizeVertical;
                 var _resizeOnMouseTouchDown;
-                
-                
+
+
                 //==== Passive Event Listener ====//
 
                 /**
@@ -2497,7 +2497,7 @@
                  * Freezes or unfreezes the given resize observer.
                  * @param targetElement The element to which the target resize observer is applied.
                  * @param freeze True if the resize observer shall be frozen, false otherwise.
-                 
+
                 function freezeResizeObserver(targetElement, freeze) {
                     if (targetElement !== undefined) {
                         if(freeze) {
@@ -2552,7 +2552,7 @@
                         _mutationObserverHostCallback = function(mutations) {
                             var doUpdate = false;
                             var mutation;
-                                
+
                             if (_initialized && !_sleeping) {
                                 each(mutations, function () {
                                     mutation = this;
@@ -2578,7 +2578,7 @@
                         _mutationObserverContentCallback = function (mutations) {
                             var doUpdate = false;
                             var mutation;
-                            
+
                             if (_initialized && !_sleeping) {
                                 each(mutations, function () {
                                     mutation = this;
@@ -2654,7 +2654,7 @@
                     }
                 }
 
-               
+
                //==== Events of elements ====//
 
                 /**
@@ -2669,7 +2669,7 @@
                             w: _sizeObserverElementNative[LEXICON.sW],
                             h: _sizeObserverElementNative[LEXICON.sH]
                         };
-                        
+
                         changed = checkCache(hostSize, _hostElementSizeChangeDetectedCache);
                         _hostElementSizeChangeDetectedCache = hostSize;
                         if (changed)
@@ -2859,7 +2859,7 @@
                 function updateAutoContentSizeChanged() {
                     if (_sleeping)
                         return false;
-                    
+
                     var contentMeasureElement = getContentMeasureElement();
                     var textareaValueLength = _isTextarea && _widthAutoCache && !_textareaAutoWrappingCache ? _targetElement.val().length : 0;
                     var setCSS = !_mutationObserversConnected && _widthAutoCache && !_isTextarea;
@@ -2906,42 +2906,42 @@
                 }
 
                 /**
-                 * Returns true when a attribute which the MutationObserver would observe has changed.  
-                 * @returns {boolean} True if one of the attributes which a MutationObserver would observe has changed, false or undefined otherwise.
+                 * Returns true when a attribute which the MutationObserver would observe has changed.
+                 * @returns {boolean} True if one of the attribute which a MutationObserver would observe has changed, false or undefined otherwise.
                  */
                 function meaningfulAttrsChanged() {
                     if (_sleeping || _mutationObserversConnected)
                         return;
-                    
+
                     var changed;
                     var elem;
                     var curr;
                     var cache;
                     var checks = [
                         {
-                            _elem: _hostElement, 
+                            _elem: _hostElement,
                             _props : _mutationObserverAttrsHost.concat(':visible')
                         },
                         {
-                            _elem: _isTextarea ? _targetElement : undefined, 
+                            _elem: _isTextarea ? _targetElement : undefined,
                             _props : _mutationObserverAttrsTextarea
                         }
                     ];
-                    
-                    each(checks, function(index, check) { 
+
+                    each(checks, function(index, check) {
                         elem = check._elem;
                         if(elem) {
-                            each(check._props, function(index, prop) { 
+                            each(check._props, function(index, prop) {
                                 curr = prop.charAt(0) === ':' ? elem.is(prop) : elem.attr(prop);
                                 cache = _updateAutoCache[prop];
-                                
+
                                 changed = changed || checkCache(curr, cache);
-                                
+
                                 _updateAutoCache[prop] = curr;
                             });
                         }
                     });
-                    
+
                     return changed;
                 }
 
@@ -3021,7 +3021,7 @@
                     return sizeIsAffected;
                 }
 
-                
+
                 //==== Update ====//
 
                 /**
@@ -3100,13 +3100,13 @@
                     _swallowedUpdateHints._hostSizeChanged |= updateHints._hostSizeChanged;
                     _swallowedUpdateHints._contentSizeChanged |= updateHints._contentSizeChanged;
                     _swallowedUpdateHints._force |= updateHints._force;
-                    
+
                     var now = COMPATIBILITY.now();
                     var hostSizeChanged = !!_swallowedUpdateHints._hostSizeChanged;
                     var contentSizeChanged = !!_swallowedUpdateHints._contentSizeChanged;
                     var force = !!_swallowedUpdateHints._force;
-                    var changedOptions = updateHints._changedOptions;    
-                    var swallow = _swallowUpdateLag > 0 && _initialized && !_destroyed && !force && !changedOptions && (now - _lastUpdateTime) < _swallowUpdateLag && (!_heightAutoCache && !_widthAutoCache);                    
+                    var changedOptions = updateHints._changedOptions;
+                    var swallow = _swallowUpdateLag > 0 && _initialized && !_destroyed && !force && !changedOptions && (now - _lastUpdateTime) < _swallowUpdateLag && (!_heightAutoCache && !_widthAutoCache);
                     var displayIsHidden;
 
                     if(swallow)
@@ -3122,7 +3122,7 @@
 
                     _lastUpdateTime = now;
                     _swallowedUpdateHints = { };
-                    
+
                     //if scrollbar styling is possible and native scrollbars aren't overlaid the scrollbar styling will be applied which hides the native scrollbars completely.
                     if (_nativeScrollbarStyling && !(_nativeScrollbarIsOverlaid.x && _nativeScrollbarIsOverlaid.y)) {
                         //native scrollbars are hidden, so change the values to zero
@@ -3142,15 +3142,15 @@
                         x: (_nativeScrollbarSize.x + (_nativeScrollbarIsOverlaid.x ? 0 : 3)) * 3,
                         y: (_nativeScrollbarSize.y + (_nativeScrollbarIsOverlaid.y ? 0 : 3)) * 3
                     };
-                    
+
                     //changedOptions = changedOptions || { };
                     //freezeResizeObserver(_sizeObserverElement, true);
                     //freezeResizeObserver(_sizeAutoObserverElement, true);
-                    
+
                     var checkCacheAutoForce = function () {
                         return checkCache.apply(this, [].slice.call(arguments).concat([ force ]));
                     };
-                    
+
                     //save current scroll offset
                     var currScroll = {
                         x: _viewportElement[_strScrollLeft](),
@@ -3365,7 +3365,7 @@
                         b: parseToZeroOrNumber(_hostElement.css(_strPaddingMinus + _strBottom)),
                         l: parseToZeroOrNumber(_hostElement.css(_strPaddingMinus + _strLeft))
                     };
-                    
+
                     //width + height auto detecting var:
                     var sizeAutoObserverElementBCRect;
                     //exception occurs in IE8 sometimes (unknown exception)
@@ -3492,7 +3492,7 @@
                     _cssBorderCache = border;
                     _cssMarginCache = margin;
                     _cssMaxValueCache = cssMaxValue;
-                        
+
                     //IEFix direction changed
                     if (cssDirectionChanged && _sizeAutoObserverAdded)
                         _sizeAutoObserverElement.css(_strFloat, isRTLRight);
@@ -3720,7 +3720,7 @@
                         //remove overflow hidden to restore overflow
                         if(hideOverflow4CorrectMeasuring)
                             _contentElement.css(strOverflow, _strEmpty);
-                        
+
                         //refresh viewport size after correct measuring
                         _viewportSize = getViewportSize();
 
@@ -3809,7 +3809,7 @@
                                 };
 
                                 if (_nativeScrollbarStyling) {
-                                    if (ignoreOverlayScrollbarHiding) 
+                                    if (ignoreOverlayScrollbarHiding)
                                         removeClass(_viewportElement, _classNameViewportNativeScrollbarsInvisible);
                                     else
                                         addClass(_viewportElement, _classNameViewportNativeScrollbarsInvisible);
@@ -3868,13 +3868,13 @@
                             };
                             setViewportCSS(true);
                             setViewportCSS(false);
-                            
-                            // if the scroll container is too small and if there is any overflow with no overlay scrollbar (and scrollbar styling isn't possible), 
+
+                            // if the scroll container is too small and if there is any overflow with no overlay scrollbar (and scrollbar styling isn't possible),
                             // make viewport element greater in size (Firefox hide Scrollbars fix)
                             // because firefox starts hiding scrollbars on too small elements
                             // with this behavior the overflow calculation may be incorrect or the scrollbars would appear suddenly
                             // https://bugzilla.mozilla.org/show_bug.cgi?id=292284
-                            if (!_nativeScrollbarStyling 
+                            if (!_nativeScrollbarStyling
                                 && (_viewportSize.h < _nativeScrollbarMinSize.x || _viewportSize.w < _nativeScrollbarMinSize.y)
                                 && ((hasOverflow.x && hideOverflow.x && !_nativeScrollbarIsOverlaid.x) || (hasOverflow.y && hideOverflow.y && !_nativeScrollbarIsOverlaid.y))) {
                                 viewportElementCSS[_strPaddingMinus + _strTop] = _nativeScrollbarMinSize.x;
@@ -4027,7 +4027,7 @@
                                 else
                                     _scrollbarCornerElement[remove ? 'off' : 'on'](_strMouseTouchDownEvent, _resizeOnMouseTouchDown);
                             };
-                            removeClass(_scrollbarCornerElement, [ 
+                            removeClass(_scrollbarCornerElement, [
                                     _classNameScrollbarCornerResize,
                                     _classNameScrollbarCornerResizeB,
                                     _classNameScrollbarCornerResizeH,
@@ -4167,7 +4167,7 @@
                     dispatchCallback("onUpdated", { forced: force });
                 }
 
-                
+
                 //==== Options ====//
 
                 /**
@@ -4180,7 +4180,7 @@
 
                     _currentOptions = extendDeep({}, _currentOptions, validatedOpts._default);
                     _currentPreparedOptions = extendDeep({}, _currentPreparedOptions, validatedOpts._prepared);
-                    
+
                     return validatedOpts._prepared;
                 }
 
@@ -4269,7 +4269,7 @@
 
                             addClass(_targetElement, _classNameHostElement);
                         }
-                        
+
                         if (_nativeScrollbarStyling)
                             addClass(_viewportElement, _classNameViewportNativeScrollbarsInvisible);
                         if(_nativeScrollbarIsOverlaid.x && _nativeScrollbarIsOverlaid.y)
@@ -4514,11 +4514,11 @@
                     var mouseDownScroll;
                     var mouseDownOffset;
                     var mouseDownInvertedScale;
-                    
+
                     function setupEvent(element, eventNames, listener) {
                         var collected = type(eventNames) == TYPES.a && type(listener) == TYPES.a;
                         var i = 0;
-                        
+
                         if(collected) {
                             for (; i < eventNames[LEXICON.l]; i++)
                                 setupEvent(element, eventNames[i], listener[i]);
@@ -4773,15 +4773,15 @@
                     function onScrollbarMouseTouchDown(event) {
                         COMPATIBILITY.stpP(event);
                     }
-                    
-                    setupEvent(scrollbarVars._handle, 
-                        _strMouseTouchDownEvent, 
+
+                    setupEvent(scrollbarVars._handle,
+                        _strMouseTouchDownEvent,
                         onHandleMouseTouchDown);
                     setupEvent(scrollbarVars._track,
-                        [_strMouseTouchDownEvent, _strMouseTouchEnter, _strMouseTouchLeave], 
+                        [_strMouseTouchDownEvent, _strMouseTouchEnter, _strMouseTouchLeave],
                         [onTrackMouseTouchDown, onTrackMouseTouchEnter, onTrackMouseTouchLeave]);
-                    setupEvent(scrollbarVars._scrollbar, 
-                        _strMouseTouchDownEvent, 
+                    setupEvent(scrollbarVars._scrollbar,
+                        _strMouseTouchDownEvent,
                         onScrollbarMouseTouchDown);
 
                     if (_supportTransition) {
@@ -5285,8 +5285,8 @@
                 }
 
                 /**
-                 * Generates a string which represents a HTML div with the given classes or attributes.
-                 * @param classesOrAttrs The class of the div as string or a object which represents the attributes of the div. (The class attribute can also be written as "className".)
+                 * Generates a string which represents a HTML div with the given classes or attribute.
+                 * @param classesOrAttrs The class of the div as string or a object which represents the attribute of the div. (The class attribute can also be written as "className".)
                  * @param content The content of the div as string.
                  * @returns {string} The concated string which represents a HTML div and its content.
                  */
@@ -5434,10 +5434,10 @@
                  * This method should only be called if a update is 100% required.
                  * @param force True if every property shall be updated and the cache shall be ignored.
                  * !INTERNAL USAGE! : force can be a string "auto", "sync" or "zoom" too
-                 * if "auto" then before a real update the content size and host element attributes gets checked, and if they changed only then the update method will be called.
+                 * if "auto" then before a real update the content size and host element attribute gets checked, and if they changed only then the update method will be called.
                  * if "sync" then the async update process (MutationObserver or UpdateLoop) gets synchronized and a corresponding update takes place if one was needed due to pending changes.
                  * if "zoom" then a update takes place where it's assumed that content and host size changed
-                 * @returns {boolean|undefined} 
+                 * @returns {boolean|undefined}
                  * If force is "sync" then a boolean is returned which indicates whether a update was needed due to pending changes.
                  * If force is "auto" then a boolean is returned whether a update was needed due to attribute or size changes.
                  * undefined otherwise.
@@ -5504,7 +5504,7 @@
                 _base.options = function (newOptions, value) {
                     var option = { };
                     var changedOps;
-                    
+
                     //return current options if newOptions are undefined or empty
                     if (FRAMEWORK.isEmptyObject(newOptions) || !FRAMEWORK.isPlainObject(newOptions)) {
                         if (type(newOptions) == TYPES.s) {
@@ -5521,10 +5521,10 @@
                     else {
                         changedOps = setOptions(newOptions);
                     }
-                    
+
                     if(!FRAMEWORK.isEmptyObject(changedOps)) {
                         update({ _changedOptions : changedOps });
-                    }    
+                    }
                 };
 
                 /**
@@ -5702,9 +5702,9 @@
                             isRTLNormalized: _normalizeRTLCache
                         };
                     }
-                    
+
                     _base.update(_strSync);
-                    
+
                     var normalizeRTL = _normalizeRTLCache;
                     var coordinatesXAxisProps = [_strX, _strLeft, 'l'];
                     var coordinatesYAxisProps = [_strY, _strTop, 't'];
@@ -5759,7 +5759,7 @@
                             return isX ? coordinates[0] : coordinates[1];
                         else if (type(coordinates) == TYPES.o) {
                             //decides RTL normalization "hack" with .n
-                            //normalizeRTL = type(coordinates.n) == TYPES.b ? coordinates.n : normalizeRTL; 
+                            //normalizeRTL = type(coordinates.n) == TYPES.b ? coordinates.n : normalizeRTL;
                             for (i = 0; i < coordinateProps[strLength]; i++)
                                 if (coordinateProps[i] in coordinates)
                                     return coordinates[coordinateProps[i]];
