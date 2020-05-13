@@ -50,7 +50,7 @@ Route::prefix('admin')->group(function () {
 
 
     Route::get('attributeValues/{id}', 'Admin\AttributeValueController@getValues');
-    Route::post('addAttributeValues/{id}', 'Admin\AttributeValueController@addValues');
+    Route::post('addAttributeValues/{id}', 'Admin\AttributeValueController@assignValues');
 
     Route::get('attribute/create', 'Admin\AttributeController@create')->name('attribute.create');
     Route::get('attribute/edit/{id}', 'Admin\AttributeController@edit')->name('attribute.edit');

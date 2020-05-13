@@ -12,7 +12,7 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
 
-                {{ Breadcrumbs::render('attribute') }}
+                {{ Breadcrumbs::render('attribute-edit', $attribute->name_ru) }}
 
             </div><!-- /.col -->
         </div><!-- /.row -->

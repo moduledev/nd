@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h3 class="mt-3">Добавить / Удалить значение атрибута</h3>
         <form action="" @submit.prevent="addValueToAttribute">
             <div class="row">
                 <div class="col-sm-4">
@@ -43,7 +44,6 @@
                 </div>
             </div>
         </form>
-        <h3 class="mt-3">Добавить / Удалить значение атрибута</h3>
         <div v-if="attributeValues.length > 0">
             <table class="table table-hover text-nowrap">
                 <thead>
@@ -64,17 +64,19 @@
                     <td>{{item.value_ru}}</td>
                     <td>{{item.price}}</td>
                     <td><i class="far fa-times-circle"
-                           @click="deleteAttributeItem(item)"></i></td>
+                           @click="deleteAttributeItem(item)" style="cursor: pointer"></i></td>
                 </tr>
                 </tbody>
             </table>
             <div class="row">
                 <button @click="saveAttributeValues" class="btn btn-success">
-                    <i class="fas fa-plus"></i>
+                    <span v-if="!isProcessing">Сохранить <i class="fas fa-plus"></i></span>
+                    <i v-if="isProcessing" class="fas fa-spinner fa-pulse"></i>
+
                 </button>
             </div>
         </div>
-        <div v-if="attributeValues.length === 0" class="fa-3x text-center">
+        <div v-if="isProcessing" class="fa-3x text-center">
             <i class="fas fa-spinner fa-pulse"></i>
         </div>
     </div>
@@ -82,6 +84,7 @@
 
 <script>
     import axios from 'axios';
+    import _ from 'lodash';
 
     export default {
         props: ['attribute'],
@@ -90,14 +93,18 @@
                 value_ru: '',
                 value_ua: '',
                 price: 0,
-                attributeValues: []
+                attributeValues: [],
+                isProcessing: false
             }
         }, mounted() {
+            this.isProcessing = true;
+            const vm = this;
             axios
                 .get('/admin/attributeValues/' + this.attribute.id)
-                .then(response => (
-                    this.attributeValues = response.data.values
-                ))
+                .then(function (response) {
+                    vm.attributeValues = response.data.values;
+                    vm.isProcessing = false;
+                })
         },
         methods: {
             addValueToAttribute() {
@@ -118,12 +125,20 @@
                 this.price = 0;
             },
             saveAttributeValues() {
+                const vm = this;
+                this.isProcessing = true;
                 axios.post('/admin/addAttributeValues/' + this.attribute.id,
                    JSON.stringify(this.attributeValues),
                     {
                         headers: {'Content-Type': 'application/json'}
                     }).then(function (response) {
-                    console.log(response)
+                    vm.attributeValues = response.data;
+                    vm.isProcessing = false;
+                })
+            },
+            deleteAttributeItem(key) {
+               this.attributeValues = _.remove(this.attributeValues, function (item) {
+                    return item !== key;
                 })
             },
         }

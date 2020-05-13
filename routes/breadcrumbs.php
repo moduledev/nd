@@ -57,3 +57,8 @@ Breadcrumbs::for('attribute', function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Атрибуты ' , route('attribute.index'));
 });
+
+Breadcrumbs::for('attribute-edit', function ($trail, $name) {
+    $trail->parent('attribute');
+    $trail->push('Изменить данные атрибута ' . $name, route('attribute.edit', $name));
+});

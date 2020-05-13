@@ -1699,6 +1699,8 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -1781,6 +1783,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['attribute'],
@@ -1789,14 +1794,16 @@ __webpack_require__.r(__webpack_exports__);
       value_ru: '',
       value_ua: '',
       price: 0,
-      attributeValues: []
+      attributeValues: [],
+      isProcessing: false
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
+    this.isProcessing = true;
+    var vm = this;
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/attributeValues/' + this.attribute.id).then(function (response) {
-      return _this.attributeValues = response.data.values;
+      vm.attributeValues = response.data.values;
+      vm.isProcessing = false;
     });
   },
   methods: {
@@ -1819,12 +1826,20 @@ __webpack_require__.r(__webpack_exports__);
       this.price = 0;
     },
     saveAttributeValues: function saveAttributeValues() {
+      var vm = this;
+      this.isProcessing = true;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/addAttributeValues/' + this.attribute.id, JSON.stringify(this.attributeValues), {
         headers: {
           'Content-Type': 'application/json'
         }
       }).then(function (response) {
-        console.log(response);
+        vm.attributeValues = response.data;
+        vm.isProcessing = false;
+      });
+    },
+    deleteAttributeItem: function deleteAttributeItem(key) {
+      this.attributeValues = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.remove(this.attributeValues, function (item) {
+        return item !== key;
       });
     }
   }
@@ -38533,6 +38548,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("h3", { staticClass: "mt-3" }, [
+      _vm._v("Добавить / Удалить значение атрибута")
+    ]),
+    _vm._v(" "),
     _c(
       "form",
       {
@@ -38647,10 +38666,6 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("h3", { staticClass: "mt-3" }, [
-      _vm._v("Добавить / Удалить значение атрибута")
-    ]),
-    _vm._v(" "),
     _vm.attributeValues.length > 0
       ? _c("div", [
           _c("table", { staticClass: "table table-hover text-nowrap" }, [
@@ -38673,6 +38688,7 @@ var render = function() {
                   _c("td", [
                     _c("i", {
                       staticClass: "far fa-times-circle",
+                      staticStyle: { cursor: "pointer" },
                       on: {
                         click: function($event) {
                           return _vm.deleteAttributeItem(item)
@@ -38693,13 +38709,24 @@ var render = function() {
                 staticClass: "btn btn-success",
                 on: { click: _vm.saveAttributeValues }
               },
-              [_c("i", { staticClass: "fas fa-plus" })]
+              [
+                !_vm.isProcessing
+                  ? _c("span", [
+                      _vm._v("Сохранить "),
+                      _c("i", { staticClass: "fas fa-plus" })
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.isProcessing
+                  ? _c("i", { staticClass: "fas fa-spinner fa-pulse" })
+                  : _vm._e()
+              ]
             )
           ])
         ])
       : _vm._e(),
     _vm._v(" "),
-    _vm.attributeValues.length === 0
+    _vm.isProcessing
       ? _c("div", { staticClass: "fa-3x text-center" }, [
           _c("i", { staticClass: "fas fa-spinner fa-pulse" })
         ])

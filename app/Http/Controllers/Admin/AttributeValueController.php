@@ -33,11 +33,13 @@ class AttributeValueController extends MainController
         return response()->json(['values' => $values, 'attributeName' => $attribute->name]);
     }
 
-    public function addValues($id, Request $request)
+    public function assignValues($id, Request $request)
     {
+        AttributeValue::where('attribute_id',$id)->delete();
         foreach ($request->all() as $values){
             $attributeValue = AttributeValue::firstOrNew(['attribute_id' => $id, 'value_ru' => $values['value_ru'], 'value_ua' => $values['value_ua'], 'price' => $values['price']]);
             $attributeValue->save();
         }
+        return response()->json(AttributeValue::all());
     }
 }
