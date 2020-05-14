@@ -55,6 +55,7 @@ Route::prefix('admin')->group(function () {
     Route::get('attribute/create', 'Admin\AttributeController@create')->name('attribute.create');
     Route::get('attribute/edit/{id}', 'Admin\AttributeController@edit')->name('attribute.edit');
     Route::post('attribute/add', 'Admin\AttributeController@store')->name('attribute.add');
+    Route::put('attribute/update/{id}', 'Admin\AttributeController@update')->name('attribute.update');
 
     Route::post('admin', 'Admin\AdminController@store')->name('admin.add');
     Route::get('admin/create', 'Admin\AdminController@create')->name('admin.create');

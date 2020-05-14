@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Contracts\AttributeContract;
 use App\Http\Controllers\MainController;
-use App\Http\Requests\AttributeRequest;
+use App\Http\Requests\AttributeStoreRequest;
+use App\Http\Requests\AttributeUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -47,10 +48,10 @@ class AttributeController extends MainController
 
 
     /**
-     * @param AttributeRequest $request
+     * @param AttributeStoreRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(AttributeRequest $request)
+    public function store(AttributeStoreRequest $request)
     {
         if (Auth::user()->hasPermissionTo('attribute-create')) {
             $attribute = $this->attributeRepository->createAttribute($request);
@@ -88,16 +89,16 @@ class AttributeController extends MainController
         }
     }
 
+
     /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return Response
+     * @param AttributeUpdateRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(AttributeUpdateRequest $request, $id)
     {
-        //
+        $attribute = $this->attributeRepository->updateAttribute($request, $id);
+        return redirect()->route('attribute.index')->with('success','Атирибут '. $attribute->name_ru .' был успешно изменен');
     }
 
     /**

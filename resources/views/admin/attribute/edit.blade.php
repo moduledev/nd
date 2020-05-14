@@ -29,7 +29,8 @@
                         <h3 class="card-title">Редактировать атрибут:</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('attribute.add')}}" method="POST" class="admin-form">
+                        <form action="{{route('attribute.update', $attribute->id)}}" method="POST" class="admin-form">
+                            {{method_field('PUT')}}
                             @csrf
                             <div class="row">
                                 <div class="col-sm-4">

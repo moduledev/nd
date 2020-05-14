@@ -6,6 +6,7 @@ namespace App\Repositories;
 
 use App\Attribute;
 use App\Contracts\AttributeContract;
+use App\Http\Requests\AttributeUpdateRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AttributeRepository extends BaseRepository implements AttributeContract
@@ -49,5 +50,18 @@ class AttributeRepository extends BaseRepository implements AttributeContract
     public function createAttribute($request)
     {
         return $this->create($request->all());
+    }
+
+    /**
+     * @param AttributeUpdateRequest $request
+     * @param int $id
+     * @return mixed
+     */
+    public function updateAttribute(AttributeUpdateRequest $request, int $id)
+    {
+        $attribute = $this->find($id);
+        $attribute->fill($request->validated());
+        $attribute->save();
+        return $attribute;
     }
 }
