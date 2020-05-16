@@ -31,6 +31,7 @@ Route::prefix('admin')->group(function () {
     Route::get('roles', 'Admin\DashboardController@roles')->name('role.index');
     Route::get('products', 'Admin\DashboardController@products')->name('product.index');
     Route::get('attributes', 'Admin\DashboardController@attributes')->name('attribute.index');
+    Route::get('category', 'Admin\DashboardController@categories')->name('category.index');
 
 
 
@@ -45,8 +46,9 @@ Route::prefix('admin')->group(function () {
     //    products
     Route::post('product/store', 'Admin\ProductController@store')->name('product.add');
     Route::get('product/create', 'Admin\ProductController@create')->name('product.create');
+    Route::get('product/{$id}', 'Admin\ProductController@show')->name('product.show');
+    Route::get('product/edit/{$id}', 'Admin\ProductController@edit')->name('product.edit');
 
-    Route::get('categories', 'Admin\CategoryController@index')->name('category.index');
 
 
     Route::get('attributeValues/{id}', 'Admin\AttributeValueController@getValues');
@@ -56,6 +58,13 @@ Route::prefix('admin')->group(function () {
     Route::get('attribute/edit/{id}', 'Admin\AttributeController@edit')->name('attribute.edit');
     Route::post('attribute/add', 'Admin\AttributeController@store')->name('attribute.add');
     Route::put('attribute/update/{id}', 'Admin\AttributeController@update')->name('attribute.update');
+    Route::get('attribute/{id}', 'Admin\AttributeController@show')->name('attribute.show');
+
+    Route::get('category/create', 'Admin\CategoryController@create')->name('category.create');
+    Route::get('category/edit/{id}', 'Admin\CategoryController@edit')->name('category.edit');
+    Route::post('category/add', 'Admin\CategoryController@store')->name('category.add');
+    Route::put('category/update/{id}', 'Admin\CategoryController@update')->name('category.update');
+    Route::get('category/{id}', 'Admin\CategoryController@show')->name('category.show');
 
     Route::post('admin', 'Admin\AdminController@store')->name('admin.add');
     Route::get('admin/create', 'Admin\AdminController@create')->name('admin.create');

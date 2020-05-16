@@ -9,7 +9,7 @@ class Attribute extends Model
     /**
      * @var string
      */
-    protected $table = 'attributes';
+    protected $table = 'attribute';
 
     protected $appends = ['name'];
 

@@ -62,3 +62,27 @@ Breadcrumbs::for('attribute-edit', function ($trail, $name) {
     $trail->parent('attribute');
     $trail->push('Изменить данные атрибута ' . $name, route('attribute.edit', $name));
 });
+
+Breadcrumbs::for('attribute-show', function ($trail, $name) {
+    $trail->parent('attribute');
+    $trail->push('Просмотр данных атрибута ' . $name, route('attribute.show', $name));
+});
+Breadcrumbs::for('category', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Категории ' , route('category.index'));
+});
+
+Breadcrumbs::for('category-edit', function ($trail, $name) {
+    $trail->parent('dashboard');
+    $trail->push('Изменить данные Категории ' . $name, route('category.edit', $name));
+});
+
+Breadcrumbs::for('category-create', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Добавить новую категорию ', route('category.create'));
+});
+
+Breadcrumbs::for('category-show', function ($trail, $name) {
+    $trail->parent('category');
+    $trail->push('Просмотр данных категории ' . $name, route('category.show', $name));
+});

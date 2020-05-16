@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Admin;
 use App\Contracts\AdminContract;
 use App\Contracts\AttributeContract;
+use App\Contracts\CategoryContract;
 use App\Http\Controllers\MainController;
 use App\Product;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
@@ -15,18 +17,20 @@ class DashboardController extends MainController
 {
     protected $adminRepository;
     protected $attributeRepository;
+    protected $cateroryRepository;
 
-    public function __construct(AdminContract $adminRepository, AttributeContract $attributeRepository)
+    public function __construct(AdminContract $adminRepository, AttributeContract $attributeRepository, CategoryContract $cateroryRepository)
     {
         $this->middleware('auth:admin');
         $this->adminRepository = $adminRepository;
         $this->attributeRepository = $attributeRepository;
+        $this->cateroryRepository = $cateroryRepository;
     }
 
     /**
      * Display main dashboard page.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -37,7 +41,7 @@ class DashboardController extends MainController
     /**
      * Display admins page
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @return Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function admins()
     {
@@ -53,7 +57,7 @@ class DashboardController extends MainController
 
     /**
      * Display roles page
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @return Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function roles()
     {
@@ -67,7 +71,7 @@ class DashboardController extends MainController
 
     /**
      * Display products page
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @return Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function products()
     {
@@ -82,7 +86,7 @@ class DashboardController extends MainController
     /**
      * Display attribute page
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|\Illuminate\View\View
      */
     public function attributes(Request $request)
     {
@@ -93,5 +97,13 @@ class DashboardController extends MainController
         }
     }
 
+    public function categories(Request $request)
+    {
+        if (Auth::user()->hasPermissionTo('category-list')) {
+            $categories = $this->cateroryRepository->listCategories();
+            $this->setPageTitle('категории', '');
+            return $request->ajax() ? response()->json($categories) : view('admin.category.index', compact('categories'));
+        }
+    }
 
 }

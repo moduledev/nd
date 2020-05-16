@@ -9,11 +9,11 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Все атрибуты</h1>
+                <h1 class="m-0 text-dark">Все категории</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
 
-                {{ Breadcrumbs::render('attribute') }}
+                {{ Breadcrumbs::render('category') }}
 
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -27,9 +27,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Список доступных товаров:</h3>
-                        <a class="btn btn-info" href="{{route('attribute.create')}}" style="float: right"><i
-                                class="fas fa-plus"></i> Добавить атрибут</a>
+                        <h3 class="card-title">Список доступных категорий:</h3>
+                        <a class="btn btn-info" href="{{route('category.create')}}" style="float: right"><i
+                                class="fas fa-plus"></i> Добавить категорию</a>
                     </div>
                     <div class="card-body">
                         <table id="adminsList" class="table table-bordered table-hover dataTable admins-table"
@@ -37,23 +37,23 @@
                                aria-describedby="example2_info">
                             <thead>
                             <tr role="row" class="text-center">
-                                <th>Имя</th>
+                                <th>Название</th>
                                 <th>Операция</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($attributes as $attribute)
+                            @foreach($categories as $category)
                                 <tr>
-                                    <td class="text-center">{{$attribute->name_ru}}</td>
+                                    <td class="text-center">{{$category->name_ru}}</td>
 
                                     <td class="text-center">
-                                        <a href="{{route('attribute.show', $attribute->id)}}">
+                                        <a href="{{route('category.show', $category->id)}}">
                                             <button class="btn btn-success"><i class="fas fa-eye"></i></button>
                                         </a>
-                                        <a href="{{route('attribute.edit', $attribute->id)}}">
+                                        <a href="{{route('category.edit', $category->id)}}">
                                             <button class="btn btn-primary "><i class="fas fa-user-edit"></i></button>
                                         </a>
-                                        <a href="{{route('admin.edit', $attribute->id)}}">
+                                        <a href="{{route('category.edit', $category->id)}}">
                                             <button class="btn btn-danger "><i class="fas fa-trash"></i></button>
                                         </a>
                                     </td>

@@ -2237,25 +2237,13 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    var catesgory = axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/categories').then(function (responce) {
-      return _this.categories = responce.data;
+    var catesgory = axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/category').then(function (response) {
+      return _this.categories = response.data;
     });
-    var attr = axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/attributes').then(function (responce) {
-      return _this.attributes = responce.data;
+    var attr = axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/attributes').then(function (response) {
+      return _this.attributes = response.data;
     });
   },
-  // watch: {
-  //     attributeValueUa: function (val) {
-  //         this.attributeValueUa = val;
-  //         this.attributeValueRu = val;
-  //         this.attributePrice = val;
-  //     },
-  //     attributeValueRu: function (val) {
-  //         this.attributeValueRu = val;
-  //         this.attributeValueUa = val;
-  //         this.attributePrice = val
-  //     }
-  // },
   methods: {
     onFileSelected: function onFileSelected(event) {
       var arr = [];

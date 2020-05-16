@@ -9,11 +9,11 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Все атрибуты</h1>
+                <h1 class="m-0 text-dark">Просмотр категории</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
 
-                {{ Breadcrumbs::render('attribute') }}
+                {{ Breadcrumbs::render('category-show', $category->name_ru) }}
 
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -22,39 +22,47 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid" id="app">
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Список доступных товаров:</h3>
-                        <a class="btn btn-info" href="{{route('attribute.create')}}" style="float: right"><i
-                                class="fas fa-plus"></i> Добавить атрибут</a>
+                        <h3 class="card-title">Просмтор категории: </h3>
                     </div>
                     <div class="card-body">
+                        <h3>Название категории: {{$category->name_ru}}</h3>
+                        <ul>
+                            <li>Название категории (рус.) {{$category->name_ru}}</li>
+                            <li>Название категории (укр.) {{$category->name_ua}}</li>
+                        </ul>
+                        <h3 class="mt-3">Ассоциированные с категорией товары</h3>
                         <table id="adminsList" class="table table-bordered table-hover dataTable admins-table"
                                role="grid"
                                aria-describedby="example2_info">
                             <thead>
                             <tr role="row" class="text-center">
-                                <th>Имя</th>
+                                <th>ID</th>
+                                <th>Название (рус.)</th>
+                                <th><i class="fas fa-image"></i></th>
                                 <th>Операция</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($attributes as $attribute)
+                            @foreach($categoryProducts as $product)
                                 <tr>
-                                    <td class="text-center">{{$attribute->name_ru}}</td>
-
+                                    <td class="text-center">{{$product->id}}</td>
                                     <td class="text-center">
-                                        <a href="{{route('attribute.show', $attribute->id)}}">
+                                        {{$product->base_name}}
+                                    </td>
+                                    <td class="text-center">
+                                        <img class="img-circle elevation-2 img-responsive rounded-circle admins-table__image" src="{{asset('storage/'.$product->images->first()['path'])}}" alt="">
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="{{route('product.show', $product->id)}}">
                                             <button class="btn btn-success"><i class="fas fa-eye"></i></button>
                                         </a>
-                                        <a href="{{route('attribute.edit', $attribute->id)}}">
+                                        <a href="{{route('product.edit', $product->id)}}">
                                             <button class="btn btn-primary "><i class="fas fa-user-edit"></i></button>
-                                        </a>
-                                        <a href="{{route('admin.edit', $attribute->id)}}">
-                                            <button class="btn btn-danger "><i class="fas fa-trash"></i></button>
                                         </a>
                                     </td>
                                 </tr>
@@ -62,8 +70,10 @@
                             </tbody>
                             <tfoot>
                             <tr class="text-center">
-                                <th rowspan="1" colspan="1">Имя</th>
-                                <th rowspan="1" colspan="1">Операция</th>
+                                <th>ID</th>
+                                <th>Название (рус.)</th>
+                                <th>Название (укр.)</th>
+                                <th>Цена</th>
                             </tr>
                             </tfoot>
                         </table>

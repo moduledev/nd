@@ -63,15 +63,17 @@ class AttributeController extends MainController
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return Response
-     */
+
     public function show($id)
     {
-        //
+        if (Auth::user()->hasPermissionTo('attribute-edit')) {
+            $attribute = $this->attributeRepository->findAttributeById($id);
+            $this->setPageTitle('Данные атрибута', $attribute->name_ru);
+            $values = $attribute->values()->get();
+            return view('admin.attribute.show', compact('attribute', 'values'));
+        } else {
+            return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
+        }
     }
 
     /**
@@ -98,7 +100,7 @@ class AttributeController extends MainController
     public function update(AttributeUpdateRequest $request, $id)
     {
         $attribute = $this->attributeRepository->updateAttribute($request, $id);
-        return redirect()->route('attribute.index')->with('success','Атирибут '. $attribute->name_ru .' был успешно изменен');
+        return redirect()->route('attribute.index')->with('success', 'Атирибут ' . $attribute->name_ru . ' был успешно изменен');
     }
 
     /**

@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Contracts\CategoryContract;
 use App\Http\Controllers\MainController;
+use App\Http\Requests\CategoryStoreRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends MainController
@@ -18,55 +21,55 @@ class CategoryController extends MainController
     }
 
 
-    public function index(Request $request)
+    public function create()
     {
-        $categories = $this->categoryRepository->listCategories();
-        if (Auth::user()->hasPermissionTo('product-list')) {
-            return $request->ajax() ? response()->json($categories) : view('category.index','categories');
+        if (Auth::user()->hasPermissionTo('category-create')) {
+            $this->setPageTitle('Добавить новую категорию', '');
+            return view('admin.category.create');
+        } else {
+            return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function store(CategoryStoreRequest $request)
     {
-        //
+        if (Auth::user()->hasPermissionTo('category-create')) {
+            $category = $this->categoryRepository->createCategory($request);
+            return view('admin.category.index')->withInput($request->only('code'))->with('success', 'Артибут ' . $category->name . ' успешно добавлен');
+        } else {
+            return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        if (Auth::user()->hasPermissionTo('category-show')) {
+            $category = $this->categoryRepository->getCategoryById($id);
+            $categoryProducts = $category->products()->get();
+            $this->setPageTitle('Просмотр категории', '');
+            return view('admin.category.show', compact('category', 'categoryProducts'));
+        } else {
+            return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
     public function edit($id)
     {
-        //
+        if (Auth::user()->hasPermissionTo('category-edit')) {
+            $category = $this->categoryRepository->getCategoryById($id);
+            $this->setPageTitle('Редактирование категории','');
+            return view('admin.category.edit', compact('category'));
+        } else {
+            return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
+        }
     }
 
     /**
@@ -74,18 +77,19 @@ class CategoryController extends MainController
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(CategoryUpdateRequest $request, $id)
     {
-        //
+        $category = $this->categoryRepository->updateCategory($request, $id);
+        return redirect()->route('category.index')->with('success', 'Категория ' . $category->name_ru . ' был успешно изменен');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

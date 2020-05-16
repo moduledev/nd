@@ -379,24 +379,12 @@
         },
         mounted() {
             const catesgory = axios
-                .get('/admin/categories')
-                .then(responce => (this.categories = responce.data));
+                .get('/admin/category')
+                .then(response => (this.categories = response.data));
             const attr = axios
                 .get('/admin/attributes')
-                .then(responce => (this.attributes = responce.data))
+                .then(response => (this.attributes = response.data))
         },
-        // watch: {
-        //     attributeValueUa: function (val) {
-        //         this.attributeValueUa = val;
-        //         this.attributeValueRu = val;
-        //         this.attributePrice = val;
-        //     },
-        //     attributeValueRu: function (val) {
-        //         this.attributeValueRu = val;
-        //         this.attributeValueUa = val;
-        //         this.attributePrice = val
-        //     }
-        // },
         methods: {
             onFileSelected(event) {
                 let arr = [];

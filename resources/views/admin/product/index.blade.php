@@ -46,7 +46,7 @@
                                     <td class="text-center">{{$product->base_name}}</td>
                                     <td class="text-center">
                                         @foreach($product->categories as $category)
-                                            <a href="" class="mr-1">{{$category->name_ru}}</a>
+                                            <a href="{{route('category.show', $category->id)}}" class="mr-1">{{$category->name_ru}}</a>
                                         @endforeach
                                     </td>
                                     <td class="text-center">
