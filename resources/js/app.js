@@ -20,6 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('add-new-product', require('./components/AddNewProduct').default);
+Vue.component('update-product', require('./components/UpdateProduct').default);
 Vue.component('attributes-value', require('./components/AttribitesValue').default);
 Vue.component('image-product-upload', require('./components/ImageProductUpload').default);
 Vue.component('add-value-to-attribute', require('./components/AddAttributeValue').default);

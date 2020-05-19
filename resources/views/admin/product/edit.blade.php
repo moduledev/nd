@@ -5,10 +5,10 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Добавить товар</h1>
+                <h1 class="m-0 text-dark">Изменить товар</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
-                {{ Breadcrumbs::render('product-create') }}
+{{--                {{ Breadcrumbs::render('product-edit', $product->base_name) }}--}}
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -38,7 +38,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="row" id="app">
-                    <add-new-product></add-new-product>
+                    <update-product :product="{{$product->id}}"></update-product>
                 </div>
             </div>
         </div>

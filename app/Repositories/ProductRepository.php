@@ -8,6 +8,7 @@ use App\Contracts\ProductContract;
 use App\Http\Requests\ProductStoreRequest;
 use App\Product;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 
 class ProductRepository extends BaseRepository implements ProductContract
 {
@@ -32,7 +33,7 @@ class ProductRepository extends BaseRepository implements ProductContract
             $product->save();
             $this->createProductTranslations($product, $request);
             $product->categories()->sync(explode(',', $request->productCategories));
-            if($request->productAttributes){
+            if ($request->productAttributes) {
                 foreach ($request->productAttributes as $productAttribute) {
                     $attribute = json_decode($productAttribute);
                     $product->attributes()->attach($attribute->attribute_id, ['value_ru' => $attribute->value_ru, 'value_ua' => $attribute->value_ua, 'price' => $attribute->price]);
@@ -53,5 +54,20 @@ class ProductRepository extends BaseRepository implements ProductContract
         $product->translateOrNew('ua')->description = $request->description_ua;
         $product->translateOrNew('ua')->composition = $request->composition_ua;
         $product->save();
+    }
+
+    public function getProductById(int $id)
+    {
+        return $this->findOneOrFail($id);
+    }
+
+    public function updateProduct(Request $request)
+    {
+        // TODO: Implement updateProduct() method.
+    }
+
+    public function getFullProduct(int $id)
+    {
+        $product = Product::findOrFail($id)->with('images','attributes','categories');
     }
 }

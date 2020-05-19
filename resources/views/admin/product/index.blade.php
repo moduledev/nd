@@ -56,7 +56,7 @@
                                         <a href="">
                                             <button class="btn btn-success"><i class="fas fa-eye"></i></button>
                                         </a>
-                                        <a href="">
+                                        <a href="{{route('product.edit', $product->id)}}">
                                             <button class="btn btn-primary "><i class="fas fa-user-edit"></i></button>
                                         </a>
                                     </td>

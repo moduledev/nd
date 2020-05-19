@@ -24,4 +24,7 @@ interface ProductContract
      */
     public function createProductTranslations(Product $product, $request);
 
+    public function getProductById(int $id);
+
+    public function updateProduct(Request $request);
 }

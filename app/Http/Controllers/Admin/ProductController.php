@@ -6,6 +6,7 @@ use App\Contracts\ProductContract;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\MainController;
 use App\Http\Requests\ProductStoreRequest;
+use App\Product;
 use App\Traits\StoreProductImages;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
@@ -44,5 +45,14 @@ class ProductController extends MainController
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
 
         }
+    }
+
+    public function editProduct($id)
+    {
+        app()->setLocale('ru');
+//        $product = $this->productRepository->getProductById($id);
+        $product = Product::findOrFail($id);
+        $name = $product->name;
+        return view('admin.product.edit', compact('product'));
     }
 }
