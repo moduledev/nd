@@ -48,6 +48,7 @@ Route::prefix('admin')->group(function () {
     Route::get('product/create', 'Admin\ProductController@create')->name('product.create');
     Route::get('product/{id}', 'Admin\ProductController@show')->name('product.show');
     Route::get('product/edit/{id}', 'Admin\ProductController@editProduct')->name('product.edit');
+    Route::get('fullproduct/{id}', 'Admin\ProductController@getFullProduct');
 
 
 

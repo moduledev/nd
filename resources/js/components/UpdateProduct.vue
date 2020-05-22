@@ -345,6 +345,7 @@
         props:['product'] ,
         data() {
             return {
+                productFull: null,
                 name_ru: '',
                 name_ua: '',
                 price: 0,
@@ -379,6 +380,9 @@
             }
         },
         mounted() {
+            const product = axios
+                .get('/admin/fullproduct/' + this.product)
+                .then(response => (this.productFull = response.data));
             const catesgory = axios
                 .get('/admin/category')
                 .then(response => (this.categories = response.data));

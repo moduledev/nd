@@ -2954,6 +2954,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['product'],
   data: function data() {
     return {
+      productFull: null,
       name_ru: '',
       name_ua: '',
       price: 0,
@@ -2987,6 +2988,9 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
+    var product = axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/fullproduct/' + this.product).then(function (response) {
+      return _this.productFull = response.data;
+    });
     var catesgory = axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/category').then(function (response) {
       return _this.categories = response.data;
     });

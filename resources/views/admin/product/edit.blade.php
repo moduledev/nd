@@ -8,7 +8,7 @@
                 <h1 class="m-0 text-dark">Изменить товар</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
-{{--                {{ Breadcrumbs::render('product-edit', $product->base_name) }}--}}
+                {{ Breadcrumbs::render('product-edit', $product->base_name) }}
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->

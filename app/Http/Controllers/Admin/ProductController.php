@@ -43,16 +43,22 @@ class ProductController extends MainController
             return redirect()->route('product.index')->with('success', 'Товар ' . $product->id . ' был успешно добавлен!');
         } else {
             return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
-
         }
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function editProduct($id)
     {
-        app()->setLocale('ru');
-//        $product = $this->productRepository->getProductById($id);
         $product = Product::findOrFail($id);
-        $name = $product->name;
         return view('admin.product.edit', compact('product'));
+    }
+
+    public function getFullProduct($id)
+    {
+        $product = $this->productRepository->getProductWithAttributes($id);
+        return response()->json($product);
     }
 }

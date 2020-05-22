@@ -9,14 +9,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use Sluggable, Translatable;
+    use Sluggable;
 
-    public $translatedAttributes = ['name','description'];
     public $timestamps = false;
 
     protected $fillable = [
         'base_name','slug','available',
-        'gluten','lactose'
+        'gluten','lactose', 'name_ru', 'name_ua',
+        'description_ru', 'description_ua',
+        'composition_ru', 'composition_ua'
     ];
 
     protected $casts = [

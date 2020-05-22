@@ -31,7 +31,6 @@ class ProductRepository extends BaseRepository implements ProductContract
             $product->fill($request->validated());
             $product->base_name = $request->name_ru;
             $product->save();
-            $this->createProductTranslations($product, $request);
             $product->categories()->sync(explode(',', $request->productCategories));
             if ($request->productAttributes) {
                 foreach ($request->productAttributes as $productAttribute) {
@@ -45,29 +44,19 @@ class ProductRepository extends BaseRepository implements ProductContract
         }
     }
 
-    public function createProductTranslations(Product $product, $request)
-    {
-        $product->translateOrNew('ru')->name = $request->name_ru;
-        $product->translateOrNew('ru')->description = $request->description_ru;
-        $product->translateOrNew('ru')->composition = $request->composition_ru;
-        $product->translateOrNew('ua')->name = $request->name_ua;
-        $product->translateOrNew('ua')->description = $request->description_ua;
-        $product->translateOrNew('ua')->composition = $request->composition_ua;
-        $product->save();
-    }
-
     public function getProductById(int $id)
     {
         return $this->findOneOrFail($id);
     }
 
+    public function getProductWithAttributes(int $id)
+    {
+        $product =  Product::with(['attributes','categories','images']);
+        return $product ;
+    }
+
     public function updateProduct(Request $request)
     {
         // TODO: Implement updateProduct() method.
-    }
-
-    public function getFullProduct(int $id)
-    {
-        $product = Product::findOrFail($id)->with('images','attributes','categories');
     }
 }
