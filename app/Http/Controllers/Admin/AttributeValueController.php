@@ -40,6 +40,6 @@ class AttributeValueController extends MainController
             $attributeValue = AttributeValue::firstOrNew(['attribute_id' => $id, 'value_ru' => $values['value_ru'], 'value_ua' => $values['value_ua'], 'price' => $values['price']]);
             $attributeValue->save();
         }
-        return response()->json(AttributeValue::all());
+        return response()->json($request);
     }
 }

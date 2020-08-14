@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->text('description_ua');
             $table->string('composition_ua');
             $table->string('composition_ru');
+            $table->decimal('price')->default(0);
             $table->tinyInteger('available')->default(1);
             $table->tinyInteger('gluten')->default(0)->index();
             $table->tinyInteger('lactose')->default(0)->index();

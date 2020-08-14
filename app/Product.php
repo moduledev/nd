@@ -44,9 +44,9 @@ class Product extends Model
     /**
      * @return array|\Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function attributesToArray()
+    public function productAttributes()
     {
-        return $this->belongsToMany('App\Attribute','product_attribute', 'attribute_id','product_id');
+        return $this->belongsToMany('App\Attribute','product_attributes', 'attribute_id','product_id');
     }
 
     /**
@@ -54,7 +54,7 @@ class Product extends Model
      */
     public function attributes()
     {
-        return $this->belongsToMany(Attribute::class, 'product_attributes');
+        return $this->belongsToMany(Attribute::class, 'product_attributes')->withPivot('value_ua', 'value_ru','price');
     }
 
 

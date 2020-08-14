@@ -51,7 +51,7 @@ class ProductRepository extends BaseRepository implements ProductContract
 
     public function getProductWithAttributes(int $id)
     {
-        $product =  Product::with(['attributes','categories','images']);
+        $product =  Product::where('id', $id)->with(['attributes','categories','images'])->first();
         return $product ;
     }
 
