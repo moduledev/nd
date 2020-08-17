@@ -61,4 +61,12 @@ class ProductController extends MainController
         $product = $this->productRepository->getProductWithAttributes($id);
         return response()->json($product);
     }
+
+    public function deleteProduct(Request $request)
+    {
+        $this->productRepository->deleteProduct($request->id);
+        return redirect()->route('product.index');
+    }
+
+
 }

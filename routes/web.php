@@ -48,6 +48,7 @@ Route::prefix('admin')->group(function () {
     Route::get('product/create', 'Admin\ProductController@create')->name('product.create');
     Route::get('product/{id}', 'Admin\ProductController@show')->name('product.show');
     Route::get('product/edit/{id}', 'Admin\ProductController@editProduct')->name('product.edit');
+    Route::delete('product/delete/{id}', 'Admin\ProductController@deleteProduct')->name('product.delete');
     Route::get('fullproduct/{id}', 'Admin\ProductController@getFullProduct');
 
 
@@ -73,6 +74,8 @@ Route::prefix('admin')->group(function () {
     Route::delete('admin/{id}', 'Admin\AdminController@destroy')->name('admin.delete');
     Route::get('admin/edit/{id}', 'Admin\AdminController@edit')->name('admin.edit');
     Route::put('admin/edit/{id}', 'Admin\AdminController@update')->name('admin.update');
+
+    Route::get('delete/image/{id}', 'Admin\ImageUploader@deleteImage');
 
 });
 

@@ -23,12 +23,14 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header " >
+                    <div class="card-header ">
                         <h3 class="card-title">Список доступных товаров:</h3>
-                        <a class="btn btn-info" href="{{route('product.create')}}" style="float: right"><i class="fas fa-plus"></i> Добавить товар</a>
+                        <a class="btn btn-info" href="{{route('product.create')}}" style="float: right"><i
+                                class="fas fa-plus"></i> Добавить товар</a>
                     </div>
                     <div class="card-body">
-                        <table id="productList" class="table table-bordered table-hover dataTable admins-table " role="grid"
+                        <table id="productList" class="table table-bordered table-hover dataTable admins-table "
+                               role="grid"
                                aria-describedby="example2_info">
                             <thead>
                             <tr role="row" class="text-center">
@@ -46,11 +48,15 @@
                                     <td class="text-center">{{$product->base_name}}</td>
                                     <td class="text-center">
                                         @foreach($product->categories as $category)
-                                            <a href="{{route('category.show', $category->id)}}" class="mr-1">{{$category->name_ru}}</a>
+                                            <a href="{{route('category.show', $category->id)}}"
+                                               class="mr-1">{{$category->name_ru}}</a>
                                         @endforeach
                                     </td>
                                     <td class="text-center">
-                                        <img class="img-circle elevation-2 img-responsive rounded-circle admins-table__image" src="{{asset('storage/'.$product->images->first()['path'])}}" alt="">
+                                        <img
+                                            class="img-circle elevation-2 img-responsive rounded-circle admins-table__image"
+                                            src="@if($product->images->first()) {{asset('storage/'.$product->images->first()['path'])}} @else  @endif"
+                                            alt="">
                                     </td>
                                     <td class="text-center">
                                         <a href="">
@@ -59,6 +65,11 @@
                                         <a href="{{route('product.edit', $product->id)}}">
                                             <button class="btn btn-primary "><i class="fas fa-user-edit"></i></button>
                                         </a>
+                                        <form action="{{route('product.delete', $product->id)}}" method="POSt">
+                                            @csrf
+                                            {{method_field('DELETE')}}
+                                            <button class="btn btn-danger"><i class="fas fa-eye"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

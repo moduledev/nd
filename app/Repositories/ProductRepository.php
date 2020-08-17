@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 
 use App\Contracts\ProductContract;
+use App\Http\Controllers\Admin\ImageUploader;
 use App\Http\Requests\ProductStoreRequest;
 use App\Product;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -51,12 +52,25 @@ class ProductRepository extends BaseRepository implements ProductContract
 
     public function getProductWithAttributes(int $id)
     {
-        $product =  Product::where('id', $id)->with(['attributes','categories','images'])->first();
-        return $product ;
+        $product = Product::where('id', $id)->with(['attributes', 'categories', 'images'])->first();
+        return $product;
     }
 
     public function updateProduct(Request $request)
     {
         // TODO: Implement updateProduct() method.
+    }
+
+    /** Delete product with images
+     * @param int $id
+     */
+    public function deleteProduct(int $id)
+    {
+        $product = $this->find($id);
+        $images = $product->images()->pluck('path');
+        foreach ($images as $image) {
+            unlink(storage_path('app/public/'. $image));
+        }
+        $product->delete();
     }
 }

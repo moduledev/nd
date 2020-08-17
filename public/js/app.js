@@ -2980,6 +2980,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3109,11 +3113,22 @@ __webpack_require__.r(__webpack_exports__);
       this.images = images;
       if (this.isChecked[0] === index) this.isChecked = [];
     },
-    getAttributeId: function getAttributeId() {
+    deleteUploadedProductImage: function deleteUploadedProductImage(id) {
       var _this3 = this;
 
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/delete/image/' + id).then(function (res) {
+        _this3.productFull = _this3.productFull.images.map(function (item) {
+          if (item.hasOwnProperty(id) && item.id !== id) {
+            return item;
+          }
+        });
+      });
+    },
+    getAttributeId: function getAttributeId() {
+      var _this4 = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/attributeValues/' + this.attributeSelected).then(function (responce) {
-        return _this3.attributeValues = responce.data.values, _this3.attributeName = responce.data.attributeName;
+        return _this4.attributeValues = responce.data.values, _this4.attributeName = responce.data.attributeName;
       });
     },
     addAttributeToProduct: function addAttributeToProduct() {
@@ -42643,35 +42658,140 @@ var render = function() {
                       }
                     },
                     [
-                      _c("div", { staticClass: "w-100" }, [
-                        _c("div", {}, [
-                          _c("input", {
-                            ref: "files",
-                            attrs: { type: "file", id: "files", multiple: "" },
-                            on: { change: _vm.onFileSelected }
+                      _c(
+                        "div",
+                        { staticClass: "w-100" },
+                        [
+                          _c("div", {}, [
+                            _c("input", {
+                              ref: "files",
+                              attrs: {
+                                type: "file",
+                                id: "files",
+                                multiple: ""
+                              },
+                              on: { change: _vm.onFileSelected }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "images-block d-flex justify-content-center align-items-center mb-4",
+                                on: { click: _vm.addFiles }
+                              },
+                              [
+                                _c("p", [
+                                  _vm._v(
+                                    "Нажмите чтобы добавить изображения товара"
+                                  )
+                                ])
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("h5", { staticClass: "w-100 text-center" }, [
+                            _vm._v("Изображения товара")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.productFull.images, function(img, index) {
+                            return _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "d-flex flex-column justify-content-center align-items-center text-center image-wrapper"
+                              },
+                              [
+                                img.id
+                                  ? _c("img", {
+                                      staticClass:
+                                        "img img-fluid image-preview",
+                                      attrs: {
+                                        src: "/storage/" + img.path,
+                                        alt: ""
+                                      }
+                                    })
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _c("label", { staticClass: "imageCheckbox" }, [
+                                  _vm._v("Главное изображение")
+                                ]),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.isChecked,
+                                      expression: "isChecked"
+                                    }
+                                  ],
+                                  staticClass: "imageCheckbox",
+                                  class: {
+                                    active: _vm.isChecked.indexOf(index) !== -1
+                                  },
+                                  attrs: {
+                                    type: "checkbox",
+                                    disabled:
+                                      _vm.isChecked.length >= _vm.max &&
+                                      _vm.isChecked.indexOf(index) == -1
+                                  },
+                                  domProps: {
+                                    value: index,
+                                    checked: Array.isArray(_vm.isChecked)
+                                      ? _vm._i(_vm.isChecked, index) > -1
+                                      : _vm.isChecked
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$a = _vm.isChecked,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = index,
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            (_vm.isChecked = $$a.concat([$$v]))
+                                        } else {
+                                          $$i > -1 &&
+                                            (_vm.isChecked = $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1)))
+                                        }
+                                      } else {
+                                        _vm.isChecked = $$c
+                                      }
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "btn btn-danger mt-2",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteUploadedProductImage(
+                                          img.id
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _vm._v("Удалить"),
+                                    _c("i", {
+                                      staticClass: "fas fa-minus-circle"
+                                    })
+                                  ]
+                                )
+                              ]
+                            )
                           }),
                           _vm._v(" "),
                           _c(
                             "div",
-                            {
-                              staticClass:
-                                "images-block d-flex justify-content-center align-items-center mb-4",
-                              on: { click: _vm.addFiles }
-                            },
-                            [
-                              _c("p", [
-                                _vm._v(
-                                  "Нажмите чтобы добавить изображения товара"
-                                )
-                              ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "d-flex flex-row flex-wrap " },
-                          [
+                            { staticClass: "d-flex flex-row flex-wrap " },
                             _vm._l(_vm.previewImages, function(file, index) {
                               return _c(
                                 "div",
@@ -42763,111 +42883,11 @@ var render = function() {
                                 ]
                               )
                             }),
-                            _vm._v(" "),
-                            _vm._l(_vm.productFull.images, function(
-                              img,
-                              index
-                            ) {
-                              return _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "d-flex flex-column justify-content-center align-items-center text-center image-wrapper"
-                                },
-                                [
-                                  img.id
-                                    ? _c("img", {
-                                        staticClass:
-                                          "img img-fluid image-preview",
-                                        attrs: {
-                                          src: "/storage/" + img.path,
-                                          alt: ""
-                                        }
-                                      })
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _c(
-                                    "label",
-                                    { staticClass: "imageCheckbox" },
-                                    [_vm._v("Главное изображение")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.isChecked,
-                                        expression: "isChecked"
-                                      }
-                                    ],
-                                    staticClass: "imageCheckbox",
-                                    class: {
-                                      active:
-                                        _vm.isChecked.indexOf(index) !== -1
-                                    },
-                                    attrs: {
-                                      type: "checkbox",
-                                      disabled:
-                                        _vm.isChecked.length >= _vm.max &&
-                                        _vm.isChecked.indexOf(index) == -1
-                                    },
-                                    domProps: {
-                                      value: index,
-                                      checked: Array.isArray(_vm.isChecked)
-                                        ? _vm._i(_vm.isChecked, index) > -1
-                                        : _vm.isChecked
-                                    },
-                                    on: {
-                                      change: function($event) {
-                                        var $$a = _vm.isChecked,
-                                          $$el = $event.target,
-                                          $$c = $$el.checked ? true : false
-                                        if (Array.isArray($$a)) {
-                                          var $$v = index,
-                                            $$i = _vm._i($$a, $$v)
-                                          if ($$el.checked) {
-                                            $$i < 0 &&
-                                              (_vm.isChecked = $$a.concat([
-                                                $$v
-                                              ]))
-                                          } else {
-                                            $$i > -1 &&
-                                              (_vm.isChecked = $$a
-                                                .slice(0, $$i)
-                                                .concat($$a.slice($$i + 1)))
-                                          }
-                                        } else {
-                                          _vm.isChecked = $$c
-                                        }
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "span",
-                                    {
-                                      staticClass: "btn btn-danger mt-2",
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.deleteElement(index)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v("Удалить"),
-                                      _c("i", {
-                                        staticClass: "fas fa-minus-circle"
-                                      })
-                                    ]
-                                  )
-                                ]
-                              )
-                            })
-                          ],
-                          2
-                        )
-                      ])
+                            0
+                          )
+                        ],
+                        2
+                      )
                     ]
                   )
                 ]
@@ -55666,8 +55686,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/nd/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/nd/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/zoman/projects/nd/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/zoman/projects/nd/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

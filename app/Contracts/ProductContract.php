@@ -29,4 +29,6 @@ interface ProductContract
     public function updateProduct(Request $request);
 
     public function getProductWithAttributes(int $id);
+
+    public function deleteProduct(int $id);
 }
