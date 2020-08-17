@@ -5,6 +5,7 @@ namespace App\Contracts;
 
 
 use App\Http\Requests\ProductStoreRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,7 @@ interface ProductContract
 
     public function getProductById(int $id);
 
-    public function updateProduct(Request $request);
+    public function updateProduct(ProductUpdateRequest $request);
 
     public function getProductWithAttributes(int $id);
 

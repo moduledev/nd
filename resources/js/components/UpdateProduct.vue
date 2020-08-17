@@ -186,7 +186,7 @@
                             </div>
 
                             <div class="col-12">
-                                <button class="btn btn-success" type="submit">Сохранить</button>
+                                <button class="btn btn-success" type="submit">Изменить</button>
                             </div>
                         </form>
 
@@ -309,13 +309,7 @@
                     <div class="tab-pane fade " id="custom-tabs-four-messages" role="tabpanel"
                          aria-labelledby="custom-tabs-four-messages-tab">
                         <div class="w-100">
-                            <div class="">
-                                <input type="file" id="files" ref="files" multiple @change="onFileSelected">
-                                <div class="images-block d-flex justify-content-center align-items-center mb-4"
-                                     @click="addFiles">
-                                    <p>Нажмите чтобы добавить изображения товара</p>
-                                </div>
-                            </div>
+
                             <!--Products images-->
                             <h5 class="w-100 text-center">Изображения товара</h5>
                             <div v-for="(img, index) in productFull.images"
@@ -335,6 +329,13 @@
 
                                 <span class="btn btn-danger mt-2" @click="deleteUploadedProductImage(img.id)">Удалить<i
                                     class="fas fa-minus-circle"></i></span>
+                            </div>
+                            <div class="mt-4">
+                                <input type="file" id="files" ref="files" multiple @change="onFileSelected">
+                                <div class="images-block d-flex justify-content-center align-items-center mb-4"
+                                     @click="addFiles">
+                                    <p>Нажмите чтобы добавить изображения товара</p>
+                                </div>
                             </div>
                             <!--New images-->
                             <div class="d-flex flex-row flex-wrap ">
@@ -536,6 +537,7 @@ export default {
         },
         deleteAttributeItem(key) {
             this.productAttributes.splice(key, 1);
+
         },
         addFiles() {
             this.$refs.files.click();
@@ -561,6 +563,7 @@ export default {
                 }
             }
 
+            formData.append('id', this.productFull.id);
             formData.append('name_ru', this.name_ru);
             formData.append('name_ua', this.name_ua);
             formData.append('price', this.price);
@@ -575,7 +578,7 @@ export default {
             formData.append('mainImage', this.isChecked);
 
             axios.post(
-                '/admin/product/store',
+                '/admin/product/edit',
                 formData,
                 {
                     headers: {'Content-Type': 'multipart/form-data'}

@@ -2353,8 +2353,7 @@ __webpack_require__.r(__webpack_exports__);
             vm.errors.push(item);
             vm.showAlert = true;
           });
-        } else {
-          window.location.assign('/admin/products');
+        } else {// window.location.assign('/admin/products')
         }
       });
     }
@@ -2984,6 +2983,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3177,6 +3177,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
+      formData.append('id', this.productFull.id);
       formData.append('name_ru', this.name_ru);
       formData.append('name_ua', this.name_ua);
       formData.append('price', this.price);
@@ -3189,7 +3190,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('gluten', this.gluten ? 1 : 0);
       formData.append('lactose', this.lactose ? 1 : 0);
       formData.append('mainImage', this.isChecked);
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/product/store', formData, {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/admin/product/edit', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -42662,34 +42663,6 @@ var render = function() {
                         "div",
                         { staticClass: "w-100" },
                         [
-                          _c("div", {}, [
-                            _c("input", {
-                              ref: "files",
-                              attrs: {
-                                type: "file",
-                                id: "files",
-                                multiple: ""
-                              },
-                              on: { change: _vm.onFileSelected }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "images-block d-flex justify-content-center align-items-center mb-4",
-                                on: { click: _vm.addFiles }
-                              },
-                              [
-                                _c("p", [
-                                  _vm._v(
-                                    "Нажмите чтобы добавить изображения товара"
-                                  )
-                                ])
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
                           _c("h5", { staticClass: "w-100 text-center" }, [
                             _vm._v("Изображения товара")
                           ]),
@@ -42788,6 +42761,34 @@ var render = function() {
                               ]
                             )
                           }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "mt-4" }, [
+                            _c("input", {
+                              ref: "files",
+                              attrs: {
+                                type: "file",
+                                id: "files",
+                                multiple: ""
+                              },
+                              on: { change: _vm.onFileSelected }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "images-block d-flex justify-content-center align-items-center mb-4",
+                                on: { click: _vm.addFiles }
+                              },
+                              [
+                                _c("p", [
+                                  _vm._v(
+                                    "Нажмите чтобы добавить изображения товара"
+                                  )
+                                ])
+                              ]
+                            )
+                          ]),
                           _vm._v(" "),
                           _c(
                             "div",
@@ -43004,7 +43005,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-success", attrs: { type: "submit" } },
-        [_vm._v("Сохранить")]
+        [_vm._v("Изменить")]
       )
     ])
   },

@@ -58,7 +58,7 @@
                                             src="@if($product->images->first()) {{asset('storage/'.$product->images->first()['path'])}} @else  @endif"
                                             alt="">
                                     </td>
-                                    <td class="text-center">
+                                    <td class="d-flex flex-row align-content-around justify-content-around">
                                         <a href="">
                                             <button class="btn btn-success"><i class="fas fa-eye"></i></button>
                                         </a>

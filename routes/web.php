@@ -47,6 +47,7 @@ Route::prefix('admin')->group(function () {
     Route::post('product/store', 'Admin\ProductController@store')->name('product.add');
     Route::get('product/create', 'Admin\ProductController@create')->name('product.create');
     Route::get('product/{id}', 'Admin\ProductController@show')->name('product.show');
+    Route::post('product/edit', 'Admin\ProductController@updateProduct')->name('product.edit');
     Route::get('product/edit/{id}', 'Admin\ProductController@editProduct')->name('product.edit');
     Route::delete('product/delete/{id}', 'Admin\ProductController@deleteProduct')->name('product.delete');
     Route::get('fullproduct/{id}', 'Admin\ProductController@getFullProduct');

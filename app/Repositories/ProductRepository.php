@@ -7,6 +7,7 @@ namespace App\Repositories;
 use App\Contracts\ProductContract;
 use App\Http\Controllers\Admin\ImageUploader;
 use App\Http\Requests\ProductStoreRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Product;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -45,6 +46,31 @@ class ProductRepository extends BaseRepository implements ProductContract
         }
     }
 
+    public function updateProduct(ProductUpdateRequest $request)
+    {
+        $product = $this->find($request->id);
+        $test = $request->all();
+        $product->fill($request->validated());
+        $product->base_name = $request->name_ru;
+        $product->save();
+        $product->categories()->sync(explode(',', $request->productCategories));
+
+
+        if ($request->productAttributes) {
+            foreach ($request->productAttributes as $productAttribute) {
+                $attribute = json_decode($productAttribute);
+                $product->attributes()->getRelatedIds($attribute->attribute_id, ['value_ru' => $attribute->value_ru, 'value_ua' => $attribute->value_ua, 'price' => $attribute->price]);
+//                $product->attributes()->attach($attribute->attribute_id, ['value_ru' => $attribute->value_ru, 'value_ua' => $attribute->value_ua, 'price' => $attribute->price]);
+            }
+            foreach ($request->productAttributes as $productAttribute) {
+                $attribute = json_decode($productAttribute);
+                $product->attributes()->attach($attribute->attribute_id, ['value_ru' => $attribute->value_ru, 'value_ua' => $attribute->value_ua, 'price' => $attribute->price]);
+            }
+        }
+        return $product;
+
+    }
+
     public function getProductById(int $id)
     {
         return $this->findOneOrFail($id);
@@ -56,11 +82,6 @@ class ProductRepository extends BaseRepository implements ProductContract
         return $product;
     }
 
-    public function updateProduct(Request $request)
-    {
-        // TODO: Implement updateProduct() method.
-    }
-
     /** Delete product with images
      * @param int $id
      */
@@ -69,7 +90,7 @@ class ProductRepository extends BaseRepository implements ProductContract
         $product = $this->find($id);
         $images = $product->images()->pluck('path');
         foreach ($images as $image) {
-            unlink(storage_path('app/public/'. $image));
+            unlink(storage_path('app/public/' . $image));
         }
         $product->delete();
     }
