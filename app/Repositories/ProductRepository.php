@@ -49,26 +49,19 @@ class ProductRepository extends BaseRepository implements ProductContract
     public function updateProduct(ProductUpdateRequest $request)
     {
         $product = $this->find($request->id);
-        $test = $request->all();
         $product->fill($request->validated());
         $product->base_name = $request->name_ru;
         $product->save();
         $product->categories()->sync(explode(',', $request->productCategories));
 
-
         if ($request->productAttributes) {
-            foreach ($request->productAttributes as $productAttribute) {
-                $attribute = json_decode($productAttribute);
-                $product->attributes()->getRelatedIds($attribute->attribute_id, ['value_ru' => $attribute->value_ru, 'value_ua' => $attribute->value_ua, 'price' => $attribute->price]);
-//                $product->attributes()->attach($attribute->attribute_id, ['value_ru' => $attribute->value_ru, 'value_ua' => $attribute->value_ua, 'price' => $attribute->price]);
-            }
+            $product->attributes()->detach();
             foreach ($request->productAttributes as $productAttribute) {
                 $attribute = json_decode($productAttribute);
                 $product->attributes()->attach($attribute->attribute_id, ['value_ru' => $attribute->value_ru, 'value_ua' => $attribute->value_ua, 'price' => $attribute->price]);
             }
         }
         return $product;
-
     }
 
     public function getProductById(int $id)

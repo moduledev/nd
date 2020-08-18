@@ -78,6 +78,8 @@
                             <tr class="text-center">
                                 <th rowspan="1" colspan="1">ID</th>
                                 <th rowspan="1" colspan="1">Название</th>
+                                <th rowspan="1" colspan="1">Категория</th>
+                                <th><i class="fas fa-image"></i></th>
                                 <th rowspan="1" colspan="1">Операция</th>
                             </tr>
                             </tfoot>

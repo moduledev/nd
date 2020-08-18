@@ -53,6 +53,7 @@ class ProductController extends MainController
      */
     public function updateProduct(ProductUpdateRequest $request)
     {
+        $this->storeProductImages($request->id, $request);
         $this->productRepository->updateProduct($request);
     }
 

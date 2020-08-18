@@ -12,7 +12,7 @@ use Spatie\ImageOptimizer\OptimizerChainFactory;
 
 trait StoreProductImages
 {
-    public function storeProductImages($productId, ProductStoreRequest $request)
+    public function storeProductImages($productId, $request)
     {
         foreach ($request->productImages as $key => $file) {
             Image::make($file)->insert(public_path() . '/' . 'img' . '/' . 'watermark.png', 'bottom-right')->save();

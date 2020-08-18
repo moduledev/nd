@@ -312,23 +312,25 @@
 
                             <!--Products images-->
                             <h5 class="w-100 text-center">Изображения товара</h5>
-                            <div v-for="(img, index) in productFull.images"
-                                 class="d-flex flex-column justify-content-center align-items-center text-center image-wrapper">
+                            <div class="d-flex flex-row flex-wrap ">
+                                <div v-for="(img, index) in productFull.images"
+                                     class="d-flex flex-column justify-content-center align-items-center text-center image-wrapper">
 
 
-                                <img class="img img-fluid image-preview" v-if="img.id" :src="'/storage/' + img.path"
-                                     alt="">
-                                <label class="imageCheckbox">Главное изображение</label>
+                                    <img class="img img-fluid image-preview" v-if="img.id" :src="'/storage/' + img.path"
+                                         alt="">
+                                    <label class="imageCheckbox">Главное изображение</label>
 
-                                <input type="checkbox"
-                                       class="imageCheckbox"
-                                       :value="index"
-                                       :class="{active: isChecked.indexOf(index) !== -1}"
-                                       v-model="isChecked"
-                                       :disabled="isChecked.length >= max && isChecked.indexOf(index) == -1">
+                                    <input type="checkbox"
+                                           class="imageCheckbox"
+                                           :value="index"
+                                           :class="{active: isChecked.indexOf(index) !== -1}"
+                                           v-model="isChecked"
+                                           :disabled="isChecked.length >= max && isChecked.indexOf(index) == -1">
 
-                                <span class="btn btn-danger mt-2" @click="deleteUploadedProductImage(img.id)">Удалить<i
-                                    class="fas fa-minus-circle"></i></span>
+                                    <span class="btn btn-danger mt-2" @click="deleteUploadedProductImage(img.id)">Удалить<i
+                                        class="fas fa-minus-circle"></i></span>
+                                </div>
                             </div>
                             <div class="mt-4">
                                 <input type="file" id="files" ref="files" multiple @change="onFileSelected">
@@ -356,8 +358,6 @@
                                     <span class="btn btn-danger mt-2" @click="deleteElement(index)">Удалить<i
                                         class="fas fa-minus-circle"></i></span>
                                 </div>
-
-
                             </div>
                         </div>
 
@@ -468,29 +468,15 @@ export default {
                 reader.onload = function () {
                     arr.push(reader.result);
                     images.push(item);
-                    // images.push({img:item, result:render.result});
                 };
                 reader.readAsDataURL(event.target.files[index]);
             });
-            console.log(arr)
-            console.log(images)
             this.previewImages = arr;
 
             let uploadedFiles = this.$refs.files.files;
             for (let i = 0; i < uploadedFiles.length; i++) {
-                const img = {};
-                let reader = new FileReader();
-                reader.onload = function () {
-                    // images.push(uploadedFiles[i]);
-                    img.imgshow = uploadedFiles[i];
-                };
-                reader.readAsDataURL(event.target.files[uploadedFiles[i]]);
-                img.imgFile = uploadedFiles[i];
-                // this.images.push(uploadedFiles[i]);
-                this.images.push(img);
+                this.images.push(uploadedFiles[i]);
             }
-            console.log(this.images)
-
         },
         deleteElement(index) {
             let previewImages = this.previewImages;
@@ -503,11 +489,11 @@ export default {
         },
         deleteUploadedProductImage(id) {
             axios.get('/admin/delete/image/' + id).then((res) => {
-                this.productFull = this.productFull.images.map((item) => {
-                    if(item.hasOwnProperty(id) && item.id !== id) {
-                        return item
-                    }
-                })
+                let removeIndex = this.productFull.images.map(function (item) {
+                    return item.id;
+                }).indexOf(id);
+                console.log(removeIndex)
+                this.productFull.images.splice(removeIndex, 1)
             })
         },
         getAttributeId() {

@@ -3064,8 +3064,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     onFileSelected: function onFileSelected(event) {
-      var _this2 = this;
-
       var arr = [];
       var images = [];
       Array.from(event.target.files).map(function (item, index) {
@@ -3073,36 +3071,17 @@ __webpack_require__.r(__webpack_exports__);
 
         reader.onload = function () {
           arr.push(reader.result);
-          images.push(item); // images.push({img:item, result:render.result});
+          images.push(item);
         };
 
         reader.readAsDataURL(event.target.files[index]);
       });
-      console.log(arr);
-      console.log(images);
       this.previewImages = arr;
       var uploadedFiles = this.$refs.files.files;
 
-      var _loop = function _loop(i) {
-        var img = {};
-        var reader = new FileReader();
-
-        reader.onload = function () {
-          // images.push(uploadedFiles[i]);
-          img.imgshow = uploadedFiles[i];
-        };
-
-        reader.readAsDataURL(event.target.files[uploadedFiles[i]]);
-        img.imgFile = uploadedFiles[i]; // this.images.push(uploadedFiles[i]);
-
-        _this2.images.push(img);
-      };
-
       for (var i = 0; i < uploadedFiles.length; i++) {
-        _loop(i);
+        this.images.push(uploadedFiles[i]);
       }
-
-      console.log(this.images);
     },
     deleteElement: function deleteElement(index) {
       var previewImages = this.previewImages;
@@ -3114,21 +3093,23 @@ __webpack_require__.r(__webpack_exports__);
       if (this.isChecked[0] === index) this.isChecked = [];
     },
     deleteUploadedProductImage: function deleteUploadedProductImage(id) {
-      var _this3 = this;
+      var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/delete/image/' + id).then(function (res) {
-        _this3.productFull = _this3.productFull.images.map(function (item) {
-          if (item.hasOwnProperty(id) && item.id !== id) {
-            return item;
-          }
-        });
+        var removeIndex = _this2.productFull.images.map(function (item) {
+          return item.id;
+        }).indexOf(id);
+
+        console.log(removeIndex);
+
+        _this2.productFull.images.splice(removeIndex, 1);
       });
     },
     getAttributeId: function getAttributeId() {
-      var _this4 = this;
+      var _this3 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/admin/attributeValues/' + this.attributeSelected).then(function (responce) {
-        return _this4.attributeValues = responce.data.values, _this4.attributeName = responce.data.attributeName;
+        return _this3.attributeValues = responce.data.values, _this3.attributeName = responce.data.attributeName;
       });
     },
     addAttributeToProduct: function addAttributeToProduct() {
@@ -42659,14 +42640,14 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "div",
-                        { staticClass: "w-100" },
-                        [
-                          _c("h5", { staticClass: "w-100 text-center" }, [
-                            _vm._v("Изображения товара")
-                          ]),
-                          _vm._v(" "),
+                      _c("div", { staticClass: "w-100" }, [
+                        _c("h5", { staticClass: "w-100 text-center" }, [
+                          _vm._v("Изображения товара")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "d-flex flex-row flex-wrap " },
                           _vm._l(_vm.productFull.images, function(img, index) {
                             return _c(
                               "div",
@@ -42761,134 +42742,125 @@ var render = function() {
                               ]
                             )
                           }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "mt-4" }, [
-                            _c("input", {
-                              ref: "files",
-                              attrs: {
-                                type: "file",
-                                id: "files",
-                                multiple: ""
-                              },
-                              on: { change: _vm.onFileSelected }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "images-block d-flex justify-content-center align-items-center mb-4",
-                                on: { click: _vm.addFiles }
-                              },
-                              [
-                                _c("p", [
-                                  _vm._v(
-                                    "Нажмите чтобы добавить изображения товара"
-                                  )
-                                ])
-                              ]
-                            )
-                          ]),
+                          0
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "mt-4" }, [
+                          _c("input", {
+                            ref: "files",
+                            attrs: { type: "file", id: "files", multiple: "" },
+                            on: { change: _vm.onFileSelected }
+                          }),
                           _vm._v(" "),
                           _c(
                             "div",
-                            { staticClass: "d-flex flex-row flex-wrap " },
-                            _vm._l(_vm.previewImages, function(file, index) {
-                              return _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "d-flex flex-column justify-content-center align-items-center text-center image-wrapper"
-                                },
-                                [
-                                  _c("img", {
-                                    staticClass: "img img-fluid image-preview",
-                                    attrs: { src: file, alt: "" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "label",
-                                    { staticClass: "imageCheckbox" },
-                                    [_vm._v("Главное изображение")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.isChecked,
-                                        expression: "isChecked"
-                                      }
-                                    ],
-                                    staticClass: "imageCheckbox",
-                                    class: {
-                                      active:
-                                        _vm.isChecked.indexOf(index) !== -1
-                                    },
-                                    attrs: {
-                                      type: "checkbox",
-                                      disabled:
-                                        _vm.isChecked.length >= _vm.max &&
-                                        _vm.isChecked.indexOf(index) == -1
-                                    },
-                                    domProps: {
-                                      value: index,
-                                      checked: Array.isArray(_vm.isChecked)
-                                        ? _vm._i(_vm.isChecked, index) > -1
-                                        : _vm.isChecked
-                                    },
-                                    on: {
-                                      change: function($event) {
-                                        var $$a = _vm.isChecked,
-                                          $$el = $event.target,
-                                          $$c = $$el.checked ? true : false
-                                        if (Array.isArray($$a)) {
-                                          var $$v = index,
-                                            $$i = _vm._i($$a, $$v)
-                                          if ($$el.checked) {
-                                            $$i < 0 &&
-                                              (_vm.isChecked = $$a.concat([
-                                                $$v
-                                              ]))
-                                          } else {
-                                            $$i > -1 &&
-                                              (_vm.isChecked = $$a
-                                                .slice(0, $$i)
-                                                .concat($$a.slice($$i + 1)))
-                                          }
+                            {
+                              staticClass:
+                                "images-block d-flex justify-content-center align-items-center mb-4",
+                              on: { click: _vm.addFiles }
+                            },
+                            [
+                              _c("p", [
+                                _vm._v(
+                                  "Нажмите чтобы добавить изображения товара"
+                                )
+                              ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "d-flex flex-row flex-wrap " },
+                          _vm._l(_vm.previewImages, function(file, index) {
+                            return _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "d-flex flex-column justify-content-center align-items-center text-center image-wrapper"
+                              },
+                              [
+                                _c("img", {
+                                  staticClass: "img img-fluid image-preview",
+                                  attrs: { src: file, alt: "" }
+                                }),
+                                _vm._v(" "),
+                                _c("label", { staticClass: "imageCheckbox" }, [
+                                  _vm._v("Главное изображение")
+                                ]),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.isChecked,
+                                      expression: "isChecked"
+                                    }
+                                  ],
+                                  staticClass: "imageCheckbox",
+                                  class: {
+                                    active: _vm.isChecked.indexOf(index) !== -1
+                                  },
+                                  attrs: {
+                                    type: "checkbox",
+                                    disabled:
+                                      _vm.isChecked.length >= _vm.max &&
+                                      _vm.isChecked.indexOf(index) == -1
+                                  },
+                                  domProps: {
+                                    value: index,
+                                    checked: Array.isArray(_vm.isChecked)
+                                      ? _vm._i(_vm.isChecked, index) > -1
+                                      : _vm.isChecked
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$a = _vm.isChecked,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = index,
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            (_vm.isChecked = $$a.concat([$$v]))
                                         } else {
-                                          _vm.isChecked = $$c
+                                          $$i > -1 &&
+                                            (_vm.isChecked = $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1)))
                                         }
+                                      } else {
+                                        _vm.isChecked = $$c
                                       }
                                     }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "span",
-                                    {
-                                      staticClass: "btn btn-danger mt-2",
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.deleteElement(index)
-                                        }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "btn btn-danger mt-2",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteElement(index)
                                       }
-                                    },
-                                    [
-                                      _vm._v("Удалить"),
-                                      _c("i", {
-                                        staticClass: "fas fa-minus-circle"
-                                      })
-                                    ]
-                                  )
-                                ]
-                              )
-                            }),
-                            0
-                          )
-                        ],
-                        2
-                      )
+                                    }
+                                  },
+                                  [
+                                    _vm._v("Удалить"),
+                                    _c("i", {
+                                      staticClass: "fas fa-minus-circle"
+                                    })
+                                  ]
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ])
                     ]
                   )
                 ]
