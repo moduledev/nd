@@ -111,7 +111,7 @@
         action: 'アクション',
         paragraphFormatting: '文章フォーマット',
         documentStyle: 'ドキュメント形式',
-        extraKeys: 'Extra keys',
+        extraKeys: 'extra keys',
       },
       help: {
         'insertParagraph': '改行挿入',

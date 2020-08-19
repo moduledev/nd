@@ -111,7 +111,7 @@
         action: 'Hành động',
         paragraphFormatting: 'Định dạng',
         documentStyle: 'Kiểu văn bản',
-        extraKeys: 'Extra keys',
+        extraKeys: 'extra keys',
       },
       help: {
         'insertParagraph': 'Insert Paragraph',

@@ -111,7 +111,7 @@
         action: 'Handling',
         paragraphFormatting: 'Afsnitsformatering',
         documentStyle: 'Dokumentstil',
-        extraKeys: 'Extra keys',
+        extraKeys: 'extra keys',
       },
       help: {
         'insertParagraph': 'Indsæt paragraf',

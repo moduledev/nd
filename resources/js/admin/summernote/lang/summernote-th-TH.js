@@ -111,7 +111,7 @@
         action: 'การกระทำ',
         paragraphFormatting: 'การจัดรูปแบบย่อหน้า',
         documentStyle: 'รูปแบบของเอกสาร',
-        extraKeys: 'Extra keys',
+        extraKeys: 'extra keys',
       },
       help: {
         'insertParagraph': 'Insert Paragraph',

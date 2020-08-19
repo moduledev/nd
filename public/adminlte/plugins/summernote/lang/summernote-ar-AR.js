@@ -112,7 +112,7 @@
         action: 'Action',
         paragraphFormatting: 'تنسيق الفقرة',
         documentStyle: 'تنسيق المستند',
-        extraKeys: 'Extra keys',
+        extraKeys: 'extra keys',
       },
       help: {
         'insertParagraph': 'Insert Paragraph',

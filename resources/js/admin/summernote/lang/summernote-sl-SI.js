@@ -111,7 +111,7 @@
         action: 'Dejanja',
         paragraphFormatting: 'Oblikovanje odstavka',
         documentStyle: 'Oblikovanje naslova',
-        extraKeys: 'Extra keys',
+        extraKeys: 'extra keys',
       },
       help: {
         'insertParagraph': 'Insert Paragraph',

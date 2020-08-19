@@ -14,4 +14,11 @@ class ImageUploader extends Controller
         unlink(storage_path('app/public/'.$img->path));
         $img->delete();
     }
+
+    public function setMainImage(Request $request)
+    {
+        $img = ProductImage::findOrFail($request->id);
+        $img->main_image ? $img->main_image = null : $img->main_image = 1;
+        $img->save();
+    }
 }

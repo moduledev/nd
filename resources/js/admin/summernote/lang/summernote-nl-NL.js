@@ -111,7 +111,7 @@
         action: 'Acties',
         paragraphFormatting: 'Paragraafstijlen',
         documentStyle: 'Documentstijlen',
-        extraKeys: 'Extra keys',
+        extraKeys: 'extra keys',
       },
       help: {
         'insertParagraph': 'Alinea invoegen',

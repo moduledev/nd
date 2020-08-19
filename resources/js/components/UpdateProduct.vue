@@ -312,35 +312,26 @@
 
                             <!--Products images-->
                             <h5 class="w-100 text-center">Изображения товара</h5>
-                            <div class="d-flex flex-row flex-wrap ">
+                            <div class="d-flex flex-row flex-wrap align-items-baseline">
                                 <div v-for="(img, index) in productFull.images"
                                      class="d-flex flex-column justify-content-center align-items-center text-center image-wrapper">
 
 
                                     <img class="img img-fluid image-preview" v-if="img.id" :src="'/storage/' + img.path"
                                          alt="">
-                                    <label class="imageCheckbox">Главное изображение</label>
+                                    <label class="imageCheckbox" :for="img.id">Главное изображение</label>
 
                                     <input type="checkbox"
                                            class="imageCheckbox"
-                                           :value="index"
-                                           :class="{active: isChecked.indexOf(index) !== -1}"
-                                           v-model="isChecked"
-                                           :disabled="isChecked.length >= max && isChecked.indexOf(index) == -1">
+                                           :value="img.id"
+                                           v-model="img.main_image"
+                                           :class="{active: img.main_image}"
+                                           @change="setMainImage(img.id)"
+                                    >
 
                                     <span class="btn btn-danger mt-2" @click="deleteUploadedProductImage(img.id)">Удалить<i
                                         class="fas fa-minus-circle"></i></span>
                                 </div>
-                            </div>
-                            <div class="mt-4">
-                                <input type="file" id="files" ref="files" multiple @change="onFileSelected">
-                                <div class="images-block d-flex justify-content-center align-items-center mb-4"
-                                     @click="addFiles">
-                                    <p>Нажмите чтобы добавить изображения товара</p>
-                                </div>
-                            </div>
-                            <!--New images-->
-                            <div class="d-flex flex-row flex-wrap ">
                                 <div v-for="(file, index) in previewImages"
                                      class="d-flex flex-column justify-content-center align-items-center text-center image-wrapper">
 
@@ -359,8 +350,35 @@
                                         class="fas fa-minus-circle"></i></span>
                                 </div>
                             </div>
-                        </div>
 
+                            <!--New images-->
+                            <div class="d-flex flex-row flex-wrap ">
+<!--                                <div v-for="(file, index) in previewImages"-->
+<!--                                     class="d-flex flex-column justify-content-center align-items-center text-center image-wrapper">-->
+
+<!--                                    <img class="img img-fluid image-preview" :src="file" alt="">-->
+
+<!--                                    <label class="imageCheckbox">Главное изображение</label>-->
+
+<!--                                    <input type="checkbox"-->
+<!--                                           class="imageCheckbox"-->
+<!--                                           :value="index"-->
+<!--                                           :class="{active: isChecked.indexOf(index) !== -1}"-->
+<!--                                           v-model="isChecked"-->
+<!--                                           :disabled="isChecked.length >= max && isChecked.indexOf(index) == -1">-->
+
+<!--                                    <span class="btn btn-danger mt-2" @click="deleteElement(index)">Удалить<i-->
+<!--                                        class="fas fa-minus-circle"></i></span>-->
+<!--                                </div>-->
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <input type="file" id="files" ref="files" multiple @change="onFileSelected">
+                            <div class="images-block d-flex justify-content-center align-items-center mb-4"
+                                 @click="addFiles">
+                                <p>Нажмите чтобы добавить изображения товара</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -492,7 +510,7 @@ export default {
                 let removeIndex = this.productFull.images.map(function (item) {
                     return item.id;
                 }).indexOf(id);
-                console.log(removeIndex)
+                flash('Изображение товара был удалено', 'error');
                 this.productFull.images.splice(removeIndex, 1)
             })
         },
@@ -522,14 +540,18 @@ export default {
             this.attributePrice = 0;
         },
         deleteAttributeItem(key) {
-            this.productAttributes.splice(key, 1);
-
+            this.productAttributes.splice(key.attribute_id, 1);
         },
         addFiles() {
             this.$refs.files.click();
         },
         closeAlert() {
             this.showAlert = false;
+        },
+        setMainImage(id) {
+            console.log(id)
+            axios.get('/admin/setmain/image/' + id)
+                .then()
         },
         submitForm() {
             const vm = this;

@@ -111,7 +111,7 @@
         action: 'عملیات',
         paragraphFormatting: 'فرمت پاراگراف',
         documentStyle: 'استیل سند',
-        extraKeys: 'Extra keys',
+        extraKeys: 'extra keys',
       },
       help: {
         'insertParagraph': 'Insert Paragraph',

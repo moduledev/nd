@@ -111,7 +111,7 @@
         action: 'Azioni',
         paragraphFormatting: 'Formattazione paragrafo',
         documentStyle: 'Stili',
-        extraKeys: 'Extra keys',
+        extraKeys: 'extra keys',
       },
       help: {
         'insertParagraph': 'Insert Paragraph',

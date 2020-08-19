@@ -38,6 +38,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="row" id="app">
+                    <flash message=""></flash>
                     <update-product :product="{{$product->id}}"></update-product>
                 </div>
             </div>

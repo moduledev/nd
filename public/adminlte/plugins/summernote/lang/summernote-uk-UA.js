@@ -111,7 +111,7 @@
         action: 'Дія',
         paragraphFormatting: 'Форматування параграфу',
         documentStyle: 'Стиль документу',
-        extraKeys: 'Extra keys',
+        extraKeys: 'extra keys',
       },
       help: {
         'insertParagraph': 'Insert Paragraph',

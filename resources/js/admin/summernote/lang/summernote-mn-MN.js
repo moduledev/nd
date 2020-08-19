@@ -113,7 +113,7 @@
         action: 'Үйлдэл',
         paragraphFormatting: 'Догол мөрийг хэлбэржүүлэх',
         documentStyle: 'Бичиг баримтын хэв загвар',
-        extraKeys: 'Extra keys',
+        extraKeys: 'extra keys',
       },
       help: {
         'insertParagraph': 'Insert Paragraph',

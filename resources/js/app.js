@@ -5,9 +5,11 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue');
-
+window.events = new Vue();
+window.flash = function(message) {
+    window.events.$emit('flash',message);
+}
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -24,6 +26,7 @@ Vue.component('update-product', require('./components/UpdateProduct').default);
 Vue.component('attributes-value', require('./components/AttribitesValue').default);
 Vue.component('image-product-upload', require('./components/ImageProductUpload').default);
 Vue.component('add-value-to-attribute', require('./components/AddAttributeValue').default);
+Vue.component('flash', require('./components/Flash').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

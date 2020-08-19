@@ -111,7 +111,7 @@
         action: 'Művelet',
         paragraphFormatting: 'Bekezdés formázása',
         documentStyle: 'Dokumentumstílus',
-        extraKeys: 'Extra keys',
+        extraKeys: 'extra keys',
       },
       help: {
         'insertParagraph': 'Új bekezdés',

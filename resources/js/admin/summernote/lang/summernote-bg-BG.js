@@ -112,7 +112,7 @@
         action: 'Действие',
         paragraphFormatting: 'Форматиране на параграф',
         documentStyle: 'Стил на документа',
-        extraKeys: 'Extra keys',
+        extraKeys: 'extra keys',
       },
       help: {
         'insertParagraph': 'Insert Paragraph',

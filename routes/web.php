@@ -77,6 +77,7 @@ Route::prefix('admin')->group(function () {
     Route::put('admin/edit/{id}', 'Admin\AdminController@update')->name('admin.update');
 
     Route::get('delete/image/{id}', 'Admin\ImageUploader@deleteImage');
+    Route::get('setmain/image/{id}', 'Admin\ImageUploader@setMainImage');
 
 });
 

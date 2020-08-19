@@ -8418,7 +8418,7 @@ $.extend( Datepicker.prototype, {
 		if ( iValue < value.length ) {
 			extra = value.substr( iValue );
 			if ( !/^\s+/.test( extra ) ) {
-				throw "Extra/unparsed characters found in date: " + extra;
+				throw "extra/unparsed characters found in date: " + extra;
 			}
 		}
 

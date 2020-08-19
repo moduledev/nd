@@ -112,7 +112,7 @@
         action: 'Ação',
         paragraphFormatting: 'Formatação de parágrafo',
         documentStyle: 'Estilo de documento',
-        extraKeys: 'Extra keys',
+        extraKeys: 'extra keys',
       },
       help: {
         'insertParagraph': 'Inserir Parágrafo',

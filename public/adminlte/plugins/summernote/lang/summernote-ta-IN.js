@@ -111,7 +111,7 @@
         action: 'செயல்படுத்து',
         paragraphFormatting: 'பத்தி வடிவமைப்பு',
         documentStyle: 'ஆவண பாணி',
-        extraKeys: 'Extra keys',
+        extraKeys: 'extra keys',
       },
       help: {
         'insertParagraph': 'Insert Paragraph',

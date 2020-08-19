@@ -111,7 +111,7 @@
         action: 'Funktion',
         paragraphFormatting: 'Avsnittsformatering',
         documentStyle: 'Dokumentstil',
-        extraKeys: 'Extra keys',
+        extraKeys: 'extra keys',
       },
       help: {
         'insertParagraph': 'Insert Paragraph',

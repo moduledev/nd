@@ -589,7 +589,7 @@ var generateZipParts = function(streamInfo, streamedContent, streamingEnded, off
             utfEncodedFileName;
 
         extraFields +=
-            // Info-ZIP Unicode Path Extra Field
+            // Info-ZIP Unicode Path extra Field
             "\x75\x70" +
             // size
             decToHex(unicodePathExtraField.length, 2) +
@@ -608,7 +608,7 @@ var generateZipParts = function(streamInfo, streamedContent, streamingEnded, off
             utfEncodedComment;
 
         extraFields +=
-            // Info-ZIP Unicode Path Extra Field
+            // Info-ZIP Unicode Path extra Field
             "\x75\x63" +
             // size
             decToHex(unicodeCommentExtraField.length, 2) +

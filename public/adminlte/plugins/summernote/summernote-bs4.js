@@ -395,7 +395,7 @@
               action: 'Action',
               paragraphFormatting: 'Paragraph formatting',
               documentStyle: 'Document Style',
-              extraKeys: 'Extra keys'
+              extraKeys: 'extra keys'
           },
           help: {
               'insertParagraph': 'Insert Paragraph',

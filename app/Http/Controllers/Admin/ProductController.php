@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 class ProductController extends MainController
 {
     use StoreProductImages;
+
     protected $productRepository;
 
     public function __construct(ProductContract $productRepository)
@@ -39,7 +40,6 @@ class ProductController extends MainController
     public function store(ProductStoreRequest $request)
     {
         if (Auth::user()->hasPermissionTo('product-create')) {
-            $test = $request->all();
             $product = $this->productRepository->createProduct($request);
             $this->storeProductImages($product->id, $request);
             return redirect()->route('product.index')->with('success', 'Товар ' . $product->id . ' был успешно добавлен!');
@@ -53,8 +53,13 @@ class ProductController extends MainController
      */
     public function updateProduct(ProductUpdateRequest $request)
     {
-        $this->storeProductImages($request->id, $request);
-        $this->productRepository->updateProduct($request);
+        if (Auth::user()->hasPermissionTo('product-edit')) {
+            if ($request->productImages) $this->storeProductImages($request->id, $request);
+            $this->productRepository->updateProduct($request);
+            return redirect()->route('product.index');
+        } else {
+            return redirect()->back()->with('error', 'У Вас нет прав для выполнения этой операции');
+        }
     }
 
     /**
