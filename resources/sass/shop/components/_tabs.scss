@@ -1,0 +1,40 @@
+.product-tabs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    &__list {
+      display: flex;
+      list-style: none;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0;
+    }
+    &__tab {
+      border: 1px solid $font-light-grey;
+      color: $bg-color-grey;
+      padding: 10px 19px;
+      border-radius: 18px;
+      margin: 0 15px 0 0;
+      cursor: pointer;
+      transition: 1s;
+        &:last-child {
+          margin: 0;
+        }
+        &-active {
+          border: 1px solid $font-green-color;
+          background-color: $font-green-color;
+          color: $font-white-color;
+        }
+      &:hover:not(.product-tabs__tab-active) {
+        opacity: 0.7;
+      }
+    }
+  &__tab-content{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+
+  }
+}

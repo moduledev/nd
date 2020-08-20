@@ -93,8 +93,8 @@
 
 @endsection
 @section('scripts')
-    <script src="{{ asset('adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ asset('libs/admin/adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('libs/admin/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
     <script>
         $(document).ready(function () {
             $('#productList').DataTable({

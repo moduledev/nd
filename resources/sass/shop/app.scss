@@ -1,0 +1,83 @@
+@import "helpers/animations";
+@import "helpers/variables";
+@import "helpers/mixins";
+@import "parts/top_header";
+@import "parts/header";
+@import "parts/index";
+@import "parts/footer";
+
+@import "components/product-card";
+
+body {
+  font-family: Nunito, sans-serif;
+}
+
+.bg-grey {
+  background-color: #c0c0c0;
+}
+
+.main-section {
+  padding: 150px 0 130px 0;
+  &__title {
+    text-transform: uppercase;
+  }
+}
+
+.section-separator {
+  margin: 26px 0 40px;
+
+  &__leftline {
+    width: 40px;
+    height: 1px;
+    background-color: $font-green-color;
+    margin-right: 10px;
+  }
+
+  &__rightline {
+    width: 40px;
+    height: 1px;
+    background-color: $font-green-color;
+    margin-left: 10px;
+  }
+  &__icon {
+    font-size: 30px;
+    color: $font-green-color;
+  }
+
+}
+
+.mobile-show {
+  display: none;
+}
+
+.shadow {
+  height: 100vh;
+  z-index: 99;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, .25);
+}
+
+.single-response__rating {
+  margin: 15px 0 40px 0;
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+
+.single-response__rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+
+.single-response__rating > span:hover:before,
+.single-response__rating > span:hover ~ span:before {
+  content: "\2605";
+  position: absolute;
+  color: $color-orange;
+  cursor: pointer;
+}
+
+@import "parts/media-queries";

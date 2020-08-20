@@ -1,0 +1,109 @@
+@import "../components/tabs";
+
+.single-response {
+
+  &__slide {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: start;
+  }
+
+  &__box {
+    position: relative;
+    width: 450px;
+    height: 403px;
+    background-position: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    box-shadow: -3px 0px 7px 0 rgba(0, 0, 0, 0.15);
+    border: solid 7px $font-white-color;
+    background-color: $font-white-color;
+  }
+  &__link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+
+  &__desc {
+    padding: 70px 65px;
+    margin: 0 0 0 -30px;
+    max-width: 774px;
+    box-shadow: -3px 0px 7px 0 rgba(0, 0, 0, 0.15);
+    background-color: $font-white-color;
+  }
+  &__author {
+    font-weight: bold;
+  }
+  &__arrow {
+    padding: 7px 12px;
+    cursor: pointer;
+    border: solid 1px $font-light-grey;
+    background-color: #ffffff;
+    transition: 1s;
+
+    span {
+      color: $font-light-grey;
+    }
+    &:hover {
+      opacity: .7;
+    }
+  }
+
+
+  .left-radius {
+    border-bottom-left-radius: 40px 40px;
+    border-top-left-radius: 40px 40px;
+
+  }
+
+  .right-radius {
+    border-bottom-right-radius: 40px 40px;
+    border-top-right-radius: 40px 40px;
+  }
+
+}
+.advantage-block {
+  background-color: #f0f7f9;
+
+  &__desc {
+    margin-bottom: 15px;
+  }
+  &__title {
+    font-size: 22px;
+  }
+  &__text {
+    line-height: 27px;
+    font-size: 15px;
+  }
+  &__link {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    @include color-link(#999999);
+      .icon-arrow-thin-right {
+        padding-left: 7px;
+      }
+  }
+  &__images {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+  }
+  &__image {
+    width: 45%;
+    height: 100px;
+    background-color: $font-light-grey;
+    margin: 0 10px 10px 10px;
+    background-position: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+}
+
+

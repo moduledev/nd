@@ -1,761 +1,331 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+<html lang="en">
 <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-
-    <!-- Stylesheets
-    ============================================= -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Cookie|Open+Sans:400,600,700,800,900|Poppins:300,400,500,600,700|Playfair+Display:400,400i,700,700i,900"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href={{asset("css/vendor/bootstrap.css")}} type="text/css"/>
-    <link rel="stylesheet" href={{asset("css/vendor/style.css")}} type="text/css"/>
-    <link rel="stylesheet" href={{asset("css/vendor/dark.css")}} type="text/css"/>
-    <link rel="stylesheet" href={{asset("css/vendor/font-icons.css")}} type="text/css"/>
-    <link rel="stylesheet" href={{asset("css/vendor/animate.css")}} type="text/css"/>
-    <link rel="stylesheet" href={{asset("css/vendor/magnific-popup.css")}} type="text/css"/>
-    <link rel="stylesheet" href={{asset("css/vendor/swipper.css")}} type="text/css"/>
-
-    <link rel="stylesheet" href={{asset("css/vendor/et-line.css")}} type="text/css"/>
-
-    <!-- restaurant Demo Specific Stylesheet -->
-    <link rel="stylesheet" href={{asset("css/vendor/restaurant.css")}} type="text/css"/>
-    <link rel="stylesheet" href={{asset("css/vendor/fonts.css")}} type="text/css"/>
-    <!-- / -->
-
-    <link rel="stylesheet" href={{asset("vendor/responsive.css")}} type="text/css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-
-    <!-- Document Title
-    ============================================= -->
-    <title>Restaurant | Canvas</title>
-
-    <style>
-        /* Page Loader CSS */
-        .css3-spinner:before, .pizza .slice:after, .pizza .slice:before {
-            content: ''
-        }
-
-        .css3-spinner {
-            height: 100vh;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            align-items: center;
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
-            justify-content: center;
-            background: #FFF
-        }
-
-        .css3-spinner:before {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            -webkit-transform: translateX(-50%) translateY(-50%);
-            transform: translateX(-50%) translateY(-50%);
-            width: 15vmin;
-            height: 2vmin;
-            background: #DDD;
-            margin-top: 17.5vmin;
-            -webkit-filter: blur(10px);
-            filter: blur(10px);
-            border-radius: 100%
-        }
-
-        .pizza {
-            height: 20vmin;
-            width: 20vmin;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            align-items: center;
-            background: 0 0;
-            position: relative;
-            -webkit-animation: rotate 13s linear infinite;
-            animation: rotate 13s linear infinite
-        }
-
-        @-webkit-keyframes rotate {
-            to {
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg)
-            }
-        }
-
-        @keyframes rotate {
-            to {
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg)
-            }
-        }
-
-        .pizza .slice {
-            z-index: -1;
-            overflow: visible;
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 10vmin 2.75vmin 0;
-            border-color: #ffdc73 transparent transparent;
-            left: 7.5vmin;
-            top: 0;
-            -webkit-transform-origin: 50% 100%;
-            transform-origin: 50% 100%;
-            -webkit-transform: rotate(0);
-            transform: rotate(0);
-            -webkit-animation: loading 1.8125s ease-in-out infinite;
-            animation: loading 1.8125s ease-in-out infinite
-        }
-
-        @-webkit-keyframes loading {
-            0%, 100%, 49% {
-                opacity: 1
-            }
-            50%, 99% {
-                opacity: 0
-            }
-        }
-
-        @keyframes loading {
-            0%, 100%, 49% {
-                opacity: 1
-            }
-            50%, 99% {
-                opacity: 0
-            }
-        }
-
-        .pizza .slice:nth-of-type(2n):after {
-            box-shadow: .5vmin 2.5vmin 0 #cc333f
-        }
-
-        .pizza .slice:nth-of-type(4n):after {
-            box-shadow: .5vmin 2.5vmin 0 #cc333f, 1.5vmin 5vmin 0 #cc333f
-        }
-
-        .pizza .slice:nth-of-type(1) {
-            -webkit-transform: rotate(-27.75deg);
-            transform: rotate(-27.75deg);
-            -webkit-animation-delay: -62.5ms;
-            animation-delay: -62.5ms
-        }
-
-        .pizza .slice:nth-of-type(2) {
-            -webkit-transform: rotate(-55.5deg);
-            transform: rotate(-55.5deg);
-            -webkit-animation-delay: -125ms;
-            animation-delay: -125ms
-        }
-
-        .pizza .slice:nth-of-type(3) {
-            -webkit-transform: rotate(-83.25deg);
-            transform: rotate(-83.25deg);
-            -webkit-animation-delay: -.1875s;
-            animation-delay: -.1875s
-        }
-
-        .pizza .slice:nth-of-type(4) {
-            -webkit-transform: rotate(-111deg);
-            transform: rotate(-111deg);
-            -webkit-animation-delay: -.25s;
-            animation-delay: -.25s
-        }
-
-        .pizza .slice:nth-of-type(5) {
-            -webkit-transform: rotate(-138.75deg);
-            transform: rotate(-138.75deg);
-            -webkit-animation-delay: -.3125s;
-            animation-delay: -.3125s
-        }
-
-        .pizza .slice:nth-of-type(6) {
-            -webkit-transform: rotate(-166.5deg);
-            transform: rotate(-166.5deg);
-            -webkit-animation-delay: -375ms;
-            animation-delay: -375ms
-        }
-
-        .pizza .slice:nth-of-type(7) {
-            -webkit-transform: rotate(-194.25deg);
-            transform: rotate(-194.25deg);
-            -webkit-animation-delay: -.4375s;
-            animation-delay: -.4375s
-        }
-
-        .pizza .slice:nth-of-type(8) {
-            -webkit-transform: rotate(-222deg);
-            transform: rotate(-222deg);
-            -webkit-animation-delay: -.5s;
-            animation-delay: -.5s
-        }
-
-        .pizza .slice:nth-of-type(9) {
-            -webkit-transform: rotate(-249.75deg);
-            transform: rotate(-249.75deg);
-            -webkit-animation-delay: -.5625s;
-            animation-delay: -.5625s
-        }
-
-        .pizza .slice:nth-of-type(10) {
-            -webkit-transform: rotate(-277.5deg);
-            transform: rotate(-277.5deg);
-            -webkit-animation-delay: -625ms;
-            animation-delay: -625ms
-        }
-
-        .pizza .slice:nth-of-type(11) {
-            -webkit-transform: rotate(-305.25deg);
-            transform: rotate(-305.25deg);
-            -webkit-animation-delay: -.6875s;
-            animation-delay: -.6875s
-        }
-
-        .pizza .slice:nth-of-type(12) {
-            -webkit-transform: rotate(-333deg);
-            transform: rotate(-333deg);
-            -webkit-animation-delay: -.75s;
-            animation-delay: -.75s
-        }
-
-        .pizza .slice:before {
-            position: absolute;
-            height: 1.5vmin;
-            width: 6vmin;
-            background: #bbb083;
-            top: -10.5vmin;
-            left: -3vmin;
-            border-radius: 100vmin 100vmin .5vmin .5vmin/50vmin
-        }
-
-        .pizza .slice:after {
-            border-radius: 100%;
-            position: absolute;
-            width: 1.25vmin;
-            height: 1.25vmin;
-            background: #cc333f;
-            left: -1vmin;
-            top: -7vmin;
-            z-index: 2
-        }
-    </style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('libs/shop/bootstrap-4.4.1-dist/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('libs/shop/icomoon/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/shop/app.css')}}">
 </head>
-
-<body class="stretched sticky-footer"
-      data-loader-html="<span class='pizza'> <span class='slice'></span> <span class='slice'></span> <span class='slice'></span> <span class='slice'></span> <span class='slice'></span> <span class='slice'></span> <span class='slice'></span> <span class='slice'></span> <span class='slice'></span> <span class='slice'></span> <span class='slice'></span> <span class='slice'></span> <span class='slice'></span> </span>">
-
-<!-- Document Wrapper
-============================================= -->
-<div id="wrapper" class="clearfix">
-
-    <!-- Header
-    ============================================= -->
-    <header id="header" class="static-sticky transparent-header split-menu clearfix">
-
-        <div id="header-wrap" style="background-image: url({{asset('vendor/images/sketch-header.png')}}">
-
-            <div class="container clearfix">
-
-                <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
-
-                <!-- Logo
-                ============================================= -->
-                <div id="logo">
-                    <a href="demo-restaurant.html" class="standard-logo"><img src={{asset('vendor/images/logo.png')}}  alt="Canvas Logo"></a>
-                    <a href="demo-restaurant.html" class="retina-logo"><img src={{asset('vendor/images/logo@2x.png')}} alt="Canvas Logo"></a>
-                </div><!-- #logo end -->
-
-                <!-- Primary Navigation
-                ============================================= -->
-                <nav id="primary-menu" class="with-arrows clearfix">
-
-                    <ul>
-                        <li><a href="#">
-                                <i class="icon-home"></i>
-                            </a></li>
-                        <li><a href="demos/restaurant/about-us.html">
-                                <div>О Нас</div>
-                            </a></li>
-                        <li><a href="demos/restaurant/blog.html">
-                                <div>Ассортимент</div>
-                            </a></li>
-
-                    </ul>
-
-                    <ul>
-                        <li class="sub-menu current"><a href="demos/restaurant/menu.html">
-                                <div>Контакты</div>
-                            </a>
-                            <ul style="display: none;">
-                                <li><a href="forms.html">
-                                        <div><i class="icon-wpforms"></i>Оплата и доставка</div>
-                                    </a></li>
-                                <li><a href="mega-menu.html">
-                                        <div><i class="icon-line-columns"></i>Mega Menu</div>
-                                    </a></li>
-                            </ul>
-                        </li>
-                        <li><a href="demos/restaurant/gallery.html">
-                                <div>Рецепты</div>
-                            </a></li>
-
-                        {{-- #shop cart start --}}
-                        <div id="top-cart" >
-                            <a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span>5</span></a>
-                            <div class="top-cart-content">
-                                <div class="top-cart-title">
-                                    <h4>Shopping Cart</h4>
-                                </div>
-                                <div class="top-cart-items">
-                                    <div class="top-cart-item clearfix">
-                                        <div class="top-cart-item-image">
-                                            <a href="#"><img src="images/shop/small/1.jpg" alt="Blue Round-Neck Tshirt"></a>
-                                        </div>
-                                        <div class="top-cart-item-desc">
-                                            <a href="#">Blue Round-Neck Tshirt</a>
-                                            <span class="top-cart-item-price">$19.99</span>
-                                            <span class="top-cart-item-quantity">x 2</span>
-                                        </div>
-                                    </div>
-                                    <div class="top-cart-item clearfix">
-                                        <div class="top-cart-item-image">
-                                            <a href="#"><img src="images/shop/small/6.jpg" alt="Light Blue Denim Dress"></a>
-                                        </div>
-                                        <div class="top-cart-item-desc">
-                                            <a href="#">Light Blue Denim Dress</a>
-                                            <span class="top-cart-item-price">$24.99</span>
-                                            <span class="top-cart-item-quantity">x 3</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="top-cart-action clearfix">
-                                    <span class="fleft top-checkout-price">$114.95</span>
-                                    <button class="button button-3d button-small nomargin fright">View Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- #shop cart end --}}
-
-                        {{-- #login account start --}}
-                        <div id="top-account">
-                            <a href="#modal-register" data-lightbox="inline"><i class="icon-line2-user mr-1 position-relative" style="top: 1px;"></i><span class="d-none d-sm-inline-block font-primary t500">Login</span></a>
-                        </div>
-                        {{-- #login account stop --}}
-                    </ul>
-
-                </nav><!-- #primary-menu end -->
-
+<body>
+<div id="app">
+    <!--  TOP HEADER START  -->
+    <div class="container-fluid header-top">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-6 header-top-phones">
+                    <span class="header-top-phones__title">Подзвоніть нам: (098,063)559-49-49</span>
+                </div>
+                <div class="col-3 d-flex flex-row align-items-baseline justify-content-end header-top-registration">
+                    <span class="header-top-registration__title">Авторизація</span>
+                    <div class="header-top-registration__separator"></div>
+                    <span class="header-top-registration__title">Реєстрація</span>
+                </div>
             </div>
-
         </div>
+    </div>
+    <!--  TOP HEADER END  -->
 
-    </header><!-- #header end -->
-
-    <!-- Slider
-    ============================================= -->
-    <section id="slider" class="slider-element swiper_wrapper slider-parallax force-full-screen full-screen clearfix"
-             data-effect="fade" data-loop="true" data-autoplay="6000" data-speed="1400">
-
-        <div class="slider-parallax-inner">
-            <div class="swiper-container swiper-parent">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"
-                         style="background-image: url({{asset('vendor/images/slider/1.jpg')}}); background-position: center center;">
-                        <div class="container dark clearfix">
-                            <div class="slider-caption">
-                                <h2 class="font-secondary ls0 t400 nott" data-animate="fadeIn">Taste from Italy.</h2>
-                                <p class="d-none d-sm-block font-primary" data-animate="fadeIn" data-delay="400">Who
-                                    Needs a Boyfriend if there Pizza And WiFi are both available.</p>
-                                <div class="static-content"
-                                     style="position: relative; display: flex; justify-content: flex-start; flex-direction: row; margin-top: 30px"
-                                     data-animate="fadeIn" data-delay="800">
-                                    <img src={{asset('vendor/images/icons/bowl-white.svg')}} width="42" height="42"
-                                         alt="">
-                                    <img class="leftmargin-sm"
-                                         src={{asset('vendor/images/icons/spoon-white.svg')}} width="42" height="42"
-                                         alt="">
-                                    <img class="leftmargin-sm"
-                                         src={{asset('vendor/images/icons/glass-white.svg')}} width="42" height="42"
-                                         alt="">
-                                    <img class="leftmargin-sm"
-                                         src={{asset('vendor/images/icons/wifi-white.svg')}} width="42" height="42"
-                                         alt="">
-                                </div>
-                            </div>
-                        </div>
+    <!-- HEADER START   -->
+    <header class=" container-lg">
+        <div class="row d-flex align-items-center header-container">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-2 header-logo order-xl-1 order-lg-1 order-md-1 order-1">
+                <a href="#">
+                    <img class="header-logo__img img-fluid" src="images/logo.png" alt="logo">
+                </a>
+            </div>
+            <nav class="col-md-12 col-lg-6 header-menu order-xl-2 order-lg-2 order-md-3 order-3 ">
+                <ul class="mobile-service-menu mobile-show">
+                    <span class="icon-user mobile-service-menu__icon"></span>
+                    <li class="mobile-service-menu__item"><a href="" class="mobile-service-menu__link">Вхід</a></li>
+                    <span class="mobile-service-menu__separator"></span>
+                    <li class="mobile-service-menu__item"><a href="" class="mobile-service-menu__link">Реєстрація</a>
+                    </li>
+                </ul>
+                <ul class="header-menu__list">
+                    <li class="header-menu__item d-flex">
+                        <span class="icon-home header-menu__icon d-lg-none d-md-flex"></span><a
+                            class="header-menu__link header-menu__link-active " href="#">Головна</a>
+                    </li>
+                    <li class="header-menu__item d-flex">
+                        <span class="icon-grid header-menu__icon d-lg-none d-md-flex"></span><a
+                            class="header-menu__link " href="#">Магазин</a>
+                    </li>
+                    <li class="header-menu__item d-flex">
+                        <span class="icon-book header-menu__icon d-lg-none d-md-flex"></span><a
+                            class="header-menu__link " href="#">Блог</a>
+                    </li>
+                    <li class="header-menu__item d-flex">
+                        <span class="icon-shrink header-menu__icon d-lg-none d-md-flex"></span><a
+                            class="header-menu__link " href="#">Контакти</a>
+                    </li>
+                    <li class="header-menu__item d-lg-none d-md-flex">
+                        <span class="icon-user header-menu__icon  d-lg-none d-md-flex"></span><a
+                            class="header-menu__link " href="#">Особистий кабінет</a>
+                    </li>
+                    <li class="header-menu__item d-lg-none d-md-flex">
+                        <span class="icon-shopping-bag header-menu__icon d-lg-none d-md-flex"></span><a
+                            class="header-menu__link" href="#">Кошик (0)</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-search col-lg-6 order-xl-2 order-lg-2 order-md-3 order-3 d-none">
+                <form class="header-search__form">
+                    <input type="text" class="header-search__input" placeholder="Знайти ...">
+                </form>
+            </div>
+            <div class="header-service col-12 col-sm-12 col-md-12 col-lg-4 d-flex order-xl-3 order-lg-3 order-md-2 order-2">
+                <div class="header-service__btn">
+                    <span class="icon-view-list"></span>
+                </div>
+                <div class="d-flex align-items-center flex-row">
+                    <div class="form header-search-service">
+                        <span class="icon-search header-search-service__icon "></span>
+                        <span class="icon-cross header-search-service__icon d-none"></span>
                     </div>
-                    <div class="swiper-slide"
-                         style="background-image: url({{asset('vendor/images/slider/3.jpg')}}); background-position: center center;">
-                        <div class="container dark clearfix">
-                            <div class="slider-caption slider-caption-center" style="margin-top: -30px;">
-                                <img data-animate="fadeIn" src={{asset('vendor/images/slider-logo.png')}} alt=""
-                                     style="width: 120px; margin-bottom: 10px;">
-                                <h2 class="font-secondary ls0 t400 nott" data-animate="fadeIn" data-delay="400">Make
-                                    your Chocolate.</h2>
-                                <p class="d-none d-sm-block font-primary" data-animate="fadeIn" data-delay="800">You'll
-                                    be surprised to see the Final Results of your<br>Creation &amp; would crave for
-                                    more.</p>
-                                <div class="static-content"
-                                     style="position: relative; display: flex; justify-content: center; flex-direction: row; margin-top: 30px"
-                                     data-animate="fadeIn" data-delay="1000">
-                                    <img src={{asset('vendor/images/icons/bowl-white.svg')}} width="42" height="42"
-                                         alt="">
-                                    <img class="leftmargin-sm"
-                                         src={{asset('vendor/images/icons/spoon-white.svg')}} width="42" height="42"
-                                         alt="">
-                                    <img class="leftmargin-sm"
-                                         src={{asset('vendor/images/icons/glass-white.svg')}} width="42" height="42"
-                                         alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide"
-                         style="background-image: url({{asset('vendor/images/slider/2.jpg')}}); background-position: center bottom;">
-                        <div class="container dark clearfix">
-                            <div class="slider-caption slider-caption-right">
-                                <h2 class="font-secondary ls0 t400 nott" data-animate="fadeIn">Hello &amp; Welcome.</h2>
-                                <p class="d-none d-sm-block font-primary" data-animate="fadeIn" data-delay="400">Coffee
-                                    drinkers make better Lovers. Everything starts with a great Coffee.</p>
-                            </div>
-                        </div>
+                    <div class="header-cart-icon ml-4">
+                        <span class="icon-shopping-bag header-cart__icon"></span>
+                        <span class="header-cart__count d-none">19</span>
                     </div>
                 </div>
-                <div class="slider-arrow-left"><i class="icon-angle-left"></i></div>
-                <div class="slider-arrow-right"><i class="icon-angle-right"></i></div>
+            </div>
+            <div class="header-card position-absolute flex-column justify-content-center align-items-center">
+                <div class="header-card__element d-flex align-items-center flex-row position-relative">
+                    <div class="header-card__img">
+                        <img src="images/cake.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="header-card__desc d-flex flex-column justify-content-lg-start ">
+                        <span class="header-card__name"><a href="#"
+                                                           class="header-card__link">Blueberry Blueberry</a></span>
+                        <span class="header-card__price">$56</span>
+                        <div class="icon-close-outline position-absolute header-card__close"></div>
+                    </div>
+                </div>
+                <div class="header-card__element d-flex align-items-center flex-row position-relative">
+                    <div class="header-card__img">
+                        <img src="images/cake.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="header-card__desc d-flex flex-column justify-content-lg-start ">
+                        <span class="header-card__name"><a href="#"
+                                                           class="header-card__link">Blueberry Blueberry</a></span>
+                        <span class="header-card__price">$56</span>
+                        <div class="icon-close-outline position-absolute header-card__close"></div>
+                    </div>
+                </div>
+                <div class="header-card__underline"></div>
+                <div class="header-card__result d-flex flex-row justify-content-around">
+                    <span class="header-card__subtotal text-uppercase">Всього</span>
+                    <span class="header-card__count">$56</span>
+                </div>
+                <button class="header-card__btn text-uppercase">Оформити замовлення</button>
             </div>
         </div>
+    </header>
+    <!--  HEADER END  -->
+    <div class="container-fluid slider">
+        <div class="row no-gutters">
+            <div class="col-12 ">
+                <div class="jumbotron">
+                    <h1 class="display-4">Hello, world!</h1>
+                    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra
+                        attention to featured content or information.</p>
+                    <hr class="my-4">
+                    <p>It uses utility classes for typography and spacing to space content out within the larger
+                        container.</p>
+                    <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!--  ADVANTAGE START  -->
+    <section class="advantage-block main-section container-fluid">
+        <div class="container">
+            <div class="row">
+                <h3 class="main-section__title w-100 text-center">We provide clean food</h3>
+                <div class="col-12">
+                    <div class="section-separator d-flex flex-row align-items-center justify-content-center">
+                        <div class="section-separator__leftline"></div>
+                        <i class="section-separator__icon icon-cake"></i>
+                        <div class="section-separator__rightline"></div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-3 col-6 order-xl-1 order-lg-1 order-md-1 order-2 d-flex flex-column">
+                    <div class="advantage-block__desc text-left">
+                        <h3 class="advantage-block__title text-uppercase">Healthy diet</h3>
+                        <p class="advantage-block__text">It is a long established fact that a reader will be distracted</p>
+                        <a href="#" class="advantage-block__link">детальніше <span class="icon-arrow-thin-right"></span></a>
+                    </div>
+                    <div class="advantage-block__desc text-left">
+                        <h3 class="advantage-block__title text-uppercase">Healthy diet</h3>
+                        <p class="advantage-block__text">It is a long established fact that a reader will be distracted</p>
+                        <a href="#" class="advantage-block__link">детальніше <span class="icon-arrow-thin-right"></span></a>
+                    </div>
+
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-12 order-xl-2 order-lg-2 order-md-2 order-1">
+                    <div class="advantage-block__images">
+                        <div class="advantage-block__image" style="background-image: url('images/cake.jpg') "></div>
+                        <div class="advantage-block__image"></div>
+                        <div class="advantage-block__image"></div>
+                        <div class="advantage-block__image"></div>
+                        <div class="advantage-block__image"></div>
+                        <div class="advantage-block__image"></div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-6 order-xl-3 order-lg-3 order-md-3 order-3 d-flex flex-column">
+                    <div class="advantage-block__desc text-left">
+                        <h3 class="advantage-block__title text-uppercase">Healthy diet</h3>
+                        <p class="advantage-block__text">It is a long established fact that a reader will be distracted</p>
+                        <a href="#" class="advantage-block__link">детальніше <span class="icon-arrow-thin-right"></span></a>
+                    </div>
+                    <div class="advantage-block__desc text-left">
+                        <h3 class="advantage-block__title text-uppercase">Healthy diet</h3>
+                        <p class="advantage-block__text">It is a long established fact that a reader will be distracted</p>
+                        <a href="#" class="advantage-block__link">детальніше <span class="icon-arrow-thin-right"></span></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </section>
-    <!-- Content
-    ============================================= -->
-    <section id="content" style="overflow: visible;">
+    <!--  ADVANTAGE END  -->
 
-        <div
-            style="position: absolute; top: 0; left: 0; width: 100%; z-index: 3; background: url({{asset('vendor/images/sketch.png')}}) repeat center bottom; background-size: auto 100%; height: 40px; margin-top: -40px;"></div>
-
-        <div class="content-wrap">
-            <div class="section nobottommargin"
-                 style="background: #fee749 url({{asset('vendor/images/sections/5.jpg')}}) no-repeat center right; background-size: cover; padding: 60px 0;">
-                <div class="heading-block center nobottommargin nobottomborder">
-                    <span class="font-primary ls1" style="font-size: 14px; color: #AAA">Sweet &amp; Sexy</span>
-                    <h3 class="nott font-secondary ls0" style="font-size: 60px;line-height: 1.3;">Наши Десерты</h3>
-                </div>
-            </div>
-
-            <div class="section dessert-menu nomargin nopadding">
-                <div class="container-fluid">
-                    <div class="row">
-                        <h1>категории</h1>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="section nomargin clearfix"
-                 style="padding: 40px 0; background:  url({{asset('vendor/images/sections/4.jpg')}}) center center no-repeat; background-size: 100% auto">
-                <div class="container clearfix">
-
-                    <div class="heading-block nobottomborder bottommargin-sm">
-                        <h2 class="font-secondary color nott" style="font-size: 52px;">How We Work</h2>
-                    </div>
-
-                    <div class="row clearfix">
-                        <div class="col-lg-3 bottommargin-sm">
-                            <div class="feature-box media-box" style="max-width: 400px">
-                                <div class="fbox-media" style="width: 70px; height: auto;">
-                                    <img src={{asset('vendor/images/icons/bowl.svg')}} alt="">
-                                </div>
-                                <h3>Food Served Hot</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas omnis nam
-                                    molestias minus ipsa, placeat!</p>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 bottommargin-sm">
-                            <div class="feature-box media-box" style="max-width: 400px">
-                                <div class="fbox-media" style="width: 70px; height: auto;">
-                                    <img src={{asset('vendor/images/icons/spoon.svg')}} alt="">
-                                </div>
-                                <h3>Ample Options</h3>
-                                <p>Facere aliquam itaque quia recusandae, corporis fugit fugiat eaque, accusamus
-                                    officiis reprehenderit.</p>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 bottommargin-sm">
-                            <div class="feature-box media-box" style="max-width: 400px">
-                                <div class="fbox-media" style="width: 70px; height: auto;">
-                                    <img src={{asset('vendor/images/icons/glass.svg')}} alt="">
-                                </div>
-                                <h3>In-House Brewery</h3>
-                                <p>Velit id facilis odit aliquid laudantium. Tempore, sequi. Harum nesciunt, magni
-                                    aperiam est?</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="clear"></div>
-
-            <div class="section nobottommargin"
-                 style="background: #FFF url({{asset('vendor/images/sections/5.jpg')}}) no-repeat top left / cover; padding: 60px 0; border-top: 1px solid #EEE;">
-                <div class="container clearfix">
-                    <div class="heading-block center nobottommargin nobottomborder">
-                        <span class="font-primary" style="font-size: 16px; color: #888">Tasty &amp; Healthy</span>
-                        <h3 class="nott font-secondary ls0" style="font-size: 60px;">Our Food Menu</h3>
+    <!--  OUR PRODUCT START  -->
+    <section class="products-tabs-section main-section container-fluid">
+        <div class="container">
+            <div class="row">
+                <h3 class="main-section__title w-100 text-center">Наші десерти</h3>
+                <div class="col-12">
+                    <div class="section-separator d-flex flex-row align-items-center justify-content-center">
+                        <div class="section-separator__leftline"></div>
+                        <i class="section-separator__icon icon-cake"></i>
+                        <div class="section-separator__rightline"></div>
                     </div>
                 </div>
-            </div>
-
-
-            <div class="section nobottommargin nobg">
-                <div class="container clearfix">
-
-                    <div class="col_one_third nobottommargin">
-                        <div class="feature-box media-box">
-                            <div class="fbox-media">
-                                <a href="demos/restaurant/reservation.html" class="image_fade"><img
-                                        style="border-radius: 2px;"
-                                        src={{asset('vendor/images/featured/1.jpg')}} alt="Why choose Us?"></a>
+                <div class="product-tabs">
+                    <ul class="product-tabs__list">
+                        <li class="product-tabs__tab product-tabs__tab-active">Всі Десерти</li>
+                        <li class="product-tabs__tab">Десерт1</li>
+                        <li class="product-tabs__tab">Десерт2</li>
+                        <li class="product-tabs__tab">Десерт3</li>
+                    </ul>
+                    <div class="product-tabs__tab-content">
+                        <div class="product-card">
+                            <div class="product-card__image">
+                                <img src="images/cake.jpg">
                             </div>
-                            <div class="fbox-desc">
-                                <h3>Beautiful Location.<span class="subtitle ls1" style="color:#BBB">Food Tastes Better when you are in Good Location.</span>
-                                </h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi rem, facilis nobis
-                                    voluptatum est voluptatem accusamus eaque perspiciatis mollitia.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col_one_third nobottommargin">
-                        <div class="feature-box media-box">
-                            <div class="fbox-media">
-                                <a href="demos/restaurant/gallery.html" class="image_fade"><img
-                                        style="border-radius: 2px;"
-                                        src={{asset('vendor/images/featured/2.jpg')}} alt="Effective Planning"></a>
-                            </div>
-                            <div class="fbox-desc">
-                                <h3>Feel the Taste.<span class="subtitle ls1" style="color:#BBB">Nothing Brings people together like Good Food.</span>
-                                </h3>
-                                <p>Porro repellat vero sapiente amet vitae quibusdam necessitatibus consectetur, labore
-                                    totam. Accusamus perspiciatis asperiores labore esse.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col_one_third nobottommargin col_last">
-                        <div class="feature-box media-box">
-                            <div class="fbox-media">
-                                <a href="demos/restaurant/about-us.html" class="image_fade"><img
-                                        style="border-radius: 2px;"
-                                        src={{asset('vendor/images/featured/3.jpg')}} alt="Why choose Us?"></a>
-                            </div>
-                            <div class="fbox-desc">
-                                <h3>Delicious Desserts.<span class="subtitle ls1" style="color:#BBB">The Best things in life are Sweet.</span>
-                                </h3>
-                                <p>Quos, non, esse eligendi ab accusantium voluptatem. Maxime eligendi beatae, atque
-                                    tempora ullam. Vitae delectus quia, consequuntur rerum quo. , labore totam.
-                                    Accusamus perspiciatis asperiores.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="clear"></div>
-
-
-            <div class="clear"></div>
-
-            <div class="section nobg">
-                <div class="d-none d-lg-block"
-                     style="background: #FFF url({{asset('vendor/images/sections/3.jpg')}}) no-repeat center center / cover; height: 100%;position: absolute; top: 0; left: 0; width: 100%"></div>
-                <div class="container clearfix">
-
-                    <div class="heading-block nobottomborder">
-                        <span class="font-primary ls1" style="font-size: 14px; color: #AAA">Services</span>
-                        <h3 class="nott font-secondary ls0" style="font-size: 60px; line-height: 1.3;">What We Do</h3>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-lg-6 col-md-6 col-12"><img src={{asset('vendor/images/sections/1.jpg')}} alt="">
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12">
-                            <a href="demos/restaurant/about-us.html"
-                               class="button button-border button-large button-black button-dark button-rounded nott ls0 font-primary service-button">Our
-                                Service</a>
-                            <img src={{asset('vendor/images/sections/2.jpg')}} alt="" class="d-none d-md-block"
-                                 style="margin: 0 0 0 -80px;">
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="section nobottommargin"
-                 style="padding: 80px 0; background: #F5F5F5 url({{asset('vendor/images/food-pattern.png')}})repeat center center;">
-                <div class="container clearfix">
-
-                    <div class="heading-block center nobottomborder">
-                        <span class="font-primary ls1" style="font-size: 14px; color: #AAA">Expert &amp; Skillful</span>
-                        <h3 class="nott font-secondary ls0" style="font-size: 60px; line-height: 1.3;">Our Chefs</h3>
-                    </div>
-
-                    <div class="row clearfix">
-
-                        <div class="col-lg-3 col-md-6">
-                            <div class="team">
-                                <div class="team-image imagescalein">
-                                    <a href="demos/restaurant/about-us.html"><img
-                                            src={{asset('vendor/images/chefs/1.jpg')}} alt="John Doe"></a>
-                                </div>
-                                <div class="team-desc">
-                                    <div class="team-title">
-                                        <h4 class="font-primary t400 ls2">Fig Nelson</h4>
-                                        <span>Chef</span>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum dolor sequi
-                                        quaerat, deleniti beatae ratione.</p>
+                            <div class="product-card__info">
+                                <h5 class="product-card__title">Winter Jacket</h5>
+                                <h6 class="product-card__price">$99.99</h6>
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <div class="product-card__like"><i class="icon-heart-outlined"></i></div>
+                                    <div class="product-card__btn">Купити</div>
+                                    <div class="product-card__zoom"><i class="icon-search"></i></div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-3 col-md-6">
-                            <div class="team">
-                                <div class="team-image imagescalein">
-                                    <a href="demos/restaurant/about-us.html"><img
-                                            src={{asset('vendor/images/chefs/2.jpg')}} alt="Josh Clark"></a>
-                                </div>
-                                <div class="team-desc">
-                                    <div class="team-title">
-                                        <h4 class="font-primary t400 ls2">Josh Clark</h4>
-                                        <span>Chef</span>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore eveniet
-                                        magnam nam, atqu.</p>
+                        <div class="product-card">
+                            <div class="product-card__image">
+                                <img src="images/cake.jpg">
+                            </div>
+                            <div class="product-card__info">
+                                <h5 class="product-card__title">Winter Jacket</h5>
+                                <h6 class="product-card__price">$99.99</h6>
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <div class="product-card__like"><i class="icon-heart-outlined"></i></div>
+                                    <div class="product-card__btn">Купити</div>
+                                    <div class="product-card__zoom"><i class="icon-search"></i></div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-3 col-md-6">
-                            <div class="team">
-                                <div class="team-image imagescalein">
-                                    <a href="demos/restaurant/about-us.html"><img
-                                            src={{asset('vendor/images/chefs/3.jpg')}} alt="Mary Jane"></a>
-                                </div>
-                                <div class="team-desc">
-                                    <div class="team-title">
-                                        <h4 class="font-primary t400 ls2">Mary Jane</h4>
-                                        <span>Manager</span>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis cum minima
-                                        mollitia, velit.</p>
+                        <div class="product-card">
+                            <div class="product-card__image">
+                                <img src="images/cake.jpg">
+                            </div>
+                            <div class="product-card__info">
+                                <h5 class="product-card__title">Winter Jacket</h5>
+                                <h6 class="product-card__price">$99.99</h6>
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <div class="product-card__like"><i class="icon-heart-outlined"></i></div>
+                                    <div class="product-card__btn">Купити</div>
+                                    <div class="product-card__zoom"><i class="icon-search"></i></div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-3 col-md-6">
-                            <div class="team">
-                                <div class="team-image imagescalein">
-                                    <a href="demos/restaurant/about-us.html"><img
-                                            src={{asset('vendor/images/chefs/4.jpg')}} alt="Nix Maxwell"></a>
-                                </div>
-                                <div class="team-desc">
-                                    <div class="team-title">
-                                        <h4 class="font-primary t400 ls2">Nix Maxwell</h4>
-                                        <span>Staff</span>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere dolore ipsam
-                                        nemo, similique.</p>
+                        <div class="product-card">
+                            <div class="product-card__image">
+                                <img src="images/cake.jpg">
+                            </div>
+                            <div class="product-card__info">
+                                <h5 class="product-card__title">Winter Jacket</h5>
+                                <h6 class="product-card__price">$99.99</h6>
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <div class="product-card__like"><i class="icon-heart-outlined"></i></div>
+                                    <div class="product-card__btn">Купити</div>
+                                    <div class="product-card__zoom"><i class="icon-search"></i></div>
                                 </div>
                             </div>
                         </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="clear"></div>
-
-            <div
-                style="background: #FFF url({{asset('vendor/images/sections/7.jpg')}}) no-repeat top right; background-size: 100% auto; padding-top: 50px">
-                <div class="container clearfix">
-
-                    <div class="heading-block center nobottomborder">
-                        <span class="font-primary ls1" style="font-size: 14px; color: #AAA">Our Latest News</span>
-                        <h3 class="nott font-secondary ls0" style="font-size: 60px; line-height: 1.2;">News Feed</h3>
-                    </div>
-
-                    <div class="row clearfix">
-
-                        <div class="col-lg-4 col-md-6 bottommargin-sm">
-                            <div class="ipost clearfix">
-                                <div class="entry">
-                                    <div class="entry-image nobottommargin">
-                                        <a href="demos/restaurant/images/blogs/1.jpg')}} data-lightbox=" image"><img
-                                            class="image_fade" src={{asset('vendor/images/blogs/1.jpg')}} alt="Image
-                                            1"></a>
-                                    </div>
-                                    <div class="entry-title">
-                                        <ul class="entry-meta clearfix">
-                                            <li><a href="#">08th Apr 2017</a></li>
-                                            <li><a href="#">Video</a></li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h2 class="nobottommargin"><a href="demos/restaurant/blog.html">Make Ahead Super
-                                                Green Vegan Quinoa Sandwich.</a></h2>
-                                    </div>
+                        <div class="product-card">
+                            <div class="product-card__image">
+                                <img src="images/cake.jpg">
+                            </div>
+                            <div class="product-card__info">
+                                <h5 class="product-card__title">Winter Jacket</h5>
+                                <h6 class="product-card__price">$99.99</h6>
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <div class="product-card__like"><i class="icon-heart-outlined"></i></div>
+                                    <div class="product-card__btn">Купити</div>
+                                    <div class="product-card__zoom"><i class="icon-search"></i></div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-4 col-md-6 bottommargin-sm">
-                            <div class="ipost clearfix">
-                                <div class="entry">
-                                    <div class="entry-image nobottommargin">
-                                        <a href="demos/restaurant/images/blogs/2.jpg')}} data-lightbox=" image"><img
-                                            class="image_fade" src={{asset('vendor/images/blogs/2.jpg')}} alt="Image
-                                            2"></a>
-                                    </div>
-                                    <div class="entry-title">
-                                        <ul class="entry-meta clearfix">
-                                            <li><a href="#">21th Mar 2017</a></li>
-                                            <li><a href="#">Book</a></li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h2 class="nobottommargin"><a href="demos/restaurant/blog.html">We Delivered
-                                                Heart Shape Cornbread Waffles.</a></h2>
-                                    </div>
+                        <div class="product-card">
+                            <div class="product-card__image">
+                                <img src="images/cake.jpg">
+                            </div>
+                            <div class="product-card__info">
+                                <h5 class="product-card__title">Winter Jacket</h5>
+                                <h6 class="product-card__price">$99.99</h6>
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <div class="product-card__like"><i class="icon-heart-outlined"></i></div>
+                                    <div class="product-card__btn">Купити</div>
+                                    <div class="product-card__zoom"><i class="icon-search"></i></div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-4 col-md-6 bottommargin-sm">
-                            <div class="ipost clearfix">
-                                <div class="entry">
-                                    <div class="entry-image nobottommargin">
-                                        <a href="demos/restaurant/images/blogs/3.jpg')}} data-lightbox=" image"><img
-                                            class="image_fade" src={{asset('vendor/images/blogs/3.jpg')}} alt="Image
-                                            3"></a>
-                                    </div>
-                                    <div class="entry-title">
-                                        <ul class="entry-meta clearfix">
-                                            <li><a href="#">10th Feb 2016</a></li>
-                                            <li><a href="#">Recipe</a></li>
-                                        </ul>
-                                        <div class="clear"></div>
-                                        <h2 class="nobottommargin"><a href="demos/restaurant/blog.html">Top Delicious
-                                                Recipes from world's Best Chefs.</a></h2>
-                                    </div>
+                        <div class="product-card">
+                            <div class="product-card__image">
+                                <img src="images/cake.jpg">
+                            </div>
+                            <div class="product-card__info">
+                                <h5 class="product-card__title">Winter Jacket</h5>
+                                <h6 class="product-card__price">$99.99</h6>
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <div class="product-card__like"><i class="icon-heart-outlined"></i></div>
+                                    <div class="product-card__btn">Купити</div>
+                                    <div class="product-card__zoom"><i class="icon-search"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <div class="product-card__image">
+                                <img src="images/cake.jpg">
+                            </div>
+                            <div class="product-card__info">
+                                <h5 class="product-card__title">Winter Jacket</h5>
+                                <h6 class="product-card__price">$99.99</h6>
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <div class="product-card__like"><i class="icon-heart-outlined"></i></div>
+                                    <div class="product-card__btn">Купити</div>
+                                    <div class="product-card__zoom"><i class="icon-search"></i></div>
                                 </div>
                             </div>
                         </div>
@@ -764,135 +334,207 @@
 
                 </div>
             </div>
-
-            <div class="line clear"></div>
-
-            <div class="container section-contact topmargin-lg clearfix">
-                <div class="row clearfix">
-
-                    <div class="col-lg-3 col-md-6 bottommargin-sm center">
-                        <i class="i-plain i-xlarge divcenter nobottommargin icon-et-map"></i>
-                        <h3 class="uppercase font-body" style="font-size: 22px; font-weight: 700;margin-top: 20px">
-                            Contact</h3>
-                        <span class="font-primary">795 Folsom Ave, Suite 600<br>San Francisco, CA 94107</span>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 bottommargin-sm center">
-                        <i class="i-plain i-xlarge divcenter nobottommargin icon-et-clock"></i>
-                        <h3 class="uppercase font-body" style="font-size: 22px; font-weight: 700;margin-top: 20px">
-                            Opening Time</h3>
-                        <span class="font-primary">Sun - Thu | 07:00 - 23:00 Hours<br>
-							Fri - Sat | 08:00 - 01:00 Hours</span>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 bottommargin-sm center">
-                        <i class="i-plain i-xlarge divcenter nobottommargin icon-et-clipboard"></i>
-                        <h3 class="uppercase font-body" style="font-size: 22px; font-weight: 700;margin-top: 20px">
-                            Reservation</h3>
-                        <span class="font-primary"><strong>Mobile: </strong>+62-111-222-333<br>
-							<strong>Fax: </strong>(+62)-11-4752-1433</span>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 bottommargin-sm center">
-                        <i class="i-plain i-xlarge divcenter nobottommargin icon-et-heart"></i>
-                        <h3 class="uppercase font-body" style="font-size: 22px; font-weight: 700;margin-top: 20px">
-                            Social Contact</h3>
-                        <div style="display: flex; justify-content: center">
-                            <a href="#" class="social-icon si-borderless si-facebook">
-                                <i class="icon-line2-social-facebook"></i>
-                                <i class="icon-line2-social-facebook"></i>
-                            </a>
-                            <a href="#" class="social-icon si-borderless si-twitter">
-                                <i class="icon-line2-social-twitter"></i>
-                                <i class="icon-line2-social-twitter"></i>
-                            </a>
-                            <a href="#" class="social-icon si-borderless si-youtube">
-                                <i class="icon-line2-social-youtube"></i>
-                                <i class="icon-line2-social-youtube"></i>
-                            </a>
-                            <a href="#" class="social-icon si-borderless si-email3">
-                                <i class="icon-line2-envelope"></i>
-                                <i class="icon-line2-envelope"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
         </div>
+    </section>
+    <!--  OUR PRODUCT STOP  -->
 
-        <div
-            style="position: absolute; bottom: 0; left: 0; width: 100%; z-index: 3; background: url({{asset('vendor/images/sketch-header.png')}}) repeat center bottom; background-size: auto 100%; height: 40px; margin-bottom: -10px;"></div>
-
-    </section><!-- #content end -->
-
-    <!-- Footer
-    ============================================= -->
-    <footer id="footer" class="dark"
-            style="background: url({{asset('vendor/images/footer-bg.jpg')}})  repeat center center / cover; background-size: auto 100%;; padding: 50px 0 22px">
-
-        <!-- Copyrights
-        ============================================= -->
-        <div id="copyrights" class="nobg">
-
-            <div class="container clearfix">
-
-                <div class="col_half nobottommargin">
-
-                    <span class="font-primary">&copy; Canvas Inc. 2017. All Rights Reserved.</span>
-
-                </div>
-
-                <div class="col_half col_last nobottommargin">
-                    <div class="copyrights-menu copyright-links fright clearfix">
-                        <a href="#">Home</a>/<a href="demos/restaurant/about-us.html">About Us</a>/<a
-                            href="demos/restaurant/menu.html">Menu</a>/<a href="demos/restaurant/blog.html">News</a>/<a
-                            href="demos/restaurant/reservation.html">Contact</a>
+    <!--  RESPONSE START  -->
+    <section class="container-fluid bg-grey main-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="single-response">
+                        <div class="single-response__slide">
+                            <div class="single-response__box" style="background-image: url('images/cake.jpg') ">
+                                <a class="single-response__link" href="#"></a>
+                            </div>
+                            <div class="single-response__desc">
+                                <div class="d-flex justify-content-between align-items-baseline">
+                                    <h3 class="single-response__author">Joyce Weaver - Farmer Store</h3>
+                                    <div class="single-response__arrows d-flex justify-content-center align-items-center">
+                                        <div class="single-response__arrow left-radius d-flex justify-content-center align-items-center">
+                                            <span class="icon-chevron-thin-left"></span>
+                                        </div>
+                                        <div class="single-response__arrow right-radius d-flex justify-content-center align-items-center">
+                                            <span class="icon-chevron-thin-right"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-response__rating">
+                                    <span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span>
+                                </div>
+                                <p class="single-response__text">
+                                    It is a long established fact that a reader will be distracted by the readable
+                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
+                                    it has a more-or-less normal distribution of letters, as opposed to using.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
+        </div>
+    </section>
+    <!--  RESPONSE END  -->
 
-        </div><!-- #copyrights end -->
+    <!--  MOBILE MENU SHADOW START  -->
+    <div class="shadow d-none"></div>
+    <!--  MOBILE MENU SHADOW END  -->
 
-    </footer><!-- #footer end -->
+    <!--  REGISTRATION MODAL WINDOW START  -->
+    <div class="modal auth-top" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <ul class="nav nav-tabs auth-top__tabs position-relative" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link auth-top__link auth-top__link-active text-uppercase" id="home-tab"
+                           data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Вхід</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link auth-top__link text-uppercase" id="profile-tab" data-toggle="tab"
+                           href="#profile" role="tab" aria-controls="profile" aria-selected="false">Реєстрація</a>
+                    </li>
+                    <span class="icon-cross position-absolute auth-top__close"></span>
+                </ul>
+                <div class="tab-content auth-top__content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <form class="auth-top__form">
+                            <div class="auth-top__form-group auth-top__active d-flex flex-column">
+                                <label class="auth-top__label" for="">Телефон або ел. пошта</label>
+                                <input type="text" placeholder="" class="auth-top__input">
+                            </div>
+                            <div class="auth-top__form-group d-flex flex-column">
+                                <label class="auth-top__label" for="">Пароль</label>
+                                <input type="password" placeholder="" class="auth-top__input">
+                            </div>
+                            <div class="auth-top__form-group d-flex flex-rows justify-content-end">
+                                <span><a href="" class="auth-top__restore">Забули пароль?</a></span>
+                            </div>
+                            <div class="auth-top__form-group d-flex flex-rows justify-content-center">
+                                <button class="auth-top__btn text-uppercase">Вхід</button>
+                            </div>
+                            <div class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
+                                <span class="auth-top__or">або</span>
+                                <span class="auth-top__or">Увійти через акаунт:</span>
+                            </div>
+                            <div class="auth-top__form-group d-flex flex-row justify-content-around ">
+                                <button class="auth-top__social"><span class="icon-facebook"></span> Facebook</button>
+                                <button class="auth-top__social"><span class="icon-google"></span> Google</button>
+                            </div>
+                            <div class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
+                                <span class="auth-top__or">Немає облікового запису? <a href="#"
+                                                                                       class="auth-top__restore">Зареєструватися</a></span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <form class="auth-top__form">
+                            <div class="auth-top__form-group auth-top__active d-flex flex-column">
+                                <input type="text" placeholder="Ім'я" class="auth-top__input">
+                            </div>
+                            <div class="auth-top__form-group d-flex flex-column">
+                                <input type="text" placeholder="Номер телефону" class="auth-top__input">
+                            </div>
+                            <div class="auth-top__form-group d-flex flex-column">
+                                <input type="text" placeholder="Ел. пошта" class="auth-top__input">
+                            </div>
+                            <div class="auth-top__form-group d-flex flex-column">
+                                <input type="password" placeholder="Пароль" class="auth-top__input">
+                            </div>
+                            <div class="auth-top__form-group d-flex flex-rows justify-content-end">
+                                <span><a href="" class="auth-top__restore">Забули пароль?</a></span>
+                            </div>
+                            <div class="auth-top__form-group d-flex flex-rows justify-content-center">
+                                <button class="auth-top__btn text-uppercase">Вхід</button>
+                            </div>
+                            <div class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
+                                <span class="auth-top__or">або</span>
+                                <span class="auth-top__or">Увійти через акаунт:</span>
+                            </div>
+                            <div class="auth-top__form-group d-flex flex-row justify-content-around ">
+                                <button class="auth-top__social"><span class="icon-facebook"></span> Facebook</button>
+                                <button class="auth-top__social"><span class="icon-google"></span> Google</button>
+                            </div>
+                            <div class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
+                                <span class="auth-top__or">У Вас вже є аккаунт <a href="#" class="auth-top__restore">Вхід</a></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  REGISTRATION MODAL WINDOW END  -->
 
-</div><!-- #wrapper end -->
-
-<!-- Go To Top
-============================================= -->
-<div id="gotoTop" class="icon-line-arrow-up"></div>
-
-<!-- External JavaScripts
-============================================= -->
-<script src={{asset('js/jquery.js')}}></script>
-<script src={{asset('js/plugins.js')}}></script>
-
-<!-- Footer Scripts
-============================================= -->
-<script src={{asset('js/functions.js')}}></script>
-
-<!-- Custom Carousel JS File -->
+    <!--  FOOTER START  -->
+    <footer class="container-fluid footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                    <h3 class="footer__title">Careful Deserts</h3>
+                    <p class="footer__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor</p>
+                    <p class="footer__info"><span class="icon-envelope mr-2"></span>careful.deserts@gmail.com</p>
+                    <p class="footer__info"><span class="icon-call mr-2"></span>(098) 559 49 49</p>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-2">
+                    <h3 class="footer__title">Наші послуги</h3>
+                    <ul class="footer-menu">
+                        <li class="footer-menu__element"><a href="#" class="footer-menu__link">Головна</a></li>
+                        <li class="footer-menu__element"><a href="#" class="footer-menu__link">Каталог</a></li>
+                        <li class="footer-menu__element"><a href="#" class="footer-menu__link">Блог</a></li>
+                        <li class="footer-menu__element"><a href="#" class="footer-menu__link">Контакти</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-2">
+                    <h3 class="footer__title">Акаунт</h3>
+                    <ul class="footer-menu">
+                        <li class="footer-menu__element"><a href="#" class="footer-menu__link">Мій акаунт</a></li>
+                        <li class="footer-menu__element"><a href="#" class="footer-menu__link">Переглянуті</a></li>
+                        <li class="footer-menu__element"><a href="#" class="footer-menu__link">Дісконт</a></li>
+                        <li class="footer-menu__element"><a href="#" class="footer-menu__link">Замовлення</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                    <h3 class="footer__title">Instagram</h3>
+                    <div class="footer-instagram d-flex justify-content-between">
+                        <div class="footer-instagram__wrapper">
+                            <a href="#" target="_blank" class="footer-instagram__link">
+                                <span class="footer-instagram__icon icon-social"></span>
+                                <img src="images/cake.jpg" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="footer-instagram__wrapper"><a href="#" target="_blank"
+                                                                  class="footer-instagram__link"><span
+                                    class="footer-instagram__icon icon-social"></span><img src="images/cake.jpg" alt=""
+                                                                                           class="img-fluid"></a></div>
+                        <div class="footer-instagram__wrapper"><a href="#" target="_blank"
+                                                                  class="footer-instagram__link"><span
+                                    class="footer-instagram__icon icon-social"></span><img src="images/cake.jpg" alt=""
+                                                                                           class="img-fluid"></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="container-fluid footer-down">
+        <div class="container-lg">
+            <div class="row">
+                <div class="col-12">
+                    Copyright © 2020 Fresh Vegetable. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  FOOTER END  -->
+</div>
+<script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+<script src="libs/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
 <script>
-
-    // jQuery(document).ready( function($){
-    //
-    //     var carouselRTL = false;
-    //
-    //     if( $('body').hasClass('rtl') ) { carouselRTL = true; }
-    //
-    //     $('#food-menu-carousel').owlCarousel({
-    //         animateIn: 'fadeIn',
-    //         animateOut: 'fadeOut',
-    //         items: 1,
-    //         mouseDrag: false,
-    //         dotsContainer: '#item-thumb',
-    //         rtl: carouselRTL
-    //     });
-    //
-
+    // $('#myModal').modal('show')
 </script>
-
 </body>
 </html>

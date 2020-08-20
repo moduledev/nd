@@ -12,12 +12,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 {{--    <title>CarefullDeserts - Панель администратора</title>--}}
     @yield('page-title')
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('libs/admin/adminlte/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('libs/admin/adminlte/dist/css/adminlte.min.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/custom-admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/custom-admin.css') }}">
 
     @yield('styles')
 
@@ -267,6 +267,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
+                            <i class="fas fa-cart-plus"></i>
+                            <p>
+                               Заказы
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Simple Link
@@ -324,12 +332,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('libs/admin/adminlte/plugins/jquery/jquery.min.js') }}"></script>
 
 <!-- Bootstrap 4 -->
-<script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('libs/admin/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
+<script src="{{ asset('libs/admin/adminlte/dist/js/adminlte.min.js') }}"></script>
 @yield('scripts')
 </body>
 </html>

@@ -1,0 +1,73 @@
+.footer {
+  padding: 128px 0 69px;
+  background: $bg-color-light-grey;
+
+  &__title {
+    font-size: 24px;
+    font-family: 'Amatic SC', cursive;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    color: $font-white-color;
+    margin-bottom: 35px;
+  }
+
+  &__desc {
+    font-size: 15px;
+    line-height: 1.8;
+    color: $font-white-color;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    color: $font-white-color;
+
+  }
+}
+.footer-menu {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  &__element {
+    margin: 0 0 10px 0;
+  }
+    &__link {
+      @include color-link($font-white-color);
+    }
+}
+
+.footer-instagram {
+  &__wrapper {
+    width: 83px;
+    height: 83px;
+    cursor: pointer;
+      &:hover {
+        opacity: .7;
+      }
+  }
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__icon {
+    position: absolute;
+    display: none;
+    color: $font-white-color;
+  }
+}
+.footer-instagram .footer-instagram__wrapper:hover .footer-instagram__icon{
+
+    display: block;
+}
+.footer-down {
+  padding: 26px 0 25px;
+  background: #5b5b5b;
+  color: $font-white-color;
+  font-size: 15px;
+}

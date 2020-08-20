@@ -1,0 +1,31 @@
+.header-top {
+  background: $bg-color-grey ;
+  color: $font-light-grey;
+  font-family: 'Nunito', sans-serif;
+}
+
+.header-top-phones {
+  margin: 12px 0 12px 0;
+  &__title {
+    font-size: 13px;
+    line-height: 26px;
+  }
+}
+
+.header-top-registration {
+  margin: 12px 0 12px 0;
+  &__title {
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 26px;
+    transition: all 0.5s ease;
+      &:hover {
+        color: $font-white-color;
+      }
+  }
+  &__separator {
+    height: 9px;
+    margin: 0 14px 0 14px;
+    border-left: 1px solid $font-light-grey;
+  }
+}
