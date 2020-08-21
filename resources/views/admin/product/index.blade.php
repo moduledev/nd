@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('styles')
-    <link rel="stylesheet" href="{{asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
+    <link rel="stylesheet" href="{{asset('libs/admin/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
 @endsection
 @section('content-header')
     <div class="container-fluid">
@@ -24,7 +24,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header ">
-                        <h3 class="card-title">Список доступных товаров:</h3>
+                        <h3 class="card-title">Всего доступных товаров: {{$products->count()}}</h3>
                         <a class="btn btn-info" href="{{route('product.create')}}" style="float: right"><i
                                 class="fas fa-plus"></i> Добавить товар</a>
                     </div>
