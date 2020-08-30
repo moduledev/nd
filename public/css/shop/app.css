@@ -490,6 +490,13 @@
   align-items: center;
 }
 
+.product-tabs__tab-pane {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .product-tabs__list {
   display: flex;
   list-style: none;

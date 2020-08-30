@@ -87,4 +87,9 @@ class ProductRepository extends BaseRepository implements ProductContract
         }
         $product->delete();
     }
+
+    public function getProductsWithAttributes()
+    {
+        return Product::with(['attributes', 'categories', 'images'])->get();
+    }
 }

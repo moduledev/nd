@@ -32,4 +32,6 @@ interface ProductContract
     public function getProductWithAttributes(int $id);
 
     public function deleteProduct(int $id);
+
+    public function getProductsWithAttributes();
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -77,7 +77,8 @@
                     <input type="text" class="header-search__input" placeholder="Знайти ...">
                 </form>
             </div>
-            <div class="header-service col-12 col-sm-12 col-md-12 col-lg-4 d-flex order-xl-3 order-lg-3 order-md-2 order-2">
+            <div
+                class="header-service col-12 col-sm-12 col-md-12 col-lg-4 d-flex order-xl-3 order-lg-3 order-md-2 order-2">
                 <div class="header-service__btn">
                     <span class="icon-view-list"></span>
                 </div>
@@ -125,257 +126,7 @@
         </div>
     </header>
     <!--  HEADER END  -->
-    <div class="container-fluid slider">
-        <div class="row no-gutters">
-            <div class="col-12 ">
-                <div class="jumbotron">
-                    <h1 class="display-4">Hello, world!</h1>
-                    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra
-                        attention to featured content or information.</p>
-                    <hr class="my-4">
-                    <p>It uses utility classes for typography and spacing to space content out within the larger
-                        container.</p>
-                    <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--  ADVANTAGE START  -->
-    <section class="advantage-block main-section container-fluid">
-        <div class="container">
-            <div class="row">
-                <h3 class="main-section__title w-100 text-center">We provide clean food</h3>
-                <div class="col-12">
-                    <div class="section-separator d-flex flex-row align-items-center justify-content-center">
-                        <div class="section-separator__leftline"></div>
-                        <i class="section-separator__icon icon-cake"></i>
-                        <div class="section-separator__rightline"></div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-3 col-md-3 col-6 order-xl-1 order-lg-1 order-md-1 order-2 d-flex flex-column">
-                    <div class="advantage-block__desc text-left">
-                        <h3 class="advantage-block__title text-uppercase">Healthy diet</h3>
-                        <p class="advantage-block__text">It is a long established fact that a reader will be distracted</p>
-                        <a href="#" class="advantage-block__link">детальніше <span class="icon-arrow-thin-right"></span></a>
-                    </div>
-                    <div class="advantage-block__desc text-left">
-                        <h3 class="advantage-block__title text-uppercase">Healthy diet</h3>
-                        <p class="advantage-block__text">It is a long established fact that a reader will be distracted</p>
-                        <a href="#" class="advantage-block__link">детальніше <span class="icon-arrow-thin-right"></span></a>
-                    </div>
-
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-12 order-xl-2 order-lg-2 order-md-2 order-1">
-                    <div class="advantage-block__images">
-                        <div class="advantage-block__image" style="background-image: url('images/cake.jpg') "></div>
-                        <div class="advantage-block__image"></div>
-                        <div class="advantage-block__image"></div>
-                        <div class="advantage-block__image"></div>
-                        <div class="advantage-block__image"></div>
-                        <div class="advantage-block__image"></div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-6 order-xl-3 order-lg-3 order-md-3 order-3 d-flex flex-column">
-                    <div class="advantage-block__desc text-left">
-                        <h3 class="advantage-block__title text-uppercase">Healthy diet</h3>
-                        <p class="advantage-block__text">It is a long established fact that a reader will be distracted</p>
-                        <a href="#" class="advantage-block__link">детальніше <span class="icon-arrow-thin-right"></span></a>
-                    </div>
-                    <div class="advantage-block__desc text-left">
-                        <h3 class="advantage-block__title text-uppercase">Healthy diet</h3>
-                        <p class="advantage-block__text">It is a long established fact that a reader will be distracted</p>
-                        <a href="#" class="advantage-block__link">детальніше <span class="icon-arrow-thin-right"></span></a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--  ADVANTAGE END  -->
-
-    <!--  OUR PRODUCT START  -->
-    <section class="products-tabs-section main-section container-fluid">
-        <div class="container">
-            <div class="row">
-                <h3 class="main-section__title w-100 text-center">Наші десерти</h3>
-                <div class="col-12">
-                    <div class="section-separator d-flex flex-row align-items-center justify-content-center">
-                        <div class="section-separator__leftline"></div>
-                        <i class="section-separator__icon icon-cake"></i>
-                        <div class="section-separator__rightline"></div>
-                    </div>
-                </div>
-                <div class="product-tabs">
-                    <ul class="product-tabs__list">
-                        <li class="product-tabs__tab product-tabs__tab-active">Всі Десерти</li>
-                        <li class="product-tabs__tab">Десерт1</li>
-                        <li class="product-tabs__tab">Десерт2</li>
-                        <li class="product-tabs__tab">Десерт3</li>
-                    </ul>
-                    <div class="product-tabs__tab-content">
-                        <div class="product-card">
-                            <div class="product-card__image">
-                                <img src="images/cake.jpg">
-                            </div>
-                            <div class="product-card__info">
-                                <h5 class="product-card__title">Winter Jacket</h5>
-                                <h6 class="product-card__price">$99.99</h6>
-                                <div class="d-flex flex-row align-items-center justify-content-between">
-                                    <div class="product-card__like"><i class="icon-heart-outlined"></i></div>
-                                    <div class="product-card__btn">Купити</div>
-                                    <div class="product-card__zoom"><i class="icon-search"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-card__image">
-                                <img src="images/cake.jpg">
-                            </div>
-                            <div class="product-card__info">
-                                <h5 class="product-card__title">Winter Jacket</h5>
-                                <h6 class="product-card__price">$99.99</h6>
-                                <div class="d-flex flex-row align-items-center justify-content-between">
-                                    <div class="product-card__like"><i class="icon-heart-outlined"></i></div>
-                                    <div class="product-card__btn">Купити</div>
-                                    <div class="product-card__zoom"><i class="icon-search"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-card__image">
-                                <img src="images/cake.jpg">
-                            </div>
-                            <div class="product-card__info">
-                                <h5 class="product-card__title">Winter Jacket</h5>
-                                <h6 class="product-card__price">$99.99</h6>
-                                <div class="d-flex flex-row align-items-center justify-content-between">
-                                    <div class="product-card__like"><i class="icon-heart-outlined"></i></div>
-                                    <div class="product-card__btn">Купити</div>
-                                    <div class="product-card__zoom"><i class="icon-search"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-card__image">
-                                <img src="images/cake.jpg">
-                            </div>
-                            <div class="product-card__info">
-                                <h5 class="product-card__title">Winter Jacket</h5>
-                                <h6 class="product-card__price">$99.99</h6>
-                                <div class="d-flex flex-row align-items-center justify-content-between">
-                                    <div class="product-card__like"><i class="icon-heart-outlined"></i></div>
-                                    <div class="product-card__btn">Купити</div>
-                                    <div class="product-card__zoom"><i class="icon-search"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-card__image">
-                                <img src="images/cake.jpg">
-                            </div>
-                            <div class="product-card__info">
-                                <h5 class="product-card__title">Winter Jacket</h5>
-                                <h6 class="product-card__price">$99.99</h6>
-                                <div class="d-flex flex-row align-items-center justify-content-between">
-                                    <div class="product-card__like"><i class="icon-heart-outlined"></i></div>
-                                    <div class="product-card__btn">Купити</div>
-                                    <div class="product-card__zoom"><i class="icon-search"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-card__image">
-                                <img src="images/cake.jpg">
-                            </div>
-                            <div class="product-card__info">
-                                <h5 class="product-card__title">Winter Jacket</h5>
-                                <h6 class="product-card__price">$99.99</h6>
-                                <div class="d-flex flex-row align-items-center justify-content-between">
-                                    <div class="product-card__like"><i class="icon-heart-outlined"></i></div>
-                                    <div class="product-card__btn">Купити</div>
-                                    <div class="product-card__zoom"><i class="icon-search"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-card__image">
-                                <img src="images/cake.jpg">
-                            </div>
-                            <div class="product-card__info">
-                                <h5 class="product-card__title">Winter Jacket</h5>
-                                <h6 class="product-card__price">$99.99</h6>
-                                <div class="d-flex flex-row align-items-center justify-content-between">
-                                    <div class="product-card__like"><i class="icon-heart-outlined"></i></div>
-                                    <div class="product-card__btn">Купити</div>
-                                    <div class="product-card__zoom"><i class="icon-search"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-card">
-                            <div class="product-card__image">
-                                <img src="images/cake.jpg">
-                            </div>
-                            <div class="product-card__info">
-                                <h5 class="product-card__title">Winter Jacket</h5>
-                                <h6 class="product-card__price">$99.99</h6>
-                                <div class="d-flex flex-row align-items-center justify-content-between">
-                                    <div class="product-card__like"><i class="icon-heart-outlined"></i></div>
-                                    <div class="product-card__btn">Купити</div>
-                                    <div class="product-card__zoom"><i class="icon-search"></i></div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--  OUR PRODUCT STOP  -->
-
-    <!--  RESPONSE START  -->
-    <section class="container-fluid bg-grey main-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="single-response">
-                        <div class="single-response__slide">
-                            <div class="single-response__box" style="background-image: url('images/cake.jpg') ">
-                                <a class="single-response__link" href="#"></a>
-                            </div>
-                            <div class="single-response__desc">
-                                <div class="d-flex justify-content-between align-items-baseline">
-                                    <h3 class="single-response__author">Joyce Weaver - Farmer Store</h3>
-                                    <div class="single-response__arrows d-flex justify-content-center align-items-center">
-                                        <div class="single-response__arrow left-radius d-flex justify-content-center align-items-center">
-                                            <span class="icon-chevron-thin-left"></span>
-                                        </div>
-                                        <div class="single-response__arrow right-radius d-flex justify-content-center align-items-center">
-                                            <span class="icon-chevron-thin-right"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="single-response__rating">
-                                    <span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span>
-                                </div>
-                                <p class="single-response__text">
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters, as opposed to using.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--  RESPONSE END  -->
+    @yield('main-content')
 
     <!--  MOBILE MENU SHADOW START  -->
     <div class="shadow d-none"></div>
@@ -413,7 +164,8 @@
                             <div class="auth-top__form-group d-flex flex-rows justify-content-center">
                                 <button class="auth-top__btn text-uppercase">Вхід</button>
                             </div>
-                            <div class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
+                            <div
+                                class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
                                 <span class="auth-top__or">або</span>
                                 <span class="auth-top__or">Увійти через акаунт:</span>
                             </div>
@@ -421,7 +173,8 @@
                                 <button class="auth-top__social"><span class="icon-facebook"></span> Facebook</button>
                                 <button class="auth-top__social"><span class="icon-google"></span> Google</button>
                             </div>
-                            <div class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
+                            <div
+                                class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
                                 <span class="auth-top__or">Немає облікового запису? <a href="#"
                                                                                        class="auth-top__restore">Зареєструватися</a></span>
                             </div>
@@ -447,7 +200,8 @@
                             <div class="auth-top__form-group d-flex flex-rows justify-content-center">
                                 <button class="auth-top__btn text-uppercase">Вхід</button>
                             </div>
-                            <div class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
+                            <div
+                                class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
                                 <span class="auth-top__or">або</span>
                                 <span class="auth-top__or">Увійти через акаунт:</span>
                             </div>
@@ -455,7 +209,8 @@
                                 <button class="auth-top__social"><span class="icon-facebook"></span> Facebook</button>
                                 <button class="auth-top__social"><span class="icon-google"></span> Google</button>
                             </div>
-                            <div class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
+                            <div
+                                class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
                                 <span class="auth-top__or">У Вас вже є аккаунт <a href="#" class="auth-top__restore">Вхід</a></span>
                             </div>
                         </form>
@@ -528,13 +283,11 @@
     </div>
     <!--  FOOTER END  -->
 </div>
-<script
-    src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
-<script src="libs/bootstrap-4.4.1-dist/js/bootstrap.js"></script>
-<script>
-    // $('#myModal').modal('show')
-</script>
+
+<script src="{{ asset('libs/admin/adminlte/plugins/jquery/jquery.min.js') }}"></script>
+
+<!-- Bootstrap 4 -->
+<script src="{{ asset('libs/admin/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{asset('js/shop.js')}}"></script>
 </body>
 </html>

@@ -24,6 +24,11 @@ class Product extends Model
         'available' => 'integer',
         'gluten' => 'integer',
         'lactose' => 'integer',
+        'images' => 'array'
+    ];
+
+    protected $appends = [
+        'images', 'name'
     ];
 
     /**
@@ -40,6 +45,10 @@ class Product extends Model
         ];
     }
 
+    public function getNameAttribute()
+    {
+        return app()->getLocale() === 'ru' ? $this->name_ru : $this->name_ua;
+    }
 
     /**
      * @return array|\Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -69,6 +78,11 @@ class Product extends Model
     public function categories()
     {
         return $this->belongsToMany('App\Category', 'product_category','product_id', 'category_id');
+    }
+
+    public function getImagesAttribute()
+    {
+        return $this->images()->get()->pluck('path');
     }
 
 }

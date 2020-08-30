@@ -14,6 +14,10 @@ class Category extends Model
     protected $fillable = [
         'code', 'slug', 'name_ru','name_ua'
     ];
+
+    protected $appends = [
+        'name'
+    ];
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -26,6 +30,11 @@ class Category extends Model
                 'source' => 'code'
             ]
         ];
+    }
+
+    public function getNameAttribute()
+    {
+        return app()->getLocale() === 'ru' ? $this->name_ru : $this->name_ua;
     }
 
     public function products()

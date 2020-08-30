@@ -25,4 +25,6 @@ interface CategoryContract
      * @return mixed
      */
     public function updateCategory(CategoryUpdateRequest $request, int $id);
+
+    public function getCategoriesWithProducts();
 }

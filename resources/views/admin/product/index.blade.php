@@ -55,7 +55,7 @@
                                     <td class="text-center">
                                         <img
                                             class="img-circle elevation-2 img-responsive rounded-circle admins-table__image"
-                                            src="@if($product->images->first()) {{asset('storage/'.$product->images->first()['path'])}} @else  @endif"
+{{--                                            src="@if($product->images->first()) {{asset('storage/'.$product->images->first()['path'])}} @else  @endif"--}}
                                             alt="">
                                     </td>
                                     <td class="d-flex flex-row align-content-around justify-content-around">

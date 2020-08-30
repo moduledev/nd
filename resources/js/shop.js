@@ -7,6 +7,7 @@
 require('./bootstrap');
 window.Vue = require('vue');
 
+Vue.component('tabs', require('./components/shop/TabsComponent').default);
 
 const app = new Vue({
     el: '#app',

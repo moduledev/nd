@@ -496,7 +496,7 @@
                             vm.showAlert = true;
                         })
                     } else {
-                        // window.location.assign('/admin/products')
+                        window.location.assign('/admin/products')
                     }
                 })
             }

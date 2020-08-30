@@ -50,4 +50,9 @@ class CategoryRepository extends BaseRepository implements CategoryContract
         $category->save();
         return $category;
     }
+
+    public function getCategoriesWithProducts()
+    {
+      return $this->model->products();
+    }
 }
