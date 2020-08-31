@@ -8,6 +8,8 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 Vue.component('tabs', require('./components/shop/TabsComponent').default);
+Vue.component('auth-tabs',require('./components/shop/auth/Auth-tabs').default);
+Vue.component('register-enter',require('./components/shop/auth/Register-enter').default);
 
 const app = new Vue({
     el: '#app',

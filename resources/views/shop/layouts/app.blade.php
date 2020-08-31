@@ -19,11 +19,18 @@
                 <div class="col-6 header-top-phones">
                     <span class="header-top-phones__title">Подзвоніть нам: (098,063)559-49-49</span>
                 </div>
-                <div class="col-3 d-flex flex-row align-items-baseline justify-content-end header-top-registration">
-                    <span class="header-top-registration__title">Авторизація</span>
-                    <div class="header-top-registration__separator"></div>
-                    <span class="header-top-registration__title">Реєстрація</span>
-                </div>
+                @guest
+                    <auth-tabs inline-template>
+                        <div class="col-3 d-flex flex-row align-items-baseline justify-content-end header-top-registration">
+                            <span class="header-top-registration__title" @click="emitClickEvent('enter')" id="authActivate">Авторизація</span>
+                            <div class="header-top-registration__separator"></div>
+                            <span class="header-top-registration__title" @click="emitClickEvent('register')" id="registerActivate">Реєстрація</span>
+                        </div>
+                    </auth-tabs>
+                @endguest
+                @auth
+                    <li><a href="{{ url("logout") }}">logout</a></li>
+                @endauth
             </div>
         </div>
     </div>
@@ -126,99 +133,102 @@
         </div>
     </header>
     <!--  HEADER END  -->
-    @yield('main-content')
+@yield('main-content')
 
-    <!--  MOBILE MENU SHADOW START  -->
-    <div class="shadow d-none"></div>
+<!--  MOBILE MENU SHADOW START  -->
+    <div class="shadow d-none" id="shadow"></div>
     <!--  MOBILE MENU SHADOW END  -->
 
     <!--  REGISTRATION MODAL WINDOW START  -->
-    <div class="modal auth-top" tabindex="-1" role="dialog" id="myModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <ul class="nav nav-tabs auth-top__tabs position-relative" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link auth-top__link auth-top__link-active text-uppercase" id="home-tab"
-                           data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Вхід</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link auth-top__link text-uppercase" id="profile-tab" data-toggle="tab"
-                           href="#profile" role="tab" aria-controls="profile" aria-selected="false">Реєстрація</a>
-                    </li>
-                    <span class="icon-cross position-absolute auth-top__close"></span>
-                </ul>
-                <div class="tab-content auth-top__content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <form class="auth-top__form">
-                            <div class="auth-top__form-group auth-top__active d-flex flex-column">
-                                <label class="auth-top__label" for="">Телефон або ел. пошта</label>
-                                <input type="text" placeholder="" class="auth-top__input">
-                            </div>
-                            <div class="auth-top__form-group d-flex flex-column">
-                                <label class="auth-top__label" for="">Пароль</label>
-                                <input type="password" placeholder="" class="auth-top__input">
-                            </div>
-                            <div class="auth-top__form-group d-flex flex-rows justify-content-end">
-                                <span><a href="" class="auth-top__restore">Забули пароль?</a></span>
-                            </div>
-                            <div class="auth-top__form-group d-flex flex-rows justify-content-center">
-                                <button class="auth-top__btn text-uppercase">Вхід</button>
-                            </div>
-                            <div
-                                class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
-                                <span class="auth-top__or">або</span>
-                                <span class="auth-top__or">Увійти через акаунт:</span>
-                            </div>
-                            <div class="auth-top__form-group d-flex flex-row justify-content-around ">
-                                <button class="auth-top__social"><span class="icon-facebook"></span> Facebook</button>
-                                <button class="auth-top__social"><span class="icon-google"></span> Google</button>
-                            </div>
-                            <div
-                                class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
+    <register-enter inline-template>
+        <div class="modal auth-top" v-if="modalShow" :class="modalShow ? 'show' : ''">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <ul class="nav nav-tabs auth-top__tabs position-relative" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link auth-top__link auth-top__link-active text-uppercase" id="authGet-tab"
+                               data-toggle="tab" href="#authGet" role="tab" aria-controls="home"
+                               aria-selected="true">Вхід</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link auth-top__link text-uppercase" id="registerGet-tab" data-toggle="tab"
+                               href="#registerGet" role="tab" aria-controls="profile" aria-selected="false">Реєстрація</a>
+                        </li>
+                        <span class="icon-cross position-absolute auth-top__close" @click="closeModal()"></span>
+                    </ul>
+                    <div class="tab-content auth-top__content" id="myTabContent">
+                        <div class="tab-pane fade" :class="enterTab ? ' show active' : ''" id="authGet" role="tabpanel" aria-labelledby="authGet-tab">
+                            <form class="auth-top__form">
+                                <div class="auth-top__form-group auth-top__active d-flex flex-column">
+                                    <label class="auth-top__label" for="">Телефон або ел. пошта</label>
+                                    <input type="text" placeholder="" class="auth-top__input">
+                                </div>
+                                <div class="auth-top__form-group d-flex flex-column">
+                                    <label class="auth-top__label" for="">Пароль</label>
+                                    <input type="password" placeholder="" class="auth-top__input">
+                                </div>
+                                <div class="auth-top__form-group d-flex flex-rows justify-content-end">
+                                    <span><a href="" class="auth-top__restore">Забули пароль?</a></span>
+                                </div>
+                                <div class="auth-top__form-group d-flex flex-rows justify-content-center">
+                                    <button class="auth-top__btn text-uppercase">Вхід</button>
+                                </div>
+                                <div
+                                    class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
+                                    <span class="auth-top__or">або</span>
+                                    <span class="auth-top__or">Увійти через акаунт:</span>
+                                </div>
+                                <div class="auth-top__form-group d-flex flex-row justify-content-around ">
+                                    <button class="auth-top__social"><span class="icon-facebook"></span> Facebook</button>
+                                    <button class="auth-top__social"><span class="icon-google"></span> Google</button>
+                                </div>
+                                <div
+                                    class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
                                 <span class="auth-top__or">Немає облікового запису? <a href="#"
                                                                                        class="auth-top__restore">Зареєструватися</a></span>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <form class="auth-top__form">
-                            <div class="auth-top__form-group auth-top__active d-flex flex-column">
-                                <input type="text" placeholder="Ім'я" class="auth-top__input">
-                            </div>
-                            <div class="auth-top__form-group d-flex flex-column">
-                                <input type="text" placeholder="Номер телефону" class="auth-top__input">
-                            </div>
-                            <div class="auth-top__form-group d-flex flex-column">
-                                <input type="text" placeholder="Ел. пошта" class="auth-top__input">
-                            </div>
-                            <div class="auth-top__form-group d-flex flex-column">
-                                <input type="password" placeholder="Пароль" class="auth-top__input">
-                            </div>
-                            <div class="auth-top__form-group d-flex flex-rows justify-content-end">
-                                <span><a href="" class="auth-top__restore">Забули пароль?</a></span>
-                            </div>
-                            <div class="auth-top__form-group d-flex flex-rows justify-content-center">
-                                <button class="auth-top__btn text-uppercase">Вхід</button>
-                            </div>
-                            <div
-                                class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
-                                <span class="auth-top__or">або</span>
-                                <span class="auth-top__or">Увійти через акаунт:</span>
-                            </div>
-                            <div class="auth-top__form-group d-flex flex-row justify-content-around ">
-                                <button class="auth-top__social"><span class="icon-facebook"></span> Facebook</button>
-                                <button class="auth-top__social"><span class="icon-google"></span> Google</button>
-                            </div>
-                            <div
-                                class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
-                                <span class="auth-top__or">У Вас вже є аккаунт <a href="#" class="auth-top__restore">Вхід</a></span>
-                            </div>
-                        </form>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" :class="registerTab ? ' active show ' : ''" id="registerGet" role="tabpanel" aria-labelledby="registerGet-tab">
+                            <form class="auth-top__form">
+                                <div class="auth-top__form-group auth-top__active d-flex flex-column">
+                                    <input type="text" placeholder="Ім'я" class="auth-top__input">
+                                </div>
+                                <div class="auth-top__form-group d-flex flex-column">
+                                    <input type="text" placeholder="Номер телефону" class="auth-top__input">
+                                </div>
+                                <div class="auth-top__form-group d-flex flex-column">
+                                    <input type="text" placeholder="Ел. пошта" class="auth-top__input">
+                                </div>
+                                <div class="auth-top__form-group d-flex flex-column">
+                                    <input type="password" placeholder="Пароль" class="auth-top__input">
+                                </div>
+                                <div class="auth-top__form-group d-flex flex-rows justify-content-end">
+                                    <span><a href="" class="auth-top__restore">Забули пароль?</a></span>
+                                </div>
+                                <div class="auth-top__form-group d-flex flex-rows justify-content-center">
+                                    <button class="auth-top__btn text-uppercase">Вхід</button>
+                                </div>
+                                <div
+                                    class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
+                                    <span class="auth-top__or">або</span>
+                                    <span class="auth-top__or">Увійти через акаунт:</span>
+                                </div>
+                                <div class="auth-top__form-group d-flex flex-row justify-content-around ">
+                                    <button class="auth-top__social"><span class="icon-facebook"></span> Facebook</button>
+                                    <button class="auth-top__social"><span class="icon-google"></span> Google</button>
+                                </div>
+                                <div
+                                    class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
+                                    <span class="auth-top__or">У Вас вже є аккаунт <a href="#" class="auth-top__restore">Вхід</a></span>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </register-enter>
     <!--  REGISTRATION MODAL WINDOW END  -->
 
     <!--  FOOTER START  -->
@@ -289,5 +299,23 @@
 <!-- Bootstrap 4 -->
 <script src="{{ asset('libs/admin/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{asset('js/shop.js')}}"></script>
+<script>
+    // $('#authActivate').on('click', function () {
+    //     $('#myModal').show(function () {
+    //         $('#authGet-tab').tab('show').addClass('auth-top__link-active')
+    //         $('#registerGet-tab').removeClass('auth-top__link-active')
+    //     })
+    // })
+    // $('#registerActivate').on('click', function () {
+    //     $('#myModal').show(function () {
+    //         $('#registerGet-tab').tab('show').addClass('auth-top__link-active')
+    //         $('#authGet-tab').removeClass('auth-top__link-active')
+    //     })
+    // })
+    //
+    // $('#closeModal').on('click', function (){
+    //     $('#myModal').hide();
+    // });
+</script>
 </body>
 </html>

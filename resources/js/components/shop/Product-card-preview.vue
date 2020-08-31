@@ -5,7 +5,7 @@
         >
             <div class="product-card" v-for="product in category.products">
                 <div class="product-card__image">
-                    <img src="images/cake.jpg">
+                    <img :src="'/storage/'+product.images[0]">
                 </div>
                 <div class="product-card__info">
                     <h5 class="product-card__title">{{product.name}}</h5>
@@ -25,17 +25,6 @@
     export default {
         name: "Product-card-preview",
         props: ['categories', 'active'],
-        data() {
-            return {
-                activeTab: ''
-            }
-        },
-        methods: {
-            isActive(name) {
-                console.log(props.active)
-                // return name === active
-            }
-        }
     }
 </script>
 
