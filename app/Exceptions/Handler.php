@@ -2,7 +2,6 @@
 
 namespace App\Exceptions;
 
-use Exception;
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Auth\AuthenticationException;
@@ -59,9 +58,12 @@ class Handler extends ExceptionHandler
         }
         $guard = Arr::get($exception->guards(), 0);
         switch ($guard) {
-            case 'admin':
-                $login = 'admin.login';
+            case 'user':
+                $login = 'login';
                 break;
+//            case 'admin':
+//                $login = 'admin.login';
+//                break;
             case 'api':
                 $login = 'register';
                 break;

@@ -34,6 +34,11 @@ class AdminLoginController extends Controller
      * Display a listing of the resource.
      *
      */
+
+    protected function guard()
+    {
+        return Auth::guard('admin');
+    }
     public function login()
     {
         return view('auth.admin.login');

@@ -15,7 +15,7 @@ class Admin extends Authenticatable
     /**
      * Set quard name for permission role system
      */
-    protected $guard_name = 'web';
+    protected $guard_name = 'admin';
 
     /**
      * The attribute that are mass assignable.

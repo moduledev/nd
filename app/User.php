@@ -18,7 +18,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
     ];
-
+    /**
+     * Set quard name for permission role system
+     */
+    protected $guard_name = 'web';
     /**
      * The attribute that should be hidden for arrays.
      *

@@ -29,7 +29,6 @@ export default {
                 this.modalShow = true;
             }
         })
-        eventBus.$off('active', tab);
     }
 }
 </script>

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?haztds');
-  src:  url('fonts/icomoon.eot?haztds#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?haztds') format('truetype'),
-    url('fonts/icomoon.woff?haztds') format('woff'),
-    url('fonts/icomoon.svg?haztds#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?kvl9ar');
+  src:  url('fonts/icomoon.eot?kvl9ar#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?kvl9ar') format('truetype'),
+    url('fonts/icomoon.woff?kvl9ar') format('woff'),
+    url('fonts/icomoon.svg?kvl9ar#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -13,7 +13,7 @@
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
-  speak: none;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -25,6 +25,24 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-keyboard_arrow_up:before {
+  content: "\e920";
+}
+.icon-keyboard_arrow_down:before {
+  content: "\e921";
+}
+.icon-chevron-down:before {
+  content: "\e91e";
+}
+.icon-chevron-up:before {
+  content: "\e91f";
+}
+.icon-shopping-basket:before {
+  content: "\e90d";
+}
+.icon-shopping-bag:before {
+  content: "\e906";
+}
 .icon-cake:before {
   content: "\e91d";
 }
@@ -54,6 +72,15 @@
 }
 .icon-contact:before {
   content: "\e90c";
+}
+.icon-book:before {
+  content: "\e912";
+}
+.icon-read:before {
+  content: "\e912";
+}
+.icon-reading:before {
+  content: "\e912";
 }
 .icon-grid:before {
   content: "\e900";
@@ -183,12 +210,6 @@
 }
 .icon-social1:before {
   content: "\e905";
-}
-.icon-shopping-basket:before {
-  content: "\e90d";
-}
-.icon-shopping-bag:before {
-  content: "\e906";
 }
 .icon-chevron-thin-right:before {
   content: "\e91c";

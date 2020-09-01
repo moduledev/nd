@@ -1848,7 +1848,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.modalShow = true;
       }
     });
-    _eventBus__WEBPACK_IMPORTED_MODULE_0__["eventBus"].$off('active', tab);
   }
 });
 

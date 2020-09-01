@@ -29,7 +29,24 @@
                     </auth-tabs>
                 @endguest
                 @auth
-                    <li><a href="{{ url("logout") }}">logout</a></li>
+                    <nav class="header-top-user-menu header-top-registration">
+                        <span class="icon-user">  {{Auth::user()->name}}</span>
+                        <span class="icon-keyboard_arrow_down"></span>
+                        <ul class="header-top-user-menu d-none">
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                                    <p>Выйти</p></a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
+                        </ul>
+                    </nav>
+
+
                 @endauth
             </div>
         </div>
@@ -158,20 +175,45 @@
                     </ul>
                     <div class="tab-content auth-top__content" id="myTabContent">
                         <div class="tab-pane fade" :class="enterTab ? ' show active' : ''" id="authGet" role="tabpanel" aria-labelledby="authGet-tab">
-                            <form class="auth-top__form">
+                            <form class="auth-top__form" action="{{ route('login') }}" method="POST">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="auth-top__form-group auth-top__active d-flex flex-column">
-                                    <label class="auth-top__label" for="">Телефон або ел. пошта</label>
-                                    <input type="text" placeholder="" class="auth-top__input">
+                                    <label class="auth-top__label" for="">Телефон або ел. пошта </label>
+                                    <input type="text"
+                                           id="email"
+                                           name="email"
+                                           value="{{ old('email') }}"
+                                           placeholder=""
+                                           class="auth-top__input"
+                                           required
+                                           autofocus
+                                    >
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="auth-top__form-group d-flex flex-column">
                                     <label class="auth-top__label" for="">Пароль</label>
-                                    <input type="password" placeholder="" class="auth-top__input">
+                                    <input type="password"
+                                           id="password"
+                                           name="password"
+                                           placeholder=""
+                                           class="auth-top__input"
+                                           required
+                                    >
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="auth-top__form-group d-flex flex-rows justify-content-end">
                                     <span><a href="" class="auth-top__restore">Забули пароль?</a></span>
                                 </div>
                                 <div class="auth-top__form-group d-flex flex-rows justify-content-center">
-                                    <button class="auth-top__btn text-uppercase">Вхід</button>
+                                    <button class="auth-top__btn text-uppercase">{{ __('Login') }}</button>
                                 </div>
                                 <div
                                     class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
@@ -190,24 +232,47 @@
                             </form>
                         </div>
                         <div class="tab-pane fade" :class="registerTab ? ' active show ' : ''" id="registerGet" role="tabpanel" aria-labelledby="registerGet-tab">
-                            <form class="auth-top__form">
+                            <form class="auth-top__form" method="POST" action="{{route('register')}}">
+                                @csrf
                                 <div class="auth-top__form-group auth-top__active d-flex flex-column">
-                                    <input type="text" placeholder="Ім'я" class="auth-top__input">
+                                    <input type="text"
+                                           id="name"
+                                           placeholder="Ім'я"
+                                           name="name"
+                                           class="auth-top__input"
+                                    required>
                                 </div>
                                 <div class="auth-top__form-group d-flex flex-column">
-                                    <input type="text" placeholder="Номер телефону" class="auth-top__input">
+                                    <input type="text"
+                                           placeholder="Номер телефону"
+                                           class="auth-top__input">
                                 </div>
                                 <div class="auth-top__form-group d-flex flex-column">
-                                    <input type="text" placeholder="Ел. пошта" class="auth-top__input">
+                                    <input type="email"
+                                           id="email"
+                                           name="email"
+                                           placeholder="Ел. пошта"
+                                           class="auth-top__input">
                                 </div>
                                 <div class="auth-top__form-group d-flex flex-column">
-                                    <input type="password" placeholder="Пароль" class="auth-top__input">
+                                    <input type="password"
+                                           id="password"
+                                           name="password"
+                                           placeholder="Пароль"
+                                           class="auth-top__input">
+                                </div>
+                                <div class="auth-top__form-group d-flex flex-column">
+                                    <input type="password"
+                                           id="password-confirm"
+                                           name="password_confirmation"
+                                           placeholder="Підтвердити пароль"
+                                           class="auth-top__input">
                                 </div>
                                 <div class="auth-top__form-group d-flex flex-rows justify-content-end">
                                     <span><a href="" class="auth-top__restore">Забули пароль?</a></span>
                                 </div>
                                 <div class="auth-top__form-group d-flex flex-rows justify-content-center">
-                                    <button class="auth-top__btn text-uppercase">Вхід</button>
+                                    <button class="auth-top__btn text-uppercase">{{ __('Register') }}</button>
                                 </div>
                                 <div
                                     class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
@@ -299,23 +364,5 @@
 <!-- Bootstrap 4 -->
 <script src="{{ asset('libs/admin/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{asset('js/shop.js')}}"></script>
-<script>
-    // $('#authActivate').on('click', function () {
-    //     $('#myModal').show(function () {
-    //         $('#authGet-tab').tab('show').addClass('auth-top__link-active')
-    //         $('#registerGet-tab').removeClass('auth-top__link-active')
-    //     })
-    // })
-    // $('#registerActivate').on('click', function () {
-    //     $('#myModal').show(function () {
-    //         $('#registerGet-tab').tab('show').addClass('auth-top__link-active')
-    //         $('#authGet-tab').removeClass('auth-top__link-active')
-    //     })
-    // })
-    //
-    // $('#closeModal').on('click', function (){
-    //     $('#myModal').hide();
-    // });
-</script>
 </body>
 </html>
