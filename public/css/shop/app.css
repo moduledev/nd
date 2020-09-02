@@ -799,7 +799,7 @@
   border: solid 1px #ededed;
   background-color: #ffffff;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .product-card__info {

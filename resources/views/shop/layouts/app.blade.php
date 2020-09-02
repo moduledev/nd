@@ -144,7 +144,7 @@
                     </div>
                     <div class="header-cart-icon ml-4">
                         <span class="icon-shopping-bag header-cart__icon"></span>
-                        <span class="header-cart__count d-none">19</span>
+                        <span class="header-cart-icon__count ">19</span>
                     </div>
                 </div>
             </div>
