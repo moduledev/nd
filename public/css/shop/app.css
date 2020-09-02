@@ -483,6 +483,52 @@
   opacity: 0.6;
 }
 
+.header-top-user-menu {
+  cursor: pointer;
+  position: relative;
+  width: 150px;
+}
+
+.header-top-user-menu__trigger {
+  transition: 0.5s linear;
+}
+
+.header-top-user-menu__trigger:hover {
+  opacity: 0.8;
+}
+
+.header-top-user-menu__list {
+  position: absolute;
+  top: 38px;
+  z-index: 999999999;
+  list-style: none;
+  padding: 0;
+}
+
+.header-top-user-menu__list__element {
+  padding: 7px 10px;
+  margin: 0;
+  background-color: #cccccc;
+}
+
+.header-top-user-menu__list__element a {
+  color: #92c752;
+}
+
+.header-top-user-menu__list__element a:link {
+  text-decoration: none;
+  color: #92c752;
+}
+
+.header-top-user-menu__list__element a:visited {
+  text-decoration: none;
+  color: #92c752;
+}
+
+.header-top-user-menu__list__element a:hover {
+  color: #fff;
+}
+
 .product-tabs {
   width: 100%;
   display: flex;

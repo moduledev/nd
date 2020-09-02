@@ -17,27 +17,39 @@
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-6 header-top-phones">
-                    <span class="header-top-phones__title">Подзвоніть нам: (098,063)559-49-49</span>
+                    <span class="header-top-phones__title">@lang('contact.call_us'): (098,063)559-49-49</span>
                 </div>
                 @guest
                     <auth-tabs inline-template>
-                        <div class="col-3 d-flex flex-row align-items-baseline justify-content-end header-top-registration">
-                            <span class="header-top-registration__title" @click="emitClickEvent('enter')" id="authActivate">Авторизація</span>
+                        <div
+                            class="col-3 d-flex flex-row align-items-baseline justify-content-end header-top-registration">
+                            <span class="header-top-registration__title" @click="emitClickEvent('enter')"
+                                  id="authActivate">@lang('auth.authorization')</span>
                             <div class="header-top-registration__separator"></div>
-                            <span class="header-top-registration__title" @click="emitClickEvent('register')" id="registerActivate">Реєстрація</span>
+                            <span class="header-top-registration__title" @click="emitClickEvent('register')"
+                                  id="registerActivate">@lang('auth.registration')</span>
                         </div>
                     </auth-tabs>
                 @endguest
                 @auth
                     <nav class="header-top-user-menu header-top-registration">
-                        <span class="icon-user">  {{Auth::user()->name}}</span>
-                        <span class="icon-keyboard_arrow_down"></span>
-                        <ul class="header-top-user-menu d-none">
-                            <li>
+                        <div class="header-top-user-menu__trigger" onclick="(function (){
+                           if(document.getElementById('topUserHeaderMenu').classList.contains('d-none')){
+                                   document.getElementById('topUserHeaderMenu').classList.remove('d-none')
+                           } else {
+                               document.getElementById('topUserHeaderMenu').classList.add('d-none')
+                           }
+                        }())">
+                            <span class="icon-user">
+                            {{Auth::user()->name}}
+                        </span><span class="icon-keyboard_arrow_down"></span>
+                        </div>
+                        <ul class="header-top-user-menu__list d-none" id="topUserHeaderMenu">
+                            <li class="header-top-user-menu__list__element d-flex align-content-between justify-content-center">
                                 <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
-                                    <p>Выйти</p></a>
+                                    <span class="icon-exit"></span>  @lang('auth.exit')</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                       style="display: none;">
                                     @csrf
@@ -63,12 +75,19 @@
             </div>
             <nav class="col-md-12 col-lg-6 header-menu order-xl-2 order-lg-2 order-md-3 order-3 ">
                 <ul class="mobile-service-menu mobile-show">
-                    <span class="icon-user mobile-service-menu__icon"></span>
-                    <li class="mobile-service-menu__item"><a href="" class="mobile-service-menu__link">Вхід</a></li>
-                    <span class="mobile-service-menu__separator"></span>
-                    <li class="mobile-service-menu__item"><a href="" class="mobile-service-menu__link">Реєстрація</a>
-                    </li>
+                    @guest
+                        <span class="icon-user mobile-service-menu__icon"></span>
+                        <li class="mobile-service-menu__item"><a href="" class="mobile-service-menu__link">Вхід</a></li>
+                        <span class="mobile-service-menu__separator"></span>
+                        <li class="mobile-service-menu__item"><a href=""
+                                                                 class="mobile-service-menu__link">Реєстрація</a>
+                        </li>
+                    @endguest
+                        @auth
+                            <span class="icon-user">{{Auth::user()->name}}</span>
+                        @endauth
                 </ul>
+
                 <ul class="header-menu__list">
                     <li class="header-menu__item d-flex">
                         <span class="icon-home header-menu__icon d-lg-none d-md-flex"></span><a
@@ -93,6 +112,18 @@
                     <li class="header-menu__item d-lg-none d-md-flex">
                         <span class="icon-shopping-bag header-menu__icon d-lg-none d-md-flex"></span><a
                             class="header-menu__link" href="#">Кошик (0)</a>
+                    </li>
+                    <li class="header-menu__item d-lg-none d-md-flex">
+                        <span class="icon-exit header-menu__icon d-lg-none d-md-flex">
+                            <a class="header-menu__link" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                              @lang('auth.exit')</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                              style="display: none;">
+                            @csrf
+                        </form>
+                        </span>
                     </li>
                 </ul>
             </nav>
@@ -169,12 +200,14 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link auth-top__link text-uppercase" id="registerGet-tab" data-toggle="tab"
-                               href="#registerGet" role="tab" aria-controls="profile" aria-selected="false">Реєстрація</a>
+                               href="#registerGet" role="tab" aria-controls="profile"
+                               aria-selected="false">Реєстрація</a>
                         </li>
                         <span class="icon-cross position-absolute auth-top__close" @click="closeModal()"></span>
                     </ul>
                     <div class="tab-content auth-top__content" id="myTabContent">
-                        <div class="tab-pane fade" :class="enterTab ? ' show active' : ''" id="authGet" role="tabpanel" aria-labelledby="authGet-tab">
+                        <div class="tab-pane fade" :class="enterTab ? ' show active' : ''" id="authGet" role="tabpanel"
+                             aria-labelledby="authGet-tab">
                             <form class="auth-top__form" action="{{ route('login') }}" method="POST">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="auth-top__form-group auth-top__active d-flex flex-column">
@@ -221,7 +254,8 @@
                                     <span class="auth-top__or">Увійти через акаунт:</span>
                                 </div>
                                 <div class="auth-top__form-group d-flex flex-row justify-content-around ">
-                                    <button class="auth-top__social"><span class="icon-facebook"></span> Facebook</button>
+                                    <button class="auth-top__social"><span class="icon-facebook"></span> Facebook
+                                    </button>
                                     <button class="auth-top__social"><span class="icon-google"></span> Google</button>
                                 </div>
                                 <div
@@ -231,7 +265,8 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="tab-pane fade" :class="registerTab ? ' active show ' : ''" id="registerGet" role="tabpanel" aria-labelledby="registerGet-tab">
+                        <div class="tab-pane fade" :class="registerTab ? ' active show ' : ''" id="registerGet"
+                             role="tabpanel" aria-labelledby="registerGet-tab">
                             <form class="auth-top__form" method="POST" action="{{route('register')}}">
                                 @csrf
                                 <div class="auth-top__form-group auth-top__active d-flex flex-column">
@@ -240,7 +275,7 @@
                                            placeholder="Ім'я"
                                            name="name"
                                            class="auth-top__input"
-                                    required>
+                                           required>
                                 </div>
                                 <div class="auth-top__form-group d-flex flex-column">
                                     <input type="text"
@@ -280,12 +315,14 @@
                                     <span class="auth-top__or">Увійти через акаунт:</span>
                                 </div>
                                 <div class="auth-top__form-group d-flex flex-row justify-content-around ">
-                                    <button class="auth-top__social"><span class="icon-facebook"></span> Facebook</button>
+                                    <button class="auth-top__social"><span class="icon-facebook"></span> Facebook
+                                    </button>
                                     <button class="auth-top__social"><span class="icon-google"></span> Google</button>
                                 </div>
                                 <div
                                     class="auth-top__form-group d-flex flex-column justify-content-center align-items-center">
-                                    <span class="auth-top__or">У Вас вже є аккаунт <a href="#" class="auth-top__restore">Вхід</a></span>
+                                    <span class="auth-top__or">У Вас вже є аккаунт <a href="#"
+                                                                                      class="auth-top__restore">Вхід</a></span>
                                 </div>
                             </form>
                         </div>

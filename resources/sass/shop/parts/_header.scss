@@ -350,3 +350,32 @@
     }
   }
 }
+.header-top-user-menu {
+    cursor: pointer;
+    position: relative;
+    width: 150px;
+    &__trigger {
+        transition: .5s linear;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    &__list {
+        position: absolute;
+        top: 38px;
+        z-index: 999999999;
+        list-style: none;
+        padding: 0;
+        &__element {
+            padding: 7px 10px;
+            margin: 0;
+            background-color: $font-light-grey;
+            a {
+                @include color-link($color-green);
+                &:hover {
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
